@@ -8,14 +8,14 @@ public class SubtractionQuestion implements QuizQuestion {
 
     //___________________________________________________constructors
     public SubtractionQuestion(int firstNumber, int secondNumber){
-        this.firstNumber = firstNumber;
-        this.secondNumber = secondNumber;
+        this.firstNumber = Math.max(firstNumber, secondNumber);
+        this.secondNumber = Math.min(firstNumber, secondNumber);
     }
 
     //___________________________________________________methods
     @Override
     public int getCorrectAnswer() {
-        return Math.abs(firstNumber - secondNumber);
+        return firstNumber - secondNumber;
     }
 
     @Override
