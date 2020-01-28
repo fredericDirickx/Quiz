@@ -2,12 +2,18 @@ package be.intecbrussel.quize.implementation;
 
 import be.intecbrussel.quize.QuizQuestion;
 
+import java.time.Duration;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.Temporal;
 import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
 import static be.intecbrussel.quize.implementation.ConsoleColors.*;
+import static java.time.LocalDateTime.now;
 
 
 public class QuizService {
@@ -24,6 +30,9 @@ public class QuizService {
     public static int totalGoodQuestions;
     public static int totalQuestions;
     public static double totalPercent;
+    private Temporal[] startTime;
+    private Temporal[] endTime;
+    private static Duration totalTime = Duration.ofSeconds(0);
 
     //___________________________________________________constructors
 
@@ -37,6 +46,8 @@ public class QuizService {
         this.bound = bound;
         this.userAnswers = new int[amountQuestions];
         this.questions =  new QuizQuestion[amountQuestions];
+        this.startTime = new Temporal[amountQuestions];
+        this.endTime = new Temporal[amountQuestions];
     }
 
 
@@ -205,23 +216,30 @@ public class QuizService {
     //asks the user the questions and enters the input of the user
    public void administrateQuiz(){
         int i = 0;
-       for (QuizQuestion q: this.questions) {
 
+       for (QuizQuestion q: this.questions) {
+            this.startTime[i]= now();
            System.out.println(q.getQuestion());
            this.userAnswers[i] = getInput();
+           this.endTime[i] = now();
            i++;
        }
+
    }
 
    //prints the questions of the quiz, the answers of the user, the correct answers and
    //if the answer of the user was correct.
    //also prints how many answers where correct.
     public void gradeQuiz(){
-        System.out.printf(CYAN_BOLD+CYAN_UNDERLINED+"%-15s %-15s %-15s %-15s"+RESET+"%n","Question","Your answer", "Correct", "Result");
+        System.out.printf(CYAN_BOLD+CYAN_UNDERLINED+"%-20s%-20s%-20s%-20s%-20s%n"+RESET,"Question","Your answer", "Correct", "Time", "Result");
         String alternatingColor = "";
         int i = 0;
         String result = "";
         int goodResults = 0;
+
+        Duration totalDuration = Duration.between(startTime[0],endTime[amountQuestions-1]);
+        totalTime = totalTime.plus(totalDuration);
+
         for (QuizQuestion q: this.questions) {
 
             if(userAnswers[i]==q.getCorrectAnswer()){
@@ -236,7 +254,9 @@ public class QuizService {
                 alternatingColor = i%2==0? CYAN_BACKGROUND:WHITE;
 
 
-            System.out.printf(alternatingColor+"%-15s %-15d %-15d %-15s"+RESET+"%n",q.getQuestion(),userAnswers[i], q.getCorrectAnswer(),result);
+            Duration questionD = Duration.between(startTime[i],endTime[i]);
+            String time = questionD.toMinutes() +" min "+questionD.toSecondsPart()+" sec";
+            System.out.printf(alternatingColor+"%-20s%-20d%-20d%-20s%-20s%n"+RESET,q.getQuestion(),userAnswers[i], q.getCorrectAnswer(),time,result);
             i++;
         }
 
@@ -247,11 +267,13 @@ public class QuizService {
 
         System.out.println(CYAN_UNDERLINED+"you have " + goodResults + " correct answers out of "+ this.amountQuestions+RESET );
         System.out.printf( CYAN_BACKGROUND+"You have: "+GREEN_BOLD+" %.0f %%"+RESET+"%n" , (double)((double)goodResults/(double)this.amountQuestions)*100 );
+        System.out.println(CYAN_UNDERLINED+"You did all of this in: "+ totalDuration.toMinutesPart()+ " min " + totalDuration.toSecondsPart()+ " sec"+RESET);
 
 
         System.out.println("\n"+CYAN_BOLD+"*****TOTAL*****"+RESET);
         System.out.println(CYAN_UNDERLINED+"you have " + totalGoodQuestions + " correct answers out of "+ totalQuestions+RESET );
         System.out.printf( CYAN_BACKGROUND+"You have: "+GREEN_BOLD+" %.0f %%"+RESET+"%n" , totalPercent );
+        System.out.println(CYAN_UNDERLINED+"Total time: "+ totalTime.toMinutesPart()+ " min " + totalTime.toSecondsPart()+ " sec"+RESET);
 
 
 

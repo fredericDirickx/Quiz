@@ -11,7 +11,7 @@ public class GeneralQuizApp {
         String enGame = "y";
 
         while (enGame.equals("y")) {
-            QuizService quizService = new QuizService(true,true,true,true,10,11);
+            QuizService quizService = new QuizService(false,false,true,false,10,10);
             System.out.println("Welcome to the quiz\n");
             quizService.createQuiz();
             quizService.administrateQuiz();
