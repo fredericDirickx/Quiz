@@ -10,6 +10,8 @@ public class DivisionQuestion implements QuizQuestion {
     public DivisionQuestion(int firstNumber, int secondNumber){
         this.firstNumber = Math.max(firstNumber, secondNumber);
         this.secondNumber = Math.min(firstNumber, secondNumber);
+        this.secondNumber += this.secondNumber<0? 1:0;
+
     }
 
 

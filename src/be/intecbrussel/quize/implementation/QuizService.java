@@ -3,9 +3,6 @@ package be.intecbrussel.quize.implementation;
 import be.intecbrussel.quize.QuizQuestion;
 
 import java.time.Duration;
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 import java.time.temporal.Temporal;
 import java.util.Arrays;
 import java.util.InputMismatchException;
@@ -26,7 +23,10 @@ public class QuizService {
     private boolean division = true;
     private int amountQuestions = 10;
     private int[] userAnswers;
-    private int bound;
+    private int upperboundFirstnumber;
+    private int lowerBoundFirstnumber;
+    private int upperboundSecondnumber;
+    private int lowerBoundSecondnumber;
     public static int totalGoodQuestions;
     public static int totalQuestions;
     public static double totalPercent;
@@ -37,13 +37,16 @@ public class QuizService {
     //___________________________________________________constructors
 
 
-    public QuizService(boolean addition, boolean subtraction, boolean multiplication, boolean division, int amountQuestions, int bound) {
+    public QuizService(boolean addition, boolean subtraction, boolean multiplication, boolean division, int amountQuestions, int lowerBoundFirstnumber, int upperboundFirstnumber, int lowerBoundSecondnumber, int upperboundSecondnumber ) {
         this.addition = addition;
         this.subtraction = subtraction;
         this.multiplication = multiplication;
         this.division = division;
         this.amountQuestions = amountQuestions;
-        this.bound = bound;
+        this.upperboundFirstnumber = upperboundFirstnumber;
+        this.lowerBoundFirstnumber = lowerBoundFirstnumber;
+        this.lowerBoundSecondnumber = lowerBoundSecondnumber;
+        this.upperboundSecondnumber = upperboundSecondnumber;
         this.userAnswers = new int[amountQuestions];
         this.questions =  new QuizQuestion[amountQuestions];
         this.startTime = new Temporal[amountQuestions];
@@ -101,7 +104,7 @@ public class QuizService {
         int[] arr = operations.operations;
 
         int i = 0; //for index of the array when looping through it.
-        Random number = new Random(); //make a new random object to get random numbers for the quiz.
+        Random number = new Random();
 
         int boundQuestions = 0;
 
@@ -117,22 +120,32 @@ public class QuizService {
          int operation = arr[number.nextInt(boundQuestions)]; //get random number to switch randomly between addition
                                                   // and subtraction
 
+
          if(operation == 0) {
-             questions[i] = new AdditionQuestion(number.nextInt(this.bound), number.nextInt(this.bound));
+             questions[i] = new AdditionQuestion(randomFirst(number), randomSecond(number));
          }
          else if(operation ==1){
-             questions[i] = new SubtractionQuestion(number.nextInt(this.bound), number.nextInt(this.bound));
+             questions[i] = new SubtractionQuestion(randomFirst(number), randomSecond(number));
          }
          else if(operation == 2){
-             questions[i] = new MultiplicationQuestion(number.nextInt(this.bound), number.nextInt(this.bound));
+             questions[i] = new MultiplicationQuestion(randomFirst(number), randomSecond(number));
          }
          else if(operation == 3) {
-             questions[i] = new DivisionQuestion(number.nextInt(this.bound-1)+1, number.nextInt(this.bound-1)+1);
+             questions[i] = new DivisionQuestion(randomFirst(number), randomSecond(number));
          }
          i++;
      }
 
     }
+
+    public int randomFirst(Random random){
+        return random.nextInt(this.upperboundFirstnumber - lowerBoundFirstnumber)+ lowerBoundFirstnumber;
+    }
+
+    public int randomSecond(Random random){
+        return random.nextInt(this.upperboundSecondnumber - lowerBoundSecondnumber)+ lowerBoundSecondnumber;
+    }
+
 
     public class Operations {
         int[] operations = new int[0];
