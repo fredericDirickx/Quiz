@@ -1,20 +1,20 @@
 package be.intecbrussel.quize.implementation;
 import be.intecbrussel.quize.QuizQuestion;
 
-public class SubtractionQuestion implements QuizQuestion {
+public class SubtractionQuestion<T extends Number> implements QuizQuestion {
     //___________________________________________________properties
-    private int firstNumber;
-    private int secondNumber;
+    private double firstNumber;
+    private double secondNumber;
 
     //___________________________________________________constructors
-    public SubtractionQuestion(int firstNumber, int secondNumber){
-        this.firstNumber = Math.max(firstNumber, secondNumber);
-        this.secondNumber = Math.min(firstNumber, secondNumber);
+    public SubtractionQuestion(T firstNumber, T secondNumber){
+        this.firstNumber = Math.max(firstNumber.doubleValue(), secondNumber.doubleValue());
+        this.secondNumber = Math.min(firstNumber.doubleValue(), secondNumber.doubleValue());
     }
 
     //___________________________________________________methods
     @Override
-    public int getCorrectAnswer() {
+    public double getCorrectAnswer() {
         return firstNumber - secondNumber;
     }
 

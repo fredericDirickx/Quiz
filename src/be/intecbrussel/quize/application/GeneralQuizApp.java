@@ -1,5 +1,6 @@
 package be.intecbrussel.quize.application;
 
+import be.intecbrussel.quize.implementation.NumberGenerator;
 import be.intecbrussel.quize.implementation.QuizService;
 
 import java.util.Scanner;
@@ -9,9 +10,10 @@ public class GeneralQuizApp {
 
         Scanner input = new Scanner(System.in);
         String enGame = "y";
+        NumberGenerator numberGenerator = new NumberGenerator(0,10);
 
         while (enGame.equals("y")) {
-            QuizService quizService = new QuizService(false,false,true,false,10,3,5,0,10);
+            QuizService quizService = new QuizService(10,false,false,true,false,numberGenerator);
             System.out.println("Welcome to the quiz\n");
             quizService.createQuiz();
             quizService.administrateQuiz();
@@ -23,5 +25,8 @@ public class GeneralQuizApp {
         }
 
         System.out.println("SEE YOU NEXT TIME!!!!!");
+
+
+
     }
 }

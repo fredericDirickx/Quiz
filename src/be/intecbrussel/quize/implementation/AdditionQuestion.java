@@ -1,21 +1,21 @@
 package be.intecbrussel.quize.implementation;
 import be.intecbrussel.quize.QuizQuestion;
 
-public class AdditionQuestion implements QuizQuestion {
+public class AdditionQuestion<T extends Number> implements QuizQuestion {
     //___________________________________________________properties
-    private int firstNumber;
-    private int secondNumber;
+    private T firstNumber;
+    private T secondNumber;
 
     //___________________________________________________constructors
-    public AdditionQuestion(int firstNumber, int secondNumber){
+    public AdditionQuestion(T firstNumber, T secondNumber){
         this.firstNumber = firstNumber;
         this.secondNumber = secondNumber;
     }
 
     //___________________________________________________methods
     @Override
-    public int getCorrectAnswer() {
-        return firstNumber + secondNumber;
+    public double getCorrectAnswer() {
+        return  firstNumber.doubleValue() + secondNumber.doubleValue();
     }
 
     @Override

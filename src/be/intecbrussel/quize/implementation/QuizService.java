@@ -15,18 +15,18 @@ import static java.time.LocalDateTime.now;
 
 public class QuizService {
     //___________________________________________________properties
-    private Scanner input = new Scanner(System.in);
-    private QuizQuestion[] questions;
+
     private boolean addition = true;
     private boolean subtraction = true;
     private boolean multiplication = true;
     private boolean division = true;
+    private NumberGenerator<?> numberGenerator;
+
+
     private int amountQuestions = 10;
     private int[] userAnswers;
-    private int upperboundFirstnumber;
-    private int lowerBoundFirstnumber;
-    private int upperboundSecondnumber;
-    private int lowerBoundSecondnumber;
+    private Scanner input = new Scanner(System.in);
+    private QuizQuestion[] questions;
     public static int totalGoodQuestions;
     public static int totalQuestions;
     public static double totalPercent;
@@ -35,23 +35,16 @@ public class QuizService {
     private static Duration totalTime = Duration.ofSeconds(0);
 
     //___________________________________________________constructors
-
-
-    public QuizService(boolean addition, boolean subtraction, boolean multiplication, boolean division, int amountQuestions, int lowerBoundFirstnumber, int upperboundFirstnumber, int lowerBoundSecondnumber, int upperboundSecondnumber ) {
+    public QuizService(int amountQuestions, boolean addition, boolean subtraction, boolean multiplication, boolean division, NumberGenerator<?> numberGenerator) {
+        this.amountQuestions = amountQuestions;
         this.addition = addition;
         this.subtraction = subtraction;
         this.multiplication = multiplication;
         this.division = division;
-        this.amountQuestions = amountQuestions;
-        this.upperboundFirstnumber = upperboundFirstnumber;
-        this.lowerBoundFirstnumber = lowerBoundFirstnumber;
-        this.lowerBoundSecondnumber = lowerBoundSecondnumber;
-        this.upperboundSecondnumber = upperboundSecondnumber;
-        this.userAnswers = new int[amountQuestions];
-        this.questions =  new QuizQuestion[amountQuestions];
-        this.startTime = new Temporal[amountQuestions];
-        this.endTime = new Temporal[amountQuestions];
+        this.numberGenerator = numberGenerator;
     }
+
+
 
 
     public boolean isAddition() {
@@ -122,29 +115,23 @@ public class QuizService {
 
 
          if(operation == 0) {
-             questions[i] = new AdditionQuestion(randomFirst(number), randomSecond(number));
+             questions[i] = new AdditionQuestion(numberGenerator.getFirstNumber(), numberGenerator.getSecondNumber());
          }
          else if(operation ==1){
-             questions[i] = new SubtractionQuestion(randomFirst(number), randomSecond(number));
+             questions[i] = new SubtractionQuestion(numberGenerator.getFirstNumber(), numberGenerator.getSecondNumber());
          }
          else if(operation == 2){
-             questions[i] = new MultiplicationQuestion(randomFirst(number), randomSecond(number));
+             questions[i] = new MultiplicationQuestion(numberGenerator.getFirstNumber(), numberGenerator.getSecondNumber());
          }
          else if(operation == 3) {
-             questions[i] = new DivisionQuestion(randomFirst(number), randomSecond(number));
+             questions[i] = new DivisionQuestion(numberGenerator.getFirstNumber(), numberGenerator.getSecondNumber());
          }
          i++;
      }
 
     }
 
-    public int randomFirst(Random random){
-        return random.nextInt(this.upperboundFirstnumber - lowerBoundFirstnumber)+ lowerBoundFirstnumber;
-    }
 
-    public int randomSecond(Random random){
-        return random.nextInt(this.upperboundSecondnumber - lowerBoundSecondnumber)+ lowerBoundSecondnumber;
-    }
 
 
     public class Operations {

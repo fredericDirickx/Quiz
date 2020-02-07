@@ -1,7 +1,7 @@
 package be.intecbrussel.quize;
 
-public interface QuizQuestion {
+public interface QuizQuestion<T extends Number> {
     //___________________________________________________methods
     String getQuestion();
-    int getCorrectAnswer();
+   double getCorrectAnswer();
 }

@@ -2,14 +2,14 @@ package be.intecbrussel.quize.implementation;
 
 import be.intecbrussel.quize.QuizQuestion;
 
-public class MultiplicationQuestion implements QuizQuestion {
+public class MultiplicationQuestion <T extends Number> implements QuizQuestion {
 
-    private int firstNumber;
-    private int secondNumber;
+    private double firstNumber;
+    private double secondNumber;
 
-    public MultiplicationQuestion(int firstNumber,int secondNumber){
-        this.firstNumber = firstNumber;
-        this.secondNumber = secondNumber;
+    public MultiplicationQuestion(T firstNumber,T secondNumber){
+        this.firstNumber = firstNumber.doubleValue();
+        this.secondNumber = secondNumber.doubleValue();
     }
 
 
@@ -19,7 +19,7 @@ public class MultiplicationQuestion implements QuizQuestion {
     }
 
     @Override
-    public int getCorrectAnswer() {
+    public double getCorrectAnswer() {
         return firstNumber * secondNumber;
     }
 }

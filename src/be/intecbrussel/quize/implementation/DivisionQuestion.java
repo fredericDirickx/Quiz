@@ -2,14 +2,14 @@ package be.intecbrussel.quize.implementation;
 
 import be.intecbrussel.quize.QuizQuestion;
 
-public class DivisionQuestion implements QuizQuestion {
+public class DivisionQuestion <T extends Number> implements QuizQuestion {
 
-    private int firstNumber;
-    private int secondNumber;
+    private double firstNumber;
+    private double secondNumber;
 
-    public DivisionQuestion(int firstNumber, int secondNumber){
-        this.firstNumber = Math.max(firstNumber, secondNumber);
-        this.secondNumber = Math.min(firstNumber, secondNumber);
+    public DivisionQuestion(T firstNumber, T secondNumber){
+        this.firstNumber = Math.max(firstNumber.doubleValue(), secondNumber.doubleValue());
+        this.secondNumber = Math.min(firstNumber.doubleValue(), secondNumber.doubleValue());
         this.secondNumber += this.secondNumber<0? 1:0;
 
     }
@@ -21,7 +21,7 @@ public class DivisionQuestion implements QuizQuestion {
     }
 
     @Override
-    public int getCorrectAnswer() {
+    public double getCorrectAnswer() {
         return firstNumber / secondNumber;
     }
 }
