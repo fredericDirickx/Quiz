@@ -4,29 +4,26 @@ import be.intecbrussel.quize.QuizQuestion;
 
 import java.time.Duration;
 import java.time.temporal.Temporal;
-import java.util.Arrays;
-import java.util.InputMismatchException;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 import static be.intecbrussel.quize.implementation.ConsoleColors.*;
 import static java.time.LocalDateTime.now;
 
 
-public class QuizService {
+public class QuizService <T extends Number> {
     //___________________________________________________properties
 
     private boolean addition = true;
     private boolean subtraction = true;
     private boolean multiplication = true;
     private boolean division = true;
-    private NumberGenerator<?> numberGenerator;
+    private NumberGenerator<T> numberGenerator;
 
 
     private int amountQuestions = 10;
-    private int[] userAnswers;
+    private ArrayList<Double> userAnswers;
     private Scanner input = new Scanner(System.in);
-    private QuizQuestion[] questions;
+    private ArrayList<QuizQuestion<T>> questions;
     public static int totalGoodQuestions;
     public static int totalQuestions;
     public static double totalPercent;
@@ -35,7 +32,7 @@ public class QuizService {
     private static Duration totalTime = Duration.ofSeconds(0);
 
     //___________________________________________________constructors
-    public QuizService(int amountQuestions, boolean addition, boolean subtraction, boolean multiplication, boolean division, NumberGenerator<?> numberGenerator) {
+    public QuizService(int amountQuestions, boolean addition, boolean subtraction, boolean multiplication, boolean division, NumberGenerator<T> numberGenerator) {
         this.amountQuestions = amountQuestions;
         this.addition = addition;
         this.subtraction = subtraction;
@@ -108,23 +105,23 @@ public class QuizService {
 
 
 
-     for(QuizQuestion q : this.questions){
+     for(QuizQuestion<T> q : this.questions){
 
          int operation = arr[number.nextInt(boundQuestions)]; //get random number to switch randomly between addition
                                                   // and subtraction
 
 
          if(operation == 0) {
-             questions[i] = new AdditionQuestion(numberGenerator.getFirstNumber(), numberGenerator.getSecondNumber());
+             questions.add(new AdditionQuestion<T>(numberGenerator.getFirstNumber(), numberGenerator.getSecondNumber()));
          }
          else if(operation ==1){
-             questions[i] = new SubtractionQuestion(numberGenerator.getFirstNumber(), numberGenerator.getSecondNumber());
+             questions.add(new SubtractionQuestion(numberGenerator.getFirstNumber(), numberGenerator.getSecondNumber()));
          }
          else if(operation == 2){
-             questions[i] = new MultiplicationQuestion(numberGenerator.getFirstNumber(), numberGenerator.getSecondNumber());
+             questions.add(new MultiplicationQuestion(numberGenerator.getFirstNumber(), numberGenerator.getSecondNumber()));
          }
          else if(operation == 3) {
-             questions[i] = new DivisionQuestion(numberGenerator.getFirstNumber(), numberGenerator.getSecondNumber());
+             questions.add(new DivisionQuestion(numberGenerator.getFirstNumber(), numberGenerator.getSecondNumber()));
          }
          i++;
      }
@@ -220,7 +217,7 @@ public class QuizService {
        for (QuizQuestion q: this.questions) {
             this.startTime[i]= now();
            System.out.println(q.getQuestion());
-           this.userAnswers[i] = getInput();
+           this.userAnswers.set(i, (double) getInput());
            this.endTime[i] = now();
            i++;
        }
@@ -242,7 +239,7 @@ public class QuizService {
 
         for (QuizQuestion q: this.questions) {
 
-            if(userAnswers[i]==q.getCorrectAnswer()){
+            if(userAnswers.get(i)==q.getCorrectAnswer()){
                 result = GREEN_BOLD+"correct"+RESET;
                 goodResults++;
             }
@@ -256,7 +253,7 @@ public class QuizService {
 
             Duration questionD = Duration.between(startTime[i],endTime[i]);
             String time = questionD.toMinutes() +" min "+questionD.toSecondsPart()+" sec";
-            System.out.printf(alternatingColor+"%-20s%-20d%-20d%-20s%-20s%n"+RESET,q.getQuestion(),userAnswers[i], q.getCorrectAnswer(),time,result);
+            System.out.printf(alternatingColor+"%-20s%-20d%-20d%-20s%-20s%n"+RESET,q.getQuestion(),userAnswers.get(i), q.getCorrectAnswer(),time,result);
             i++;
         }
 
