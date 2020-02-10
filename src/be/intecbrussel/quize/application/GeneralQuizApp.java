@@ -10,10 +10,10 @@ public class GeneralQuizApp {
 
         Scanner input = new Scanner(System.in);
         String enGame = "y";
-        NumberGenerator numberGenerator = new NumberGenerator(0,10);
+        NumberGenerator<Number> numberGenerator = new NumberGenerator<Number>(0,10,3,4);
 
         while (enGame.equals("y")) {
-            QuizService quizService = new QuizService(10,false,false,true,false,numberGenerator);
+            QuizService<Number> quizService = new QuizService<Number>(5,false,false,true,false,numberGenerator);
             System.out.println("Welcome to the quiz\n");
             quizService.createQuiz();
             quizService.administrateQuiz();

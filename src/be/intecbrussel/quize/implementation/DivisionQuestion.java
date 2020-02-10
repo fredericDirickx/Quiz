@@ -2,6 +2,8 @@ package be.intecbrussel.quize.implementation;
 
 import be.intecbrussel.quize.QuizQuestion;
 
+import java.util.Formatter;
+
 public class DivisionQuestion <T extends Number> implements QuizQuestion {
 
     private double firstNumber;
@@ -14,14 +16,13 @@ public class DivisionQuestion <T extends Number> implements QuizQuestion {
 
     }
 
-
-    @Override
-    public String getQuestion() {
-        return firstNumber + " : " + secondNumber;
-    }
-
     @Override
     public double getCorrectAnswer() {
         return firstNumber / secondNumber;
+    }
+
+    @Override
+    public String getQuestion() {
+        return  QuizQuestion.question(":",firstNumber,secondNumber);
     }
 }

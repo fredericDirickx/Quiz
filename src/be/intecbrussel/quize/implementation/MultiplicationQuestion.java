@@ -2,6 +2,8 @@ package be.intecbrussel.quize.implementation;
 
 import be.intecbrussel.quize.QuizQuestion;
 
+import java.util.Formatter;
+
 public class MultiplicationQuestion <T extends Number> implements QuizQuestion {
 
     private double firstNumber;
@@ -12,14 +14,13 @@ public class MultiplicationQuestion <T extends Number> implements QuizQuestion {
         this.secondNumber = secondNumber.doubleValue();
     }
 
-
-    @Override
-    public String getQuestion() {
-        return firstNumber + " x " + secondNumber;
-    }
-
     @Override
     public double getCorrectAnswer() {
         return firstNumber * secondNumber;
+    }
+
+    @Override
+    public String getQuestion() {
+        return  QuizQuestion.question("x",firstNumber,secondNumber);
     }
 }

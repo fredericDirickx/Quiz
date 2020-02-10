@@ -1,6 +1,8 @@
 package be.intecbrussel.quize.implementation;
 import be.intecbrussel.quize.QuizQuestion;
 
+import java.util.Formatter;
+
 public class SubtractionQuestion<T extends Number> implements QuizQuestion {
     //___________________________________________________properties
     private double firstNumber;
@@ -20,7 +22,7 @@ public class SubtractionQuestion<T extends Number> implements QuizQuestion {
 
     @Override
     public String getQuestion() {
-        return firstNumber+ " - " + secondNumber + " = ?";
+        return  QuizQuestion.question("-",firstNumber,secondNumber);
     }
 
 

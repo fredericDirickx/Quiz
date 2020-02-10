@@ -21,14 +21,14 @@ public class QuizService <T extends Number> {
 
 
     private int amountQuestions = 10;
-    private ArrayList<Double> userAnswers;
+    private ArrayList<Double> userAnswers = new ArrayList<>();
     private Scanner input = new Scanner(System.in);
-    private ArrayList<QuizQuestion<T>> questions;
+    private ArrayList<QuizQuestion<T>> questions = new ArrayList<>();
     public static int totalGoodQuestions;
     public static int totalQuestions;
     public static double totalPercent;
-    private Temporal[] startTime;
-    private Temporal[] endTime;
+    private ArrayList<Temporal> startTime = new ArrayList<>();
+    private ArrayList<Temporal> endTime = new ArrayList<>();
     private static Duration totalTime = Duration.ofSeconds(0);
 
     //___________________________________________________constructors
@@ -93,7 +93,6 @@ public class QuizService <T extends Number> {
 
         int[] arr = operations.operations;
 
-        int i = 0; //for index of the array when looping through it.
         Random number = new Random();
 
         int boundQuestions = 0;
@@ -105,7 +104,7 @@ public class QuizService <T extends Number> {
 
 
 
-     for(QuizQuestion<T> q : this.questions){
+     for(int i = 0 ; i < amountQuestions; i++){
 
          int operation = arr[number.nextInt(boundQuestions)]; //get random number to switch randomly between addition
                                                   // and subtraction
@@ -123,7 +122,7 @@ public class QuizService <T extends Number> {
          else if(operation == 3) {
              questions.add(new DivisionQuestion(numberGenerator.getFirstNumber(), numberGenerator.getSecondNumber()));
          }
-         i++;
+
      }
 
     }
@@ -189,13 +188,13 @@ public class QuizService <T extends Number> {
     }
 
     //get the answer of the user and repeat if when input is not a integer.
-    private int getInput(){
-        int answer = 0;
+    private double getInput(){
+        double answer = 0;
         boolean repeat = true;
         do {
             System.out.println("enter your answer");
             try {
-                answer = this.input.nextInt();
+                answer = this.input.nextDouble();
                 repeat = false;
             } catch (InputMismatchException e) {
                 System.out.println("please enter a integer number");
@@ -213,15 +212,13 @@ public class QuizService <T extends Number> {
     //asks the user the questions and enters the input of the user
    public void administrateQuiz(){
         int i = 0;
-
-       for (QuizQuestion q: this.questions) {
-            this.startTime[i]= now();
+       for (QuizQuestion<T> q: this.questions) {
+            this.startTime.add(now());
            System.out.println(q.getQuestion());
-           this.userAnswers.set(i, (double) getInput());
-           this.endTime[i] = now();
+           this.userAnswers.add((double) getInput());
+           this.endTime.add(now());
            i++;
        }
-
    }
 
    //prints the questions of the quiz, the answers of the user, the correct answers and
@@ -234,7 +231,7 @@ public class QuizService <T extends Number> {
         String result = "";
         int goodResults = 0;
 
-        Duration totalDuration = Duration.between(startTime[0],endTime[amountQuestions-1]);
+        Duration totalDuration = Duration.between(startTime.get(i),endTime.get(amountQuestions-1));
         totalTime = totalTime.plus(totalDuration);
 
         for (QuizQuestion q: this.questions) {
@@ -251,9 +248,13 @@ public class QuizService <T extends Number> {
                 alternatingColor = i%2==0? CYAN_BACKGROUND:WHITE;
 
 
-            Duration questionD = Duration.between(startTime[i],endTime[i]);
+            Duration questionD = Duration.between(startTime.get(i),endTime.get(i));
             String time = questionD.toMinutes() +" min "+questionD.toSecondsPart()+" sec";
-            System.out.printf(alternatingColor+"%-20s%-20d%-20d%-20s%-20s%n"+RESET,q.getQuestion(),userAnswers.get(i), q.getCorrectAnswer(),time,result);
+            System.out.printf(alternatingColor+"%-20s" +
+                    "%-20"+QuizQuestion.floatSwitch(userAnswers.get(i))+"f" +
+                    "%-20"+QuizQuestion.floatSwitch(q.getCorrectAnswer())+"f" +
+                            "%-20s%-20s%n"+RESET,
+                    q.getQuestion(),userAnswers.get(i), q.getCorrectAnswer(),time,result);
             i++;
         }
 
@@ -272,9 +273,8 @@ public class QuizService <T extends Number> {
         System.out.printf( CYAN_BACKGROUND+"You have: "+GREEN_BOLD+" %.0f %%"+RESET+"%n" , totalPercent );
         System.out.println(CYAN_UNDERLINED+"Total time: "+ totalTime.toMinutesPart()+ " min " + totalTime.toSecondsPart()+ " sec"+RESET);
 
-
-
-
     }
+
+
 
 }
