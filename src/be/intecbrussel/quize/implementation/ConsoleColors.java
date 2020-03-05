@@ -1,6 +1,8 @@
 package be.intecbrussel.quize.implementation;
 
-public class ConsoleColors {
+import java.io.Serializable;
+
+public class ConsoleColors implements Serializable {
         // Reset
         public static final String RESET = "\033[0m";  // Text Reset
 

@@ -2,9 +2,10 @@ package be.intecbrussel.quize.implementation;
 
 import be.intecbrussel.quize.QuizQuestion;
 
+import java.io.Serializable;
 import java.util.Formatter;
 
-public class DivisionQuestion <T extends Number> implements QuizQuestion {
+public class DivisionQuestion <T extends Number> implements QuizQuestion, Serializable {
 
     private double firstNumber;
     private double secondNumber;

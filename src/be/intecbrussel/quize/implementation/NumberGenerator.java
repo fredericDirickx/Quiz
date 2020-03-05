@@ -1,9 +1,10 @@
 package be.intecbrussel.quize.implementation;
 
+import java.io.Serializable;
 import java.util.Random;
 import java.util.function.DoubleBinaryOperator;
 
-public class NumberGenerator<T extends Number> {
+public class NumberGenerator<T extends Number> implements Serializable {
     private T firstNumber;
     private T secondNumber;
     private T upperBoundFirstNumber;

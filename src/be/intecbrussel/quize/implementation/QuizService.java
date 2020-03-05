@@ -2,6 +2,7 @@ package be.intecbrussel.quize.implementation;
 
 import be.intecbrussel.quize.QuizQuestion;
 
+import java.io.Serializable;
 import java.time.Duration;
 import java.time.temporal.Temporal;
 import java.util.*;
@@ -10,7 +11,7 @@ import static be.intecbrussel.quize.implementation.ConsoleColors.*;
 import static java.time.LocalDateTime.now;
 
 
-public class QuizService <T extends Number> {
+public class QuizService <T extends Number> implements Serializable {
     //___________________________________________________properties
 
     private boolean addition = true;
@@ -21,15 +22,15 @@ public class QuizService <T extends Number> {
 
 
     private int amountQuestions = 10;
-    private ArrayList<Double> userAnswers = new ArrayList<>();
-    private Scanner input = new Scanner(System.in);
-    private ArrayList<QuizQuestion<T>> questions = new ArrayList<>();
+    private transient ArrayList<Double> userAnswers = new ArrayList<>();
+    private transient Scanner input = new Scanner(System.in);
+    private transient ArrayList<QuizQuestion<T>> questions = new ArrayList<>();
     public static int totalGoodQuestions;
     public static int totalQuestions;
     public static double totalPercent;
-    private ArrayList<Temporal> startTime = new ArrayList<>();
-    private ArrayList<Temporal> endTime = new ArrayList<>();
-    private static Duration totalTime = Duration.ofSeconds(0);
+    private transient ArrayList<Temporal> startTime = new ArrayList<>();
+    private transient ArrayList<Temporal> endTime = new ArrayList<>();
+    private static transient Duration totalTime = Duration.ofSeconds(0);
 
     //___________________________________________________constructors
     public QuizService(int amountQuestions, boolean addition, boolean subtraction, boolean multiplication, boolean division, NumberGenerator<T> numberGenerator) {
@@ -128,8 +129,6 @@ public class QuizService <T extends Number> {
     }
 
 
-
-
     public class Operations {
         int[] operations = new int[0];
         public Operations() {
@@ -211,6 +210,7 @@ public class QuizService <T extends Number> {
 
     //asks the user the questions and enters the input of the user
    public void administrateQuiz(){
+
         int i = 0;
        for (QuizQuestion<T> q: this.questions) {
             this.startTime.add(now());
@@ -220,6 +220,19 @@ public class QuizService <T extends Number> {
            i++;
        }
    }
+
+//todo
+//    public void administrateQuiz(){
+//
+//        int i = 0;
+//        for (QuizQuestion<T> q: this.questions) {
+//            this.startTime.add(now());
+//            System.out.println(q.getQuestion());
+//            this.userAnswers.add((double) getInput());
+//            this.endTime.add(now());
+//            i++;
+//        }
+//    }
 
    //prints the questions of the quiz, the answers of the user, the correct answers and
    //if the answer of the user was correct.

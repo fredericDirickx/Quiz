@@ -1,6 +1,8 @@
 package be.intecbrussel.quize;
 
-public interface QuizQuestion<T extends Number> {
+import java.io.Serializable;
+
+public interface QuizQuestion<T extends Number> extends Serializable {
     //___________________________________________________methods
     String getQuestion();
    double getCorrectAnswer();

@@ -1,9 +1,10 @@
 package be.intecbrussel.quize.implementation;
 import be.intecbrussel.quize.QuizQuestion;
 
+import java.io.Serializable;
 import java.util.Formatter;
 
-public class SubtractionQuestion<T extends Number> implements QuizQuestion {
+public class SubtractionQuestion<T extends Number> implements QuizQuestion, Serializable {
     //___________________________________________________properties
     private double firstNumber;
     private double secondNumber;
