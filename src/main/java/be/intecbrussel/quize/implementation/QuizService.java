@@ -307,18 +307,6 @@ public class QuizService <T extends Number> {
        lastQuestionNr = questions.size();
    }
 
-//todo
-//    public void administrateQuiz(){
-//
-//        int i = 0;
-//        for (QuizQuestion<T> q: this.questions) {
-//            this.startTime.add(now());
-//            System.out.println(q.getQuestion());
-//            this.userAnswers.add((double) getInput());
-//            this.endTime.add(now());
-//            i++;
-//        }
-//    }
 
    //prints the questions of the quiz, the answers of the user, the correct answers and
    //if the answer of the user was correct.
