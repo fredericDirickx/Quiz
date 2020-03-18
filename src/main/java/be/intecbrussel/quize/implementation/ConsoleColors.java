@@ -2,7 +2,7 @@ package be.intecbrussel.quize.implementation;
 
 import java.io.Serializable;
 
-public class ConsoleColors implements Serializable {
+public class ConsoleColors {
         // Reset
         public static final String RESET = "\033[0m";  // Text Reset
 

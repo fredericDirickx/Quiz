@@ -11,7 +11,7 @@ import static be.intecbrussel.quize.implementation.ConsoleColors.*;
 import static java.time.LocalDateTime.now;
 
 
-public class QuizService <T extends Number> implements Serializable {
+public class QuizService <T extends Number> {
     //___________________________________________________properties
 
     private boolean addition = true;
@@ -21,16 +21,18 @@ public class QuizService <T extends Number> implements Serializable {
     private NumberGenerator<T> numberGenerator;
 
 
+
     private int amountQuestions = 10;
-    private transient ArrayList<Double> userAnswers = new ArrayList<>();
-    private transient Scanner input = new Scanner(System.in);
-    private transient ArrayList<QuizQuestion<T>> questions = new ArrayList<>();
+    private  ArrayList<Double> userAnswers = new ArrayList<>();
+    private  Scanner input = new Scanner(System.in);
+    private  ArrayList<QuizQuestion<T>> questions = new ArrayList<>();
     public static int totalGoodQuestions;
     public static int totalQuestions;
     public static double totalPercent;
-    private transient ArrayList<Temporal> startTime = new ArrayList<>();
-    private transient ArrayList<Temporal> endTime = new ArrayList<>();
-    private static transient Duration totalTime = Duration.ofSeconds(0);
+    private  ArrayList<Temporal> startTimes = new ArrayList<>();
+    private  ArrayList<Temporal> endTimes = new ArrayList<>();
+    private static Duration totalTime = Duration.ofSeconds(0);
+    private static int lastQuestionNr;
 
     //___________________________________________________constructors
     public QuizService(int amountQuestions, boolean addition, boolean subtraction, boolean multiplication, boolean division, NumberGenerator<T> numberGenerator) {
@@ -83,6 +85,91 @@ public class QuizService <T extends Number> implements Serializable {
 
     public void setAmountQuestions(int amountQuestions) {
         this.amountQuestions = amountQuestions;
+    }
+
+
+    public NumberGenerator<T> getNumberGenerator() {
+        return numberGenerator;
+    }
+
+    public void setNumberGenerator(NumberGenerator<T> numberGenerator) {
+        this.numberGenerator = numberGenerator;
+    }
+
+    public ArrayList<Double> getUserAnswers() {
+        return userAnswers;
+    }
+
+    public void setUserAnswers(ArrayList<Double> userAnswers) {
+        this.userAnswers = userAnswers;
+    }
+
+    public void setInput(Scanner input) {
+        this.input = input;
+    }
+
+    public ArrayList<QuizQuestion<T>> getQuestions() {
+        return questions;
+    }
+
+    public void setQuestions(ArrayList<QuizQuestion<T>> questions) {
+        this.questions = questions;
+    }
+
+    public static int getTotalGoodQuestions() {
+        return totalGoodQuestions;
+    }
+
+    public static void setTotalGoodQuestions(int totalGoodQuestions) {
+        QuizService.totalGoodQuestions = totalGoodQuestions;
+    }
+
+    public static int getTotalQuestions() {
+        return totalQuestions;
+    }
+
+    public static void setTotalQuestions(int totalQuestions) {
+        QuizService.totalQuestions = totalQuestions;
+    }
+
+    public static double getTotalPercent() {
+        return totalPercent;
+    }
+
+    public static void setTotalPercent(double totalPercent) {
+        QuizService.totalPercent = totalPercent;
+    }
+
+    public ArrayList<Temporal> getStartTimes() {
+        return startTimes;
+    }
+
+    public void setStartTimes(ArrayList<Temporal> startTimes) {
+        this.startTimes = startTimes;
+    }
+
+    public ArrayList<Temporal> getEndTimes() {
+        return endTimes;
+    }
+
+    public void setEndTimes(ArrayList<Temporal> endTimes) {
+        this.endTimes = endTimes;
+    }
+
+    public static Duration getTotalTime() {
+        return totalTime;
+    }
+
+    public static void setTotalTime(Duration totalTime) {
+        QuizService.totalTime = totalTime;
+    }
+
+    public static int getLastQuestionNr() {
+        return lastQuestionNr;
+    }
+
+    public static void setLastQuestionNr(int lastQuestionNr) {
+        QuizService.lastQuestionNr = lastQuestionNr;
     }
 
     //___________________________________________________methods
@@ -211,14 +298,13 @@ public class QuizService <T extends Number> implements Serializable {
     //asks the user the questions and enters the input of the user
    public void administrateQuiz(){
 
-        int i = 0;
-       for (QuizQuestion<T> q: this.questions) {
-            this.startTime.add(now());
-           System.out.println(q.getQuestion());
+       for (int i = lastQuestionNr ; i < this.questions.size() ; i++) {
+            this.startTimes.add(now());
+           System.out.println(this.questions.get(i).getQuestion());
            this.userAnswers.add((double) getInput());
-           this.endTime.add(now());
-           i++;
+           this.endTimes.add(now());
        }
+       lastQuestionNr = questions.size();
    }
 
 //todo
@@ -244,7 +330,7 @@ public class QuizService <T extends Number> implements Serializable {
         String result = "";
         int goodResults = 0;
 
-        Duration totalDuration = Duration.between(startTime.get(i),endTime.get(amountQuestions-1));
+        Duration totalDuration = Duration.between(startTimes.get(i), endTimes.get(amountQuestions-1));
         totalTime = totalTime.plus(totalDuration);
 
         for (QuizQuestion q: this.questions) {
@@ -261,7 +347,7 @@ public class QuizService <T extends Number> implements Serializable {
                 alternatingColor = i%2==0? CYAN_BACKGROUND:WHITE;
 
 
-            Duration questionD = Duration.between(startTime.get(i),endTime.get(i));
+            Duration questionD = Duration.between(startTimes.get(i), endTimes.get(i));
             String time = questionD.toMinutes() +" min "+questionD.toSecondsPart()+" sec";
             System.out.printf(alternatingColor+"%-20s" +
                     "%-20"+QuizQuestion.floatSwitch(userAnswers.get(i))+"f" +

@@ -5,7 +5,7 @@ import be.intecbrussel.quize.QuizQuestion;
 import java.io.Serializable;
 import java.util.Formatter;
 
-public class MultiplicationQuestion <T extends Number> implements QuizQuestion, Serializable {
+public class MultiplicationQuestion <T extends Number> implements QuizQuestion {
 
     private double firstNumber;
     private double secondNumber;

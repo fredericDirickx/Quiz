@@ -1,9 +1,8 @@
 package be.intecbrussel.quize.application;
 
-import be.intecbrussel.quize.implementation.LoadData;
 import be.intecbrussel.quize.implementation.NumberGenerator;
 import be.intecbrussel.quize.implementation.QuizService;
-import be.intecbrussel.quize.implementation.SafeData;
+
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -13,18 +12,10 @@ import java.util.Scanner;
 public class GeneralQuizApp {
     public static void main(String[] args) {
 
-        String user = "Charlie";
-        Path path = Paths.get("C:\\Users\\Frederic\\IdeaProjects\\Quiz\\data");
-        LoadData load = new LoadData(user,path);
-        NumberGenerator<Number> numberGenerator = new NumberGenerator<Number>(3,10,0,10);
-        QuizService<Number> quizService = null;
 
-        if(Files.notExists(path.resolve("\\"+user))){
-            quizService = new QuizService<Number>(2,false,false,true,false,numberGenerator);
-        }else{
-           quizService = (QuizService<Number>) load.loadQuize();
-           quizService.gradeQuiz();
-        }
+        NumberGenerator<Number> numberGenerator = new NumberGenerator<Number>(0,21,0,21);
+        QuizService<Number> quizService = null;
+            quizService = new QuizService<Number>(2,true,false,false,false,numberGenerator);
 
 
         Scanner input = new Scanner(System.in);
@@ -45,9 +36,6 @@ public class GeneralQuizApp {
 
         }
 
-
-        SafeData safeData = new SafeData(quizService,user,path);
-        safeData.safeToDrive();
         System.out.println("SEE YOU NEXT TIME!!!!!");
 
 
