@@ -2,7 +2,6 @@ package be.intecbrussel.quize.implementation;
 
 import be.intecbrussel.quize.QuizQuestion;
 
-import java.io.Serializable;
 import java.time.Duration;
 import java.time.temporal.Temporal;
 import java.util.*;
@@ -173,11 +172,13 @@ public class QuizService <T extends Number> {
     }
 
     //___________________________________________________methods
+
+    //will create the quiz: fill the questions list based on constructor parameters
     public void createQuiz(){
 
         Operations operations = new Operations();
 
-        System.out.println("We have " + amountQuestions +" "+operations.operationName()+" operations for you");
+        System.out.println("We have " + amountQuestions +" "+operations.operationNames()+" operations for you");
 
         int[] arr = operations.operations;
 
@@ -216,8 +217,12 @@ public class QuizService <T extends Number> {
     }
 
 
+    //inner class that will control the operations of the quiz based on constructor of QuizService
     public class Operations {
+        //array of the different operations of the quiz
+        //Can be different options depending on what is set when QuizService is initialized
         int[] operations = new int[0];
+
         public Operations() {
 
             if (!addition && !division && !multiplication && !subtraction) {
@@ -239,7 +244,9 @@ public class QuizService <T extends Number> {
 
         }
 
-        private String operationName(){
+
+        //to print the operations asked by user
+        private String operationNames(){
             String operations = "";
             String delimiter = "";
             boolean more = false;
