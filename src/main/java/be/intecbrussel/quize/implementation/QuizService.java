@@ -300,7 +300,7 @@ public class QuizService <T extends Number> {
 
        for (int i = lastQuestionNr ; i < this.questions.size() ; i++) {
             this.startTimes.add(now());
-           System.out.println(this.questions.get(i).getQuestion());
+           System.out.println(i+1 + ") "+this.questions.get(i).getQuestion());
            this.userAnswers.add((double) getInput());
            this.endTimes.add(now());
        }

@@ -13,9 +13,9 @@ public class GeneralQuizApp {
     public static void main(String[] args) {
 
 
-        NumberGenerator<Number> numberGenerator = new NumberGenerator<Number>(0,21,0,21);
+        NumberGenerator<Number> numberGenerator = new NumberGenerator<Number>(4,5,0,11);
         QuizService<Number> quizService = null;
-            quizService = new QuizService<Number>(2,true,false,false,false,numberGenerator);
+            quizService = new QuizService<Number>(100,false,false,true,false,numberGenerator);
 
 
         Scanner input = new Scanner(System.in);
