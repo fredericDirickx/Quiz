@@ -3,40 +3,40 @@ package be.intecbrussel.quize.implementation;
 import java.io.Serializable;
 import java.util.*;
 
-public class NumberGenerator<T extends Number> {
-    private T firstNumber;
-    private T secondNumber;
-    private T upperBoundFirstNumber;
-    private T lowerBoundFirstNumber;
-    private T upperBoundSecondNumber;
-    private T lowerBoundSecondNumber;
+public class NumberGenerator {
+    private double firstNumber;
+    private double secondNumber;
+    private double upperBoundFirstNumber;
+    private double lowerBoundFirstNumber;
+    private double upperBoundSecondNumber;
+    private double lowerBoundSecondNumber;
     private int amount = 100;
     private Random random = new Random();
-    static private List<Number> firstNumbers = new ArrayList<Number>();
-    static private List<Number> secondNumbers = new ArrayList<Number>();
+    static private List<Double> firstNumbers = new ArrayList<>();
+    static private List<Double> secondNumbers = new ArrayList<>();
 
 
-    public NumberGenerator(T lowerBoundFirstNumber, T upperBoundFirstNumber) {
+    public NumberGenerator(double lowerBoundFirstNumber, double upperBoundFirstNumber) {
         this.upperBoundFirstNumber = upperBoundFirstNumber;
         this.lowerBoundFirstNumber = lowerBoundFirstNumber;
         this.upperBoundSecondNumber = upperBoundFirstNumber;
         this.lowerBoundSecondNumber = lowerBoundFirstNumber;
-        this.amount = upperBoundFirstNumber.intValue() - lowerBoundFirstNumber.intValue();
+        this.amount = (int)(upperBoundFirstNumber - lowerBoundFirstNumber);
     }
 
 
-    public NumberGenerator(T lowerBoundFirstNumber, T upperBoundFirstNumber, T lowerBoundSecondNumber, T upperBoundSecondNumber) {
+    public NumberGenerator(double lowerBoundFirstNumber, double upperBoundFirstNumber, double lowerBoundSecondNumber, double upperBoundSecondNumber) {
         this.upperBoundFirstNumber = upperBoundFirstNumber;
         this.lowerBoundFirstNumber = lowerBoundFirstNumber;
         this.upperBoundSecondNumber = upperBoundSecondNumber;
         this.lowerBoundSecondNumber = lowerBoundSecondNumber;
-        this.amount = upperBoundFirstNumber.intValue() - lowerBoundFirstNumber.intValue();
+        this.amount = (int)(upperBoundFirstNumber - lowerBoundFirstNumber);
     }
 
 
-    public T getFirstNumber() {
+    public double getFirstNumber() {
 
-        int size = Math.abs(upperBoundFirstNumber.intValue() - lowerBoundFirstNumber.intValue());
+        int size = (int) Math.abs(upperBoundFirstNumber - lowerBoundFirstNumber);
 
         if (firstNumbers.size() >= size) {
             firstNumbers.clear();
@@ -47,10 +47,10 @@ public class NumberGenerator<T extends Number> {
 
         while (repeat) {
 
-            if (upperBoundFirstNumber instanceof Double ||
-                    lowerBoundFirstNumber instanceof Double ||
-                    upperBoundSecondNumber instanceof Double ||
-                    lowerBoundSecondNumber instanceof Double) {
+            if (upperBoundFirstNumber instanceof double ||
+                    lowerBoundFirstNumber instanceof double ||
+                    upperBoundSecondNumber instanceof double ||
+                    lowerBoundSecondNumber instanceof double) {
 
                 Double t = random.doubles(amount, (double) lowerBoundFirstNumber, (double) upperBoundFirstNumber).findAny().orElse(-1);
                 t = Math.round(t * 100.0) / 100.0;
