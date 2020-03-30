@@ -10,7 +10,7 @@ import static be.intecbrussel.quize.implementation.ConsoleColors.*;
 import static java.time.LocalDateTime.now;
 
 
-public class QuizService <T extends Number> {
+public class QuizService<T extends Number> {
     //___________________________________________________properties
 
     private boolean addition = true;
@@ -20,21 +20,21 @@ public class QuizService <T extends Number> {
     private NumberGenerator<T> numberGenerator;
 
 
-
     private int amountQuestions = 10;
-    private  ArrayList<Double> userAnswers = new ArrayList<>();
-    private  Scanner input = new Scanner(System.in);
-    private  ArrayList<QuizQuestion<T>> questions = new ArrayList<>();
+    private ArrayList<Double> userAnswers = new ArrayList<>();
+    private Scanner input = new Scanner(System.in);
+    private ArrayList<QuizQuestion<T>> questions = new ArrayList<>();
     public static int totalGoodQuestions;
     public static int totalQuestions;
     public static double totalPercent;
-    private  ArrayList<Temporal> startTimes = new ArrayList<>();
-    private  ArrayList<Temporal> endTimes = new ArrayList<>();
+    private ArrayList<Temporal> startTimes = new ArrayList<>();
+    private ArrayList<Temporal> endTimes = new ArrayList<>();
     private static Duration totalTime = Duration.ofSeconds(0);
     private static int lastQuestionNr;
 
     //___________________________________________________constructors
-    public QuizService(int amountQuestions, boolean addition, boolean subtraction, boolean multiplication, boolean division, NumberGenerator<T> numberGenerator) {
+    public QuizService(int amountQuestions, boolean addition, boolean subtraction,
+                       boolean multiplication, boolean division, NumberGenerator<T> numberGenerator) {
         this.amountQuestions = amountQuestions;
         this.addition = addition;
         this.subtraction = subtraction;
@@ -42,8 +42,6 @@ public class QuizService <T extends Number> {
         this.division = division;
         this.numberGenerator = numberGenerator;
     }
-
-
 
 
     public boolean isAddition() {
@@ -174,11 +172,11 @@ public class QuizService <T extends Number> {
     //___________________________________________________methods
 
     //will create the quiz: fill the questions list based on constructor parameters
-    public void createQuiz(){
+    public void createQuiz() {
 
         Operations operations = new Operations();
 
-        System.out.println("We have " + amountQuestions +" "+operations.operationNames()+" operations for you");
+        System.out.println("We have " + amountQuestions + " " + operations.operationNames() + " operations for you");
 
         int[] arr = operations.operations;
 
@@ -186,33 +184,33 @@ public class QuizService <T extends Number> {
 
         int boundQuestions = 0;
 
-        boundQuestions += this.addition? 1:0;
-        boundQuestions += this.subtraction? 1:0;
-        boundQuestions += this.multiplication? 1:0;
-        boundQuestions += this.division? 1:0;
+        boundQuestions += this.addition ? 1 : 0;
+        boundQuestions += this.subtraction ? 1 : 0;
+        boundQuestions += this.multiplication ? 1 : 0;
+        boundQuestions += this.division ? 1 : 0;
 
 
+        for (int i = 0; i < amountQuestions; i++) {
 
-     for(int i = 0 ; i < amountQuestions; i++){
-
-         int operation = arr[number.nextInt(boundQuestions)]; //get random number to switch randomly between addition
-                                                  // and subtraction
+            int operation = arr[number.nextInt(boundQuestions)]; //get random number to switch randomly between addition
+            // and subtraction
 
 
-         if(operation == 0) {
-             questions.add(new AdditionQuestion<T>(numberGenerator.getFirstNumber(), numberGenerator.getSecondNumber()));
-         }
-         else if(operation ==1){
-             questions.add(new SubtractionQuestion(numberGenerator.getFirstNumber(), numberGenerator.getSecondNumber()));
-         }
-         else if(operation == 2){
-             questions.add(new MultiplicationQuestion(numberGenerator.getFirstNumber(), numberGenerator.getSecondNumber()));
-         }
-         else if(operation == 3) {
-             questions.add(new DivisionQuestion(numberGenerator.getFirstNumber(), numberGenerator.getSecondNumber()));
-         }
+            if (operation == 0) {
+                questions.add(new AdditionQuestion<T>(numberGenerator.getFirstNumber(),
+                        numberGenerator.getSecondNumber()));
+            } else if (operation == 1) {
+                questions.add(new SubtractionQuestion(numberGenerator.getFirstNumber(),
+                        numberGenerator.getSecondNumber()));
+            } else if (operation == 2) {
+                questions.add(new MultiplicationQuestion(numberGenerator.getFirstNumber(),
+                        numberGenerator.getSecondNumber()));
+            } else if (operation == 3) {
+                questions.add(new DivisionQuestion(numberGenerator.getFirstNumber(),
+                        numberGenerator.getSecondNumber()));
+            }
 
-     }
+        }
 
     }
 
@@ -246,27 +244,27 @@ public class QuizService <T extends Number> {
 
 
         //to print the operations asked by user
-        private String operationNames(){
+        private String operationNames() {
             String operations = "";
             String delimiter = "";
             boolean more = false;
             if (addition) {
-                delimiter = more? ", ":"";
+                delimiter = more ? ", " : "";
                 operations += delimiter + "addition";
                 more = true;
             }
             if (subtraction) {
-                delimiter = more? ", ":"";
+                delimiter = more ? ", " : "";
                 operations += delimiter + "subtraction";
                 more = true;
             }
             if (multiplication) {
-                delimiter = more? ", ":"";
+                delimiter = more ? ", " : "";
                 operations += delimiter + "multiplication";
                 more = true;
             }
             if (division) {
-                delimiter = more? ", ":"";
+                delimiter = more ? ", " : "";
                 operations += delimiter + "division";
                 more = true;
             }
@@ -281,7 +279,7 @@ public class QuizService <T extends Number> {
     }
 
     //get the answer of the user and repeat if when input is not a integer.
-    private double getInput(){
+    private double getInput() {
         double answer = 0;
         boolean repeat = true;
         do {
@@ -295,80 +293,88 @@ public class QuizService <T extends Number> {
             }
 
 
-        }while (repeat);
-
+        } while (repeat);
 
 
         return answer;
     }
 
     //asks the user the questions and enters the input of the user
-   public void administrateQuiz(){
+    public void administrateQuiz() {
 
-       for (int i = lastQuestionNr ; i < this.questions.size() ; i++) {
+        for (int i = lastQuestionNr; i < this.questions.size(); i++) {
             this.startTimes.add(now());
-           System.out.println(i+1 + ") "+this.questions.get(i).getQuestion());
-           this.userAnswers.add((double) getInput());
-           this.endTimes.add(now());
-       }
-       lastQuestionNr = questions.size();
-   }
+            System.out.println(i + 1 + ") " + this.questions.get(i).getQuestion());
+            this.userAnswers.add((double) getInput());
+            this.endTimes.add(now());
+        }
+        lastQuestionNr = questions.size();
+    }
 
 
-   //prints the questions of the quiz, the answers of the user, the correct answers and
-   //if the answer of the user was correct.
-   //also prints how many answers where correct.
-    public void gradeQuiz(){
-        System.out.printf(CYAN_BOLD+CYAN_UNDERLINED+"%-20s%-20s%-20s%-20s%-20s%n"+RESET,"Question","Your answer", "Correct", "Time", "Result");
+    //prints the questions of the quiz, the answers of the user, the correct answers and
+    //if the answer of the user was correct.
+    //also prints how many answers where correct.
+    public void gradeQuiz() {
+        System.out.printf(CYAN_BOLD + CYAN_UNDERLINED + "%-20s%-20s%-20s%-20s%-20s%n" + RESET,
+                "Question", "Your answer", "Correct", "Time", "Result");
         String alternatingColor = "";
         int i = 0;
         String result = "";
         int goodResults = 0;
 
-        Duration totalDuration = Duration.between(startTimes.get(i), endTimes.get(amountQuestions-1));
+        Duration totalDuration = Duration.between(startTimes.get(i), endTimes.get(amountQuestions - 1));
         totalTime = totalTime.plus(totalDuration);
 
-        for (QuizQuestion q: this.questions) {
+        for (QuizQuestion q : this.questions) {
 
-            if(userAnswers.get(i)==q.getCorrectAnswer()){
-                result = GREEN_BOLD+"correct"+RESET;
+            System.out.println(userAnswers.get(i) + "  " +NumberGenerator.decimalPlacesController(q.getCorrectAnswer(),2) );
+            System.out.println(userAnswers.get(i) + "  " +q.getCorrectAnswer());
+
+            if (userAnswers.get(i)
+                    .equals(NumberGenerator.decimalPlacesController(q.getCorrectAnswer(),2))) {
+                result = GREEN_BOLD + "correct" + RESET;
                 goodResults++;
-            }
-            else{
-                result = RED+"wrong"+RESET;
+            } else {
+                result = RED + "wrong" + RESET;
             }
 
 
-                alternatingColor = i%2==0? CYAN_BACKGROUND:WHITE;
+            alternatingColor = i % 2 == 0 ? CYAN_BACKGROUND : WHITE;
 
 
             Duration questionD = Duration.between(startTimes.get(i), endTimes.get(i));
-            String time = questionD.toMinutes() +" min "+questionD.toSecondsPart()+" sec";
-            System.out.printf(alternatingColor+"%-20s" +
-                    "%-20"+QuizQuestion.floatSwitch(userAnswers.get(i))+"f" +
-                    "%-20"+QuizQuestion.floatSwitch(q.getCorrectAnswer())+"f" +
-                            "%-20s%-20s%n"+RESET,
-                    q.getQuestion(),userAnswers.get(i), q.getCorrectAnswer(),time,result);
+            String time = questionD.toMinutes() + " min " + questionD.toSecondsPart() + " sec";
+            System.out.printf(alternatingColor + "%-20s" +
+                            "%-20" + QuizQuestion.floatSwitch(userAnswers.get(i)) + "f" +
+                            "%-20" + QuizQuestion.floatSwitch(q.getCorrectAnswer()) + "f" +
+                            "%-20s%-20s%n" + RESET,
+                    q.getQuestion(), userAnswers.get(i), q.getCorrectAnswer(), time, result);
             i++;
         }
 
 
         totalGoodQuestions += goodResults;
         totalQuestions += this.amountQuestions;
-        totalPercent = ((double) totalGoodQuestions/ (double) totalQuestions)*100;
+        totalPercent = ((double) totalGoodQuestions / (double) totalQuestions) * 100;
 
-        System.out.println(CYAN_UNDERLINED+"you have " + goodResults + " correct answers out of "+ this.amountQuestions+RESET );
-        System.out.printf( CYAN_BACKGROUND+"You have: "+GREEN_BOLD+" %.0f %%"+RESET+"%n" , (double)((double)goodResults/(double)this.amountQuestions)*100 );
-        System.out.println(CYAN_UNDERLINED+"You did all of this in: "+ totalDuration.toMinutesPart()+ " min " + totalDuration.toSecondsPart()+ " sec"+RESET);
+        System.out.println
+                (CYAN_UNDERLINED + "you have " + goodResults + " correct answers out of " +
+                        this.amountQuestions + RESET);
+        System.out.printf(CYAN_BACKGROUND + "You have: " + GREEN_BOLD + " %.0f %%" + RESET + "%n",
+                (double) ((double) goodResults / (double) this.amountQuestions) * 100);
+        System.out.println(CYAN_UNDERLINED + "You did all of this in: "
+                + totalDuration.toMinutesPart() + " min " + totalDuration.toSecondsPart() + " sec" + RESET);
 
 
-        System.out.println("\n"+CYAN_BOLD+"*****TOTAL*****"+RESET);
-        System.out.println(CYAN_UNDERLINED+"you have " + totalGoodQuestions + " correct answers out of "+ totalQuestions+RESET );
-        System.out.printf( CYAN_BACKGROUND+"You have: "+GREEN_BOLD+" %.0f %%"+RESET+"%n" , totalPercent );
-        System.out.println(CYAN_UNDERLINED+"Total time: "+ totalTime.toMinutesPart()+ " min " + totalTime.toSecondsPart()+ " sec"+RESET);
+        System.out.println("\n" + CYAN_BOLD + "*****TOTAL*****" + RESET);
+        System.out.println(CYAN_UNDERLINED + "you have " + totalGoodQuestions +
+                " correct answers out of " + totalQuestions + RESET);
+        System.out.printf(CYAN_BACKGROUND + "You have: " + GREEN_BOLD + " %.0f %%" + RESET + "%n", totalPercent);
+        System.out.println(CYAN_UNDERLINED + "Total time: " + totalTime.toHoursPart() + " hours " +
+                totalTime.toMinutesPart() + " min " + totalTime.toSecondsPart() + " sec" + RESET);
 
     }
-
 
 
 }

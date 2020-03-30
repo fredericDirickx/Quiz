@@ -16,13 +16,12 @@ public class NumberGenerator<T extends Number> {
     static private List<Number> secondNumbers = new ArrayList<Number>();
 
 
-
     public NumberGenerator(T lowerBoundFirstNumber, T upperBoundFirstNumber) {
         this.upperBoundFirstNumber = upperBoundFirstNumber;
         this.lowerBoundFirstNumber = lowerBoundFirstNumber;
         this.upperBoundSecondNumber = upperBoundFirstNumber;
         this.lowerBoundSecondNumber = lowerBoundFirstNumber;
-        this.amount = (int)upperBoundFirstNumber - (int)lowerBoundFirstNumber;
+        this.amount = upperBoundFirstNumber.intValue() - lowerBoundFirstNumber.intValue();
     }
 
 
@@ -31,15 +30,15 @@ public class NumberGenerator<T extends Number> {
         this.lowerBoundFirstNumber = lowerBoundFirstNumber;
         this.upperBoundSecondNumber = upperBoundSecondNumber;
         this.lowerBoundSecondNumber = lowerBoundSecondNumber;
-        this.amount = (int)upperBoundFirstNumber - (int)lowerBoundFirstNumber;
+        this.amount = upperBoundFirstNumber.intValue() - lowerBoundFirstNumber.intValue();
     }
 
 
     public T getFirstNumber() {
 
-        int size = Math.abs((int)upperBoundFirstNumber- (int)lowerBoundFirstNumber);
+        int size = Math.abs(upperBoundFirstNumber.intValue() - lowerBoundFirstNumber.intValue());
 
-        if(firstNumbers.size() >= size){
+        if (firstNumbers.size() >= size) {
             firstNumbers.clear();
         }
 
@@ -61,24 +60,27 @@ public class NumberGenerator<T extends Number> {
                 firstNumber = (T) i;
             }
 
-            if(firstNumbers.indexOf(firstNumber) == -1){
+            if (firstNumbers.indexOf(firstNumber) == -1) {
                 firstNumbers.add(firstNumber);
-                repeat=false;
+                repeat = false;
             }
 
         }
 
-     return firstNumber;
+
+//        Double t = decimalPlacesController((double)firstNumber,mostDecimals(lowerBoundFirstNumber, upperBoundFirstNumber));
+//        firstNumber = (T) t;
+
+        return firstNumber;
 
     }
 
 
-
     public T getSecondNumber() {
 
-        int size = Math.abs((int)upperBoundSecondNumber- (int)lowerBoundSecondNumber);
+        int size = Math.abs(upperBoundSecondNumber.intValue() - lowerBoundSecondNumber.intValue());
 
-        if(secondNumbers.size() == size){
+        if (secondNumbers.size() == size) {
             secondNumbers.clear();
         }
 
@@ -101,19 +103,59 @@ public class NumberGenerator<T extends Number> {
                 secondNumber = (T) i;
             }
 
-            if(secondNumbers.indexOf(secondNumber) == -1){
-               secondNumbers.add(secondNumber);
-                repeat=false;
+            if (secondNumbers.indexOf(secondNumber) == -1) {
+                secondNumbers.add(secondNumber);
+                repeat = false;
             }
 
 
         }
 
+//        Double t = decimalPlacesController((double)secondNumber,mostDecimals(lowerBoundSecondNumber, upperBoundSecondNumber));
+//        secondNumber = (T) t;
         return secondNumber;
     }
 
+    public static double decimalPlacesController(double number, int amountOfDecimals) {
 
+        int z = (int) (number * Math.pow(10, amountOfDecimals));
+        number = (double) z / Math.pow(10, amountOfDecimals);
 
+        return number;
+
+    }
+
+//    public static int numberOfDecimals(double number) {
+//        double divisor = 1;
+//        double result = 1;
+//        boolean repeat = true;
+//
+//        if (number % 1 == 0) {
+//            return 0;
+//        }
+//
+//
+//        while (repeat) {
+//
+//            divisor *= 10;
+//
+//            result = (number * divisor) % 1;
+//
+//            repeat = !(result == 0);
+//
+//
+//
+//        }
+//
+//        return (int) Math.log10(divisor);
+//    }
+//
+//    private int mostDecimals(T lower, T upper){
+//        int x = numberOfDecimals(upper.doubleValue());
+//        int y = numberOfDecimals(lower.doubleValue());
+//
+//        return Math.max(x, y);
+//    }
 
 
 }

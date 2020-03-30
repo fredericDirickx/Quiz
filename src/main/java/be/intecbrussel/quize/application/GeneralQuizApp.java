@@ -13,14 +13,13 @@ public class GeneralQuizApp {
     public static void main(String[] args) {
 
 
-        NumberGenerator<Number> numberGenerator = new NumberGenerator<Number>(5,6,0,11);
+        NumberGenerator<Number> numberGenerator = new NumberGenerator<Number>(7.2,8.35,0.0,11.0);
         QuizService<Number> quizService = null;
-            quizService = new QuizService<Number>(100,false,false,true,false,numberGenerator);
+            quizService = new QuizService<Number>(5,false,false,false,false,numberGenerator);
 
 
         Scanner input = new Scanner(System.in);
         String enGame = "y";
-
 
 
 
