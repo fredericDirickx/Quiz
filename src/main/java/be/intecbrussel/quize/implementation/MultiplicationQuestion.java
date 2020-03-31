@@ -2,17 +2,14 @@ package be.intecbrussel.quize.implementation;
 
 import be.intecbrussel.quize.QuizQuestion;
 
-import java.io.Serializable;
-import java.util.Formatter;
-
-public class MultiplicationQuestion <T extends Number> implements QuizQuestion {
+public class MultiplicationQuestion implements QuizQuestion {
 
     private double firstNumber;
     private double secondNumber;
 
-    public MultiplicationQuestion(T firstNumber,T secondNumber){
-        this.firstNumber = firstNumber.doubleValue();
-        this.secondNumber = secondNumber.doubleValue();
+    public MultiplicationQuestion(double firstNumber, double secondNumber) {
+        this.firstNumber = firstNumber;
+        this.secondNumber = secondNumber;
     }
 
     @Override
@@ -22,6 +19,6 @@ public class MultiplicationQuestion <T extends Number> implements QuizQuestion {
 
     @Override
     public String getQuestion() {
-        return  QuizQuestion.question("x",firstNumber,secondNumber);
+        return QuizQuestion.question("x", firstNumber, secondNumber);
     }
 }

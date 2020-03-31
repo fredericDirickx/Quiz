@@ -10,20 +10,20 @@ import static be.intecbrussel.quize.implementation.ConsoleColors.*;
 import static java.time.LocalDateTime.now;
 
 
-public class QuizService<T extends Number> {
+public class QuizService {
     //___________________________________________________properties
 
     private boolean addition = true;
     private boolean subtraction = true;
     private boolean multiplication = true;
     private boolean division = true;
-    private NumberGenerator<T> numberGenerator;
+    private NumberGenerator numberGenerator;
 
 
     private int amountQuestions = 10;
     private ArrayList<Double> userAnswers = new ArrayList<>();
     private Scanner input = new Scanner(System.in);
-    private ArrayList<QuizQuestion<T>> questions = new ArrayList<>();
+    private ArrayList<QuizQuestion> questions = new ArrayList<>();
     public static int totalGoodQuestions;
     public static int totalQuestions;
     public static double totalPercent;
@@ -34,7 +34,7 @@ public class QuizService<T extends Number> {
 
     //___________________________________________________constructors
     public QuizService(int amountQuestions, boolean addition, boolean subtraction,
-                       boolean multiplication, boolean division, NumberGenerator<T> numberGenerator) {
+                       boolean multiplication, boolean division, NumberGenerator numberGenerator) {
         this.amountQuestions = amountQuestions;
         this.addition = addition;
         this.subtraction = subtraction;
@@ -85,11 +85,11 @@ public class QuizService<T extends Number> {
     }
 
 
-    public NumberGenerator<T> getNumberGenerator() {
+    public NumberGenerator getNumberGenerator() {
         return numberGenerator;
     }
 
-    public void setNumberGenerator(NumberGenerator<T> numberGenerator) {
+    public void setNumberGenerator(NumberGenerator numberGenerator) {
         this.numberGenerator = numberGenerator;
     }
 
@@ -105,11 +105,11 @@ public class QuizService<T extends Number> {
         this.input = input;
     }
 
-    public ArrayList<QuizQuestion<T>> getQuestions() {
+    public ArrayList<QuizQuestion> getQuestions() {
         return questions;
     }
 
-    public void setQuestions(ArrayList<QuizQuestion<T>> questions) {
+    public void setQuestions(ArrayList<QuizQuestion> questions) {
         this.questions = questions;
     }
 
@@ -197,7 +197,7 @@ public class QuizService<T extends Number> {
 
 
             if (operation == 0) {
-                questions.add(new AdditionQuestion<T>(numberGenerator.getFirstNumber(),
+                questions.add(new AdditionQuestion(numberGenerator.getFirstNumber(),
                         numberGenerator.getSecondNumber()));
             } else if (operation == 1) {
                 questions.add(new SubtractionQuestion(numberGenerator.getFirstNumber(),

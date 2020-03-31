@@ -1,29 +1,27 @@
 package be.intecbrussel.quize.implementation;
+
 import be.intecbrussel.quize.QuizQuestion;
 
-import java.io.Serializable;
-import java.util.Formatter;
-
-public class AdditionQuestion<T extends Number> implements QuizQuestion {
+public class AdditionQuestion implements QuizQuestion {
     //___________________________________________________properties
     private double firstNumber;
     private double secondNumber;
 
     //___________________________________________________constructors
-    public AdditionQuestion(T firstNumber, T secondNumber){
-        this.firstNumber = firstNumber.doubleValue();
-        this.secondNumber = secondNumber.doubleValue();
+    public AdditionQuestion(double firstNumber, double secondNumber) {
+        this.firstNumber = firstNumber;
+        this.secondNumber = secondNumber;
     }
 
     //___________________________________________________methods
     @Override
     public double getCorrectAnswer() {
-        return  firstNumber + secondNumber;
+        return firstNumber + secondNumber;
     }
 
     @Override
     public String getQuestion() {
-        return  QuizQuestion.question("+",firstNumber,secondNumber);
+        return QuizQuestion.question("+", firstNumber, secondNumber);
     }
 
 }

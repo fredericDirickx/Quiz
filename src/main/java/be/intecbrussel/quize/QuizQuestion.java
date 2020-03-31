@@ -2,7 +2,7 @@ package be.intecbrussel.quize;
 
 import java.io.Serializable;
 
-public interface QuizQuestion<T extends Number> extends Serializable {
+public interface QuizQuestion {
     //___________________________________________________methods
     String getQuestion();
    double getCorrectAnswer();

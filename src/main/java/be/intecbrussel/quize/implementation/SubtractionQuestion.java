@@ -1,18 +1,16 @@
 package be.intecbrussel.quize.implementation;
+
 import be.intecbrussel.quize.QuizQuestion;
 
-import java.io.Serializable;
-import java.util.Formatter;
-
-public class SubtractionQuestion<T extends Number> implements QuizQuestion {
+public class SubtractionQuestion implements QuizQuestion {
     //___________________________________________________properties
     private double firstNumber;
     private double secondNumber;
 
     //___________________________________________________constructors
-    public SubtractionQuestion(T firstNumber, T secondNumber){
-        this.firstNumber = Math.max(firstNumber.doubleValue(), secondNumber.doubleValue());
-        this.secondNumber = Math.min(firstNumber.doubleValue(), secondNumber.doubleValue());
+    public SubtractionQuestion(double firstNumber, double secondNumber) {
+        this.firstNumber = Math.max(firstNumber, secondNumber);
+        this.secondNumber = Math.min(firstNumber, secondNumber);
     }
 
     //___________________________________________________methods
@@ -23,9 +21,8 @@ public class SubtractionQuestion<T extends Number> implements QuizQuestion {
 
     @Override
     public String getQuestion() {
-        return  QuizQuestion.question("-",firstNumber,secondNumber);
+        return QuizQuestion.question("-", firstNumber, secondNumber);
     }
-
 
 
 }

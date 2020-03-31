@@ -2,18 +2,15 @@ package be.intecbrussel.quize.implementation;
 
 import be.intecbrussel.quize.QuizQuestion;
 
-import java.io.Serializable;
-import java.util.Formatter;
-
-public class DivisionQuestion <T extends Number> implements QuizQuestion {
+public class DivisionQuestion implements QuizQuestion {
 
     private double firstNumber;
     private double secondNumber;
 
-    public DivisionQuestion(T firstNumber, T secondNumber){
-        this.firstNumber = Math.max(firstNumber.doubleValue(), secondNumber.doubleValue());
-        this.secondNumber = Math.min(firstNumber.doubleValue(), secondNumber.doubleValue());
-        this.secondNumber += this.secondNumber<0? 1:0;
+    public DivisionQuestion(double firstNumber, double secondNumber) {
+        this.firstNumber = Math.max(firstNumber, secondNumber);
+        this.secondNumber = Math.min(firstNumber, secondNumber);
+        this.secondNumber += this.secondNumber < 0 ? 1 : 0;
 
     }
 
@@ -24,6 +21,6 @@ public class DivisionQuestion <T extends Number> implements QuizQuestion {
 
     @Override
     public String getQuestion() {
-        return  QuizQuestion.question(":",firstNumber,secondNumber);
+        return QuizQuestion.question(":", firstNumber, secondNumber);
     }
 }
