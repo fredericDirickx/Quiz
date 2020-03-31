@@ -5,6 +5,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.math.RoundingMode;
+import java.util.Random;
 import java.util.logging.Logger;
 
 public class TestJPA {
@@ -24,26 +25,26 @@ public class TestJPA {
     @Test
     public static void main(String[] args) {
 
-        double number = 8.3553;
-        double divisor = 1;
-        double result = 1;
-        boolean repeat = true;
-        while (repeat) {
+        Random random = new Random();
 
+        double lower = 3;
+        double upper = 11;
+        double result = 0;
+        String good = "";
 
-            divisor *= 10;
+        for(int i = 0 ; i < 10 ; i++){
+           result =    random.nextInt(    (int)upper - (int) lower    )   + (int)lower;
 
-            result = (number * divisor) % 1;
-
-
-
-            repeat = !(result == 0);
-
-
-
+           if(result < upper || result > lower){
+               good = "Top";
+           }
+           else {
+               good = "bad";
+           }
+            System.out.println(result + " " + good);
         }
 
-        System.out.println(Math.log10(divisor));
+
 
     }
 

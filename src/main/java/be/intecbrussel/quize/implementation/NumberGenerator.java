@@ -78,8 +78,14 @@ public class NumberGenerator {
 
         while (repeat) {
 
-            randomNumber = random.doubles(amount, (double) lowerBound, (double) upperBound).findAny().orElse(-1);
-            randomNumber = decimalPlacesController(randomNumber, 2);
+            if (mostDecimals(lowerBound, upperBound) > 0) {
+                randomNumber = random.doubles(amount, lowerBound, upperBound).findAny().orElse(-1);
+                randomNumber = decimalPlacesController(randomNumber, 2);
+            } else {
+                randomNumber = random.nextInt((int) upperBound - (int) lowerBound) + (int) lowerBound;
+            }
+
+
 
             if (numbers.indexOf(randomNumber) == -1) {
                 numbers.add(randomNumber);

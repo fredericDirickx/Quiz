@@ -328,9 +328,6 @@ public class QuizService {
 
         for (QuizQuestion q : this.questions) {
 
-            System.out.println(userAnswers.get(i) + "  " +NumberGenerator.decimalPlacesController(q.getCorrectAnswer(),2) );
-            System.out.println(userAnswers.get(i) + "  " +q.getCorrectAnswer());
-
             if (userAnswers.get(i)
                     .equals(NumberGenerator.decimalPlacesController(q.getCorrectAnswer(),2))) {
                 result = GREEN_BOLD + "correct" + RESET;
@@ -378,3 +375,5 @@ public class QuizService {
 
 
 }
+
+
