@@ -1,12 +1,9 @@
 package be.intecbrussel.quize.application;
 
-import be.intecbrussel.quize.implementation.NumberGenerator;
-import be.intecbrussel.quize.implementation.QuizService;
+import be.intecbrussel.quize.model.NumberGenerator;
+import be.intecbrussel.quize.model.QuizService;
 
 
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Scanner;
 
 public class GeneralQuizApp {

@@ -1,4 +1,4 @@
-package be.intecbrussel.quize.implementation;
+package be.intecbrussel.quize.model;
 
 import be.intecbrussel.quize.QuizQuestion;
 

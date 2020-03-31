@@ -1,6 +1,4 @@
-package be.intecbrussel.quize.implementation;
-
-import java.io.Serializable;
+package be.intecbrussel.quize.model;
 
 public class ConsoleColors {
         // Reset

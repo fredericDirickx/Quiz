@@ -1,9 +1,18 @@
-package be.intecbrussel.quize.implementation;
+package be.intecbrussel.quize.model;
 
 import be.intecbrussel.quize.QuizQuestion;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
+@DiscriminatorValue("multiplication")
 public class MultiplicationQuestion implements QuizQuestion {
 
+    @Id @GeneratedValue
+    long id;
     private double firstNumber;
     private double secondNumber;
 

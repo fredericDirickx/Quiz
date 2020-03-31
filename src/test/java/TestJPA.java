@@ -1,10 +1,8 @@
-import be.intecbrussel.quize.implementation.NumberGenerator;
 import org.junit.jupiter.api.Test;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import java.math.RoundingMode;
 import java.util.Random;
 import java.util.logging.Logger;
 

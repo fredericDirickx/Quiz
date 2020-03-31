@@ -1,18 +1,20 @@
-package be.intecbrussel.quize.implementation;
+package be.intecbrussel.quize.model;
 
 import be.intecbrussel.quize.QuizQuestion;
 
+import javax.persistence.*;
 import java.time.Duration;
 import java.time.temporal.Temporal;
 import java.util.*;
 
-import static be.intecbrussel.quize.implementation.ConsoleColors.*;
+import static be.intecbrussel.quize.model.ConsoleColors.*;
 import static java.time.LocalDateTime.now;
 
-
+@Entity
 public class QuizService {
     //___________________________________________________properties
-
+    @Id @GeneratedValue
+    private long id;
     private boolean addition = true;
     private boolean subtraction = true;
     private boolean multiplication = true;
@@ -23,7 +25,9 @@ public class QuizService {
     private int amountQuestions = 10;
     private ArrayList<Double> userAnswers = new ArrayList<>();
     private Scanner input = new Scanner(System.in);
-    private ArrayList<QuizQuestion> questions = new ArrayList<>();
+
+    @OneToMany(mappedBy = "QuizService")
+    private List<QuizQuestion> questions = new ArrayList<>();
     public static int totalGoodQuestions;
     public static int totalQuestions;
     public static double totalPercent;
@@ -105,7 +109,7 @@ public class QuizService {
         this.input = input;
     }
 
-    public ArrayList<QuizQuestion> getQuestions() {
+    public List<QuizQuestion> getQuestions() {
         return questions;
     }
 
