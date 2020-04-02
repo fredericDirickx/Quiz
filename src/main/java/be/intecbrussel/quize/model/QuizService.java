@@ -4,49 +4,71 @@ import be.intecbrussel.quize.QuizQuestion;
 
 import javax.persistence.*;
 import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.temporal.Temporal;
 import java.util.*;
 
-import static be.intecbrussel.quize.model.ConsoleColors.*;
+import static be.intecbrussel.quize.view.ConsoleColors.*;
 import static java.time.LocalDateTime.now;
 
 @Entity
 public class QuizService {
     //___________________________________________________properties
-    @Id @GeneratedValue
+
+    @Id
+    @GeneratedValue
     private long id;
-    private boolean addition = true;
-    private boolean subtraction = true;
-    private boolean multiplication = true;
-    private boolean division = true;
+    @OneToOne
+    private User user = new User();
+    private LocalDate date = LocalDate.now();
+    private boolean addition;
+    private boolean subtraction;
+    private boolean multiplication;
+    private boolean division;
+    private int amountQuestions = 10;
+
+    private int totalGoodQuestions;
+    private int totalQuestions;
+    private  double totalPercent;
+    private Duration totalTime = Duration.ofSeconds(0);
+
+    @Transient
+    private ArrayList<Double> userAnswers = new ArrayList<>();
+    @Transient
+    private ArrayList<Temporal> startTimes = new ArrayList<>();
+    @Transient
+    private ArrayList<Temporal> endTimes = new ArrayList<>();
+    @OneToMany
+    private List<Question> questions = new ArrayList<>();
+
+    @Transient
+    private int lastQuestionNr;
+    @Transient
     private NumberGenerator numberGenerator;
 
-
-    private int amountQuestions = 10;
-    private ArrayList<Double> userAnswers = new ArrayList<>();
-    private Scanner input = new Scanner(System.in);
-
-    @OneToMany(mappedBy = "QuizService")
-    private List<QuizQuestion> questions = new ArrayList<>();
-    public static int totalGoodQuestions;
-    public static int totalQuestions;
-    public static double totalPercent;
-    private ArrayList<Temporal> startTimes = new ArrayList<>();
-    private ArrayList<Temporal> endTimes = new ArrayList<>();
-    private static Duration totalTime = Duration.ofSeconds(0);
-    private static int lastQuestionNr;
-
     //___________________________________________________constructors
-    public QuizService(int amountQuestions, boolean addition, boolean subtraction,
-                       boolean multiplication, boolean division, NumberGenerator numberGenerator) {
-        this.amountQuestions = amountQuestions;
-        this.addition = addition;
-        this.subtraction = subtraction;
-        this.multiplication = multiplication;
-        this.division = division;
-        this.numberGenerator = numberGenerator;
+    public QuizService() {
     }
 
+
+    //___________________________________________________getters & setters
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public boolean isAddition() {
         return addition;
@@ -88,13 +110,36 @@ public class QuizService {
         this.amountQuestions = amountQuestions;
     }
 
-
-    public NumberGenerator getNumberGenerator() {
-        return numberGenerator;
+    public int getTotalGoodQuestions() {
+        return totalGoodQuestions;
     }
 
-    public void setNumberGenerator(NumberGenerator numberGenerator) {
-        this.numberGenerator = numberGenerator;
+    public void setTotalGoodQuestions(int totalGoodQuestions) {
+        this.totalGoodQuestions = totalGoodQuestions;
+    }
+
+    public int getTotalQuestions() {
+        return totalQuestions;
+    }
+
+    public void setTotalQuestions(int totalQuestions) {
+        this.totalQuestions = totalQuestions;
+    }
+
+    public double getTotalPercent() {
+        return totalPercent;
+    }
+
+    public void setTotalPercent(double totalPercent) {
+        this.totalPercent = totalPercent;
+    }
+
+    public Duration getTotalTime() {
+        return totalTime;
+    }
+
+    public void setTotalTime(Duration totalTime) {
+        this.totalTime = totalTime;
     }
 
     public ArrayList<Double> getUserAnswers() {
@@ -103,42 +148,6 @@ public class QuizService {
 
     public void setUserAnswers(ArrayList<Double> userAnswers) {
         this.userAnswers = userAnswers;
-    }
-
-    public void setInput(Scanner input) {
-        this.input = input;
-    }
-
-    public List<QuizQuestion> getQuestions() {
-        return questions;
-    }
-
-    public void setQuestions(ArrayList<QuizQuestion> questions) {
-        this.questions = questions;
-    }
-
-    public static int getTotalGoodQuestions() {
-        return totalGoodQuestions;
-    }
-
-    public static void setTotalGoodQuestions(int totalGoodQuestions) {
-        QuizService.totalGoodQuestions = totalGoodQuestions;
-    }
-
-    public static int getTotalQuestions() {
-        return totalQuestions;
-    }
-
-    public static void setTotalQuestions(int totalQuestions) {
-        QuizService.totalQuestions = totalQuestions;
-    }
-
-    public static double getTotalPercent() {
-        return totalPercent;
-    }
-
-    public static void setTotalPercent(double totalPercent) {
-        QuizService.totalPercent = totalPercent;
     }
 
     public ArrayList<Temporal> getStartTimes() {
@@ -157,23 +166,53 @@ public class QuizService {
         this.endTimes = endTimes;
     }
 
-    public static Duration getTotalTime() {
-        return totalTime;
+    public List<Question> getQuestions() {
+        return questions;
     }
 
-    public static void setTotalTime(Duration totalTime) {
-        QuizService.totalTime = totalTime;
+    public void setQuestions(List<Question> questions) {
+        this.questions = questions;
     }
 
-    public static int getLastQuestionNr() {
+
+    public int getLastQuestionNr() {
         return lastQuestionNr;
     }
 
-    public static void setLastQuestionNr(int lastQuestionNr) {
-        QuizService.lastQuestionNr = lastQuestionNr;
+    public void setLastQuestionNr(int lastQuestionNr) {
+        this.lastQuestionNr = lastQuestionNr;
     }
 
+    public NumberGenerator getNumberGenerator() {
+        return numberGenerator;
+    }
+
+    public void setNumberGenerator(NumberGenerator numberGenerator) {
+        this.numberGenerator = numberGenerator;
+    }
+
+
     //___________________________________________________methods
+
+    public String askUserName(){
+        Scanner input = new Scanner(System.in);
+        System.out.println("please enter your user name");
+        String name = "";
+        boolean repeat = true;
+        do{
+            try{
+                name = input.nextLine();
+                repeat = false;
+            }catch (InputMismatchException ex){
+                System.out.println("please try again");
+            }
+
+        }while (repeat);
+
+        return name;
+
+    }
+
 
     //will create the quiz: fill the questions list based on constructor parameters
     public void createQuiz() {
@@ -201,17 +240,25 @@ public class QuizService {
 
 
             if (operation == 0) {
-                questions.add(new AdditionQuestion(numberGenerator.getFirstNumber(),
-                        numberGenerator.getSecondNumber()));
+                AdditionQuestion addQuestion = new AdditionQuestion();
+                addQuestion.setFirstNumber(numberGenerator.getFirstNumber());
+                addQuestion.setSecondNumber(numberGenerator.getSecondNumber());
+                questions.add(addQuestion);
             } else if (operation == 1) {
-                questions.add(new SubtractionQuestion(numberGenerator.getFirstNumber(),
-                        numberGenerator.getSecondNumber()));
+                SubtractionQuestion subQuestion = new SubtractionQuestion();
+                subQuestion.setFirstNumber(numberGenerator.getFirstNumber());
+                subQuestion.setSecondNumber(numberGenerator.getSecondNumber());
+                questions.add(subQuestion);
             } else if (operation == 2) {
-                questions.add(new MultiplicationQuestion(numberGenerator.getFirstNumber(),
-                        numberGenerator.getSecondNumber()));
+                MultiplicationQuestion mulQuestion = new MultiplicationQuestion();
+                mulQuestion.setFirstNumber(numberGenerator.getFirstNumber());
+                mulQuestion.setSecondNumber(numberGenerator.getSecondNumber());
+                questions.add(mulQuestion);
             } else if (operation == 3) {
-                questions.add(new DivisionQuestion(numberGenerator.getFirstNumber(),
-                        numberGenerator.getSecondNumber()));
+                DivisionQuestion divQuestion = new DivisionQuestion();
+                divQuestion.setFirstNumber(numberGenerator.getFirstNumber());
+                divQuestion.setSecondNumber(numberGenerator.getSecondNumber());
+                questions.add(divQuestion);
             }
 
         }
@@ -284,23 +331,27 @@ public class QuizService {
 
     //get the answer of the user and repeat if when input is not a integer.
     private double getInput() {
+        Scanner input = new Scanner(System.in);
         double answer = 0;
         boolean repeat = true;
         do {
             System.out.println("enter your answer");
             try {
-                answer = this.input.nextDouble();
+                answer = input.nextDouble();
                 repeat = false;
             } catch (InputMismatchException e) {
                 System.out.println("please enter a integer number");
                 input.next();
             }
 
+            return answer;
+
 
         } while (repeat);
 
 
-        return answer;
+
+
     }
 
     //asks the user the questions and enters the input of the user
@@ -309,8 +360,12 @@ public class QuizService {
         for (int i = lastQuestionNr; i < this.questions.size(); i++) {
             this.startTimes.add(now());
             System.out.println(i + 1 + ") " + this.questions.get(i).getQuestion());
-            this.userAnswers.add((double) getInput());
+            double answer = getInput();
+            this.questions.get(i).setAnswer(answer);
+            this.userAnswers.add(answer);
             this.endTimes.add(now());
+            Duration questionD = Duration.between(startTimes.get(i), endTimes.get(i));
+            this.questions.get(i).setDuration(questionD.toSeconds());
         }
         lastQuestionNr = questions.size();
     }
@@ -330,10 +385,18 @@ public class QuizService {
         Duration totalDuration = Duration.between(startTimes.get(i), endTimes.get(amountQuestions - 1));
         totalTime = totalTime.plus(totalDuration);
 
+
+        int dec1 = NumberGenerator.numberOfDecimals(questions.get(0).getFirstNumber());
+        int dec2 = NumberGenerator.numberOfDecimals(questions.get(0).getSecondNumber());
+
+            int amountOfDecimals = dec1 == 0 && dec2 == 0 ? 0:2;
+
         for (QuizQuestion q : this.questions) {
 
+
+
             if (userAnswers.get(i)
-                    .equals(NumberGenerator.decimalPlacesController(q.getCorrectAnswer(),2))) {
+                    .equals(NumberGenerator.decimalPlacesController(q.correctAnswer(),amountOfDecimals))) {
                 result = GREEN_BOLD + "correct" + RESET;
                 goodResults++;
             } else {
@@ -348,24 +411,16 @@ public class QuizService {
             String time = questionD.toMinutes() + " min " + questionD.toSecondsPart() + " sec";
             System.out.printf(alternatingColor + "%-20s" +
                             "%-20" + QuizQuestion.floatSwitch(userAnswers.get(i)) + "f" +
-                            "%-20" + QuizQuestion.floatSwitch(q.getCorrectAnswer()) + "f" +
+                            "%-20" + QuizQuestion.floatSwitch(q.correctAnswer()) + "f" +
                             "%-20s%-20s%n" + RESET,
-                    q.getQuestion(), userAnswers.get(i), q.getCorrectAnswer(), time, result);
+                    q.getQuestion(), userAnswers.get(i), q.correctAnswer(), time, result);
             i++;
         }
 
 
-        totalGoodQuestions += goodResults;
+        totalGoodQuestions = goodResults;
         totalQuestions += this.amountQuestions;
         totalPercent = ((double) totalGoodQuestions / (double) totalQuestions) * 100;
-
-        System.out.println
-                (CYAN_UNDERLINED + "you have " + goodResults + " correct answers out of " +
-                        this.amountQuestions + RESET);
-        System.out.printf(CYAN_BACKGROUND + "You have: " + GREEN_BOLD + " %.0f %%" + RESET + "%n",
-                (double) ((double) goodResults / (double) this.amountQuestions) * 100);
-        System.out.println(CYAN_UNDERLINED + "You did all of this in: "
-                + totalDuration.toMinutesPart() + " min " + totalDuration.toSecondsPart() + " sec" + RESET);
 
 
         System.out.println("\n" + CYAN_BOLD + "*****TOTAL*****" + RESET);

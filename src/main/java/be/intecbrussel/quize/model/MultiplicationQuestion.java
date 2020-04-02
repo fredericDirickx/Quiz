@@ -2,32 +2,23 @@ package be.intecbrussel.quize.model;
 
 import be.intecbrussel.quize.QuizQuestion;
 
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 
 @Entity
-@DiscriminatorValue("multiplication")
-public class MultiplicationQuestion implements QuizQuestion {
+public class MultiplicationQuestion extends Question implements QuizQuestion {
 
-    @Id @GeneratedValue
-    long id;
-    private double firstNumber;
-    private double secondNumber;
-
-    public MultiplicationQuestion(double firstNumber, double secondNumber) {
-        this.firstNumber = firstNumber;
-        this.secondNumber = secondNumber;
+    //___________________________________________________constructor
+    public MultiplicationQuestion() {
     }
 
+    //___________________________________________________methods
     @Override
-    public double getCorrectAnswer() {
-        return firstNumber * secondNumber;
+    public double correctAnswer() {
+        return super.firstNumber * super.secondNumber;
     }
 
     @Override
     public String getQuestion() {
-        return QuizQuestion.question("x", firstNumber, secondNumber);
+        return QuizQuestion.question("x", super.firstNumber, super.secondNumber);
     }
 }

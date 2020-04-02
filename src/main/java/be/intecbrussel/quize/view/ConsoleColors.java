@@ -1,4 +1,4 @@
-package be.intecbrussel.quize.model;
+package be.intecbrussel.quize.view;
 
 public class ConsoleColors {
         // Reset

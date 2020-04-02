@@ -112,5 +112,25 @@ public class NumberGenerator {
         return Math.max(x, y);
     }
 
+    private double[] getIntegersForDivQuestion(){
+        double[] numbers = new double[2];
+        double firstNr = getFirstNumber();;
+        double secondNr = 1;
+
+
+        do{
+
+            secondNr = getRandomNumber(firstNr+1, lowerBoundFirstNumber,amount,secondNumbers,random);
+
+        } while (firstNr%secondNr != 0);
+
+
+        numbers[0] = firstNr;
+        numbers[1] = secondNr;
+
+        return numbers;
+
+    }
+
 
 }

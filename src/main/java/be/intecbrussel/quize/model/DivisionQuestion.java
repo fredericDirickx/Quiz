@@ -2,25 +2,36 @@ package be.intecbrussel.quize.model;
 
 import be.intecbrussel.quize.QuizQuestion;
 
-public class DivisionQuestion implements QuizQuestion {
+import javax.persistence.Entity;
+import javax.persistence.Transient;
 
-    private double firstNumber;
-    private double secondNumber;
+@Entity
+public class DivisionQuestion extends Question implements QuizQuestion {
 
-    public DivisionQuestion(double firstNumber, double secondNumber) {
-        this.firstNumber = Math.max(firstNumber, secondNumber);
-        this.secondNumber = Math.min(firstNumber, secondNumber);
-        this.secondNumber += this.secondNumber < 0 ? 1 : 0;
 
-    }
+    public DivisionQuestion(){}
+
 
     @Override
-    public double getCorrectAnswer() {
-        return firstNumber / secondNumber;
+    public double correctAnswer() {
+
+        super.firstNumber = Math.max(super.firstNumber, super.secondNumber);
+        super.secondNumber = Math.min(super.firstNumber, super.secondNumber);
+        super.secondNumber += super.secondNumber == 0 ? 1 : 0;
+
+        return super.firstNumber / super.secondNumber;
     }
 
     @Override
     public String getQuestion() {
-        return QuizQuestion.question(":", firstNumber, secondNumber);
+
+        super.firstNumber = Math.max(super.firstNumber, super.secondNumber);
+        super.secondNumber = Math.min(super.firstNumber, super.secondNumber);
+        super.secondNumber += super.secondNumber == 0 ? 1 : 0;
+
+        return QuizQuestion.question(":", super.firstNumber, super.secondNumber);
+
     }
+
+
 }
