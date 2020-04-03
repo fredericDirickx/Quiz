@@ -86,7 +86,6 @@ public class NumberGenerator {
             }
 
 
-
             if (numbers.indexOf(randomNumber) == -1) {
                 numbers.add(randomNumber);
                 repeat = false;
@@ -112,23 +111,43 @@ public class NumberGenerator {
         return Math.max(x, y);
     }
 
-    private double[] getIntegersForDivQuestion(){
+    public int mostDecimals() {
+        int x = numberOfDecimals(upperBoundFirstNumber);
+        int y = numberOfDecimals(lowerBoundSecondNumber);
+        return Math.max(x, y);
+    }
+
+    public double[] getIntegersForDivQuestion() {
         double[] numbers = new double[2];
-        double firstNr = getFirstNumber();;
-        double secondNr = 1;
-
-
-        do{
-
-            secondNr = getRandomNumber(firstNr+1, lowerBoundFirstNumber,amount,secondNumbers,random);
-
-        } while (firstNr%secondNr != 0);
-
+        double firstNr = getFirstNumber();
+        double secondNr = getRandomDivisor(firstNr, (int) lowerBoundSecondNumber);
 
         numbers[0] = firstNr;
         numbers[1] = secondNr;
 
         return numbers;
+
+    }
+
+    public double getRandomDivisor(double divided, int lowerBound) {
+
+        List<Double> dividerList = new ArrayList<>();
+        double divider = 0;
+        int randomIndex;
+        for (int i = lowerBound; i <= divided; i++) {
+            divider = (double) i;
+            if (divided % divider == 0) {
+                dividerList.add(divider);
+            }
+        }
+
+        if (dividerList.isEmpty()) {
+            return divided;
+        } else {
+            randomIndex = random.nextInt(dividerList.size());
+        }
+
+        return dividerList.get(randomIndex);
 
     }
 

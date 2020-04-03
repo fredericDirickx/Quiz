@@ -12,17 +12,22 @@ public class SubtractionQuestion extends Question implements QuizQuestion {
     }
 
     //___________________________________________________methods
+
+    private void switchNumbers() {
+        double max = Math.max(super.firstNumber, super.secondNumber);
+        super.secondNumber = Math.min(super.firstNumber, super.secondNumber);
+        super.firstNumber = max;
+    }
+
     @Override
     public double correctAnswer() {
-        super.firstNumber = Math.max(super.firstNumber, super.secondNumber);
-        super.secondNumber = Math.min(super.firstNumber, super.secondNumber);
+        switchNumbers();
         return super.firstNumber - super.secondNumber;
     }
 
     @Override
     public String getQuestion() {
-        super.firstNumber = Math.max(super.firstNumber, super.secondNumber);
-        super.secondNumber = Math.min(super.firstNumber, super.secondNumber);
+        switchNumbers();
         return QuizQuestion.question("-", super.firstNumber, super.secondNumber);
     }
 

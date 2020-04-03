@@ -1,8 +1,5 @@
 package be.intecbrussel.quize;
 
-import javax.persistence.*;
-
-
 public interface QuizQuestion {
 
     //todo replace this method
@@ -22,6 +19,7 @@ public interface QuizQuestion {
         print.append(" = ?");
         return print.toString();
     }
+
     String getQuestion();
 
     double correctAnswer();

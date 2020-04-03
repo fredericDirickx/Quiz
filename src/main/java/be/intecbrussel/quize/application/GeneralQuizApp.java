@@ -5,7 +5,6 @@ import be.intecbrussel.quize.model.Question;
 import be.intecbrussel.quize.model.QuizService;
 import be.intecbrussel.quize.model.User;
 
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -17,27 +16,27 @@ public class GeneralQuizApp {
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("datasource");
         EntityManager em = factory.createEntityManager();
 
+        QuizService quizService = new QuizService();
 
-        NumberGenerator numberGenerator = new NumberGenerator(0,10,0,11);
-        QuizService quizService = null;
-            quizService = new QuizService();
+        NumberGenerator numberGenerator = new NumberGenerator(10, 50, 1, 50);
+        quizService.setNumberGenerator(numberGenerator);
 
-            quizService.setAmountQuestions(5);
-            quizService.setMultiplication(true);
+        //adding the amount of questions
+        quizService.setAmountQuestions(10);
+
+        //set the kind of operations the questions should contain, can be a mix (Uncomment other options if you like)
+        quizService.setMultiplication(true);
 //            quizService.setDivision(true);
 //            quizService.setAddition(true);
 //            quizService.setSubtraction(true);
-            quizService.setNumberGenerator(numberGenerator);
-
 
         User user = new User();
         user.setName(quizService.askUserName());
-
         quizService.setUser(user);
 
+        //start the quiz
         Scanner input = new Scanner(System.in);
         String enGame = "y";
-
 
 
         while (enGame.equals("y")) {
@@ -53,18 +52,19 @@ public class GeneralQuizApp {
         }
 
 
+        //commit the results to the database
         em.getTransaction().begin();
 
         User registeredUser = em.find(User.class, user.getName());
-        if(registeredUser==null) {
+        if (registeredUser == null) {
             em.persist(user);
-        }else {
+        } else {
             quizService.setUser(registeredUser);
         }
 
         em.persist(quizService);
 
-        for(Question q : quizService.getQuestions()){
+        for (Question q : quizService.getQuestions()) {
             em.persist(q);
         }
 
@@ -74,11 +74,7 @@ public class GeneralQuizApp {
         factory.close();
 
 
-
-
-
         System.out.println("SEE YOU NEXT TIME!!!!!");
-
 
 
     }
