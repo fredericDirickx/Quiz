@@ -23,8 +23,8 @@ public class GeneralQuizApp {
             quizService = new QuizService();
 
             quizService.setAmountQuestions(5);
-//            quizService.setMultiplication(true);
-            quizService.setDivision(true);
+            quizService.setMultiplication(true);
+//            quizService.setDivision(true);
 //            quizService.setAddition(true);
 //            quizService.setSubtraction(true);
             quizService.setNumberGenerator(numberGenerator);
