@@ -18,7 +18,7 @@ public class GeneralQuizApp {
 
         QuizService quizService = new QuizService();
 
-        NumberGenerator numberGenerator = new NumberGenerator(10, 50, 1, 50);
+        NumberGenerator numberGenerator = new NumberGenerator(1, 11, 0, 11);
         quizService.setNumberGenerator(numberGenerator);
 
         //adding the amount of questions
