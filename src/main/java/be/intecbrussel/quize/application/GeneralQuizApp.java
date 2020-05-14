@@ -18,11 +18,11 @@ public class GeneralQuizApp {
 
         QuizService quizService = new QuizService();
 
-        NumberGenerator numberGenerator = new NumberGenerator(1, 11, 0, 11);
+        NumberGenerator numberGenerator = new NumberGenerator(2, 10, 2, 10);
         quizService.setNumberGenerator(numberGenerator);
 
         //adding the amount of questions
-        quizService.setAmountQuestions(10);
+        quizService.setAmountQuestions(100);
 
         //set the kind of operations the questions should contain, can be a mix (Uncomment other options if you like)
         quizService.setMultiplication(true);
