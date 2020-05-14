@@ -193,32 +193,11 @@ public class QuizService {
 
     //___________________________________________________methods
 
-    public String askUserName() {
-        Scanner input = new Scanner(System.in);
-        System.out.println("please enter your user name");
-        String name = "";
-        boolean repeat = true;
-        do {
-            try {
-                name = input.nextLine();
-                repeat = false;
-            } catch (InputMismatchException ex) {
-                System.out.println("please try again");
-            }
-
-        } while (repeat);
-
-        return name;
-
-    }
-
 
     //will create the quiz: fill the questions list based on constructor parameters
     public void createQuiz() {
 
         Operations operations = new Operations();
-
-        System.out.println("We have " + amountQuestions + " " + operations.operationNames() + " operations for you");
 
         int[] arr = operations.operations;
 
