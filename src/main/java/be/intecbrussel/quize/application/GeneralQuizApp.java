@@ -22,16 +22,17 @@ public class GeneralQuizApp {
         quizService.setNumberGenerator(numberGenerator);
 
         //adding the amount of questions
-        quizService.setAmountQuestions(100);
+        quizService.setAmountQuestions(2);
 
         //set the kind of operations the questions should contain, can be a mix (Uncomment other options if you like)
         quizService.setMultiplication(true);
-//            quizService.setDivision(true);
-//            quizService.setAddition(true);
-//            quizService.setSubtraction(true);
+            quizService.setDivision(false);
+            quizService.setAddition(false);
+            quizService.setSubtraction(false);
 
         User user = new User();
         user.setName(quizService.askUserName());
+        user.setPassword("123");
         quizService.setUser(user);
 
         //start the quiz
