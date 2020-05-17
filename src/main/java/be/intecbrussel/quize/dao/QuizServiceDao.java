@@ -22,15 +22,12 @@ public class QuizServiceDao implements QuizDao<QuizService> {
         EntityManager em = JpaSessionUtil.getEntityManager("dataQuiz");
         User user = quizService.getUser();
         List<Question> questionList = quizService.getQuestions();
+        em.getTransaction().begin();
 
         User registeredUser = em.find(User.class, user.getName());
-        if (registeredUser == null) {
-            em.persist(user);
-        } else {
-            quizService.setUser(registeredUser);
-        }
+        quizService.setUser(registeredUser);
 
-        em.getTransaction().begin();
+
         em.persist(quizService);
         em.persist(quizService.getUser());
         for (Question q : quizService.getQuestions() ) {

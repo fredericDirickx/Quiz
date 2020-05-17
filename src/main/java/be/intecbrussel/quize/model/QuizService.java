@@ -192,15 +192,6 @@ public class QuizService {
 
     //___________________________________________________methods
 
-<<<<<<< HEAD
-=======
-    public QuizService createQuizService(String[] answers,String[] questions){
-        return new QuizService();
-    }
-
->>>>>>> C--Program-Files-tomcat-webapps-quiz
-
-
     //will create the quiz: fill the questions list based on constructor parameters
     public void createQuiz() {
 
