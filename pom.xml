@@ -17,7 +17,11 @@
     </properties>
 
     <build>
+<<<<<<< HEAD
         <finalName>Quiz</finalName>
+=======
+        <finalName>quiz</finalName>
+>>>>>>> C--Program-Files-tomcat-webapps-quiz
         <plugins>
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>

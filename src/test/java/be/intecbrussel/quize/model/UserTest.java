@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class UserTest {
 
-    @Test
+//    @Test
     public void persistUser(){
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("datasource");
         EntityManager em = factory.createEntityManager();

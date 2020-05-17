@@ -16,6 +16,38 @@ public class NumberGenerator {
     private Random random = new Random();
 
 
+    public double getUpperBoundFirstNumber() {
+        return upperBoundFirstNumber;
+    }
+
+    public void setUpperBoundFirstNumber(double upperBoundFirstNumber) {
+        this.upperBoundFirstNumber = upperBoundFirstNumber;
+    }
+
+    public double getLowerBoundFirstNumber() {
+        return lowerBoundFirstNumber;
+    }
+
+    public void setLowerBoundFirstNumber(double lowerBoundFirstNumber) {
+        this.lowerBoundFirstNumber = lowerBoundFirstNumber;
+    }
+
+    public double getUpperBoundSecondNumber() {
+        return upperBoundSecondNumber;
+    }
+
+    public void setUpperBoundSecondNumber(double upperBoundSecondNumber) {
+        this.upperBoundSecondNumber = upperBoundSecondNumber;
+    }
+
+    public double getLowerBoundSecondNumber() {
+        return lowerBoundSecondNumber;
+    }
+
+    public void setLowerBoundSecondNumber(double lowerBoundSecondNumber) {
+        this.lowerBoundSecondNumber = lowerBoundSecondNumber;
+    }
+
     public NumberGenerator(double lowerBoundFirstNumber, double upperBoundFirstNumber) {
         this.upperBoundFirstNumber = upperBoundFirstNumber;
         this.lowerBoundFirstNumber = lowerBoundFirstNumber;

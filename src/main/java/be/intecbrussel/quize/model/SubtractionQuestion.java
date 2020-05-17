@@ -20,6 +20,11 @@ public class SubtractionQuestion extends Question implements QuizQuestion {
     }
 
     @Override
+    public void setOperator(String operator) {
+        super.operator = "-";
+    }
+
+    @Override
     public double correctAnswer() {
         switchNumbers();
         return super.firstNumber - super.secondNumber;

@@ -21,10 +21,10 @@ public class QuizService {
     @OneToOne
     private User user = new User();
     private LocalDate date = LocalDate.now();
-    private boolean addition;
-    private boolean subtraction;
-    private boolean multiplication;
-    private boolean division;
+    private boolean IsAddition;
+    private boolean IsSubtraction;
+    private boolean IsMultiplication;
+    private boolean IsDivision;
     private int amountQuestions = 10;
 
     private int totalGoodQuestions;
@@ -50,7 +50,6 @@ public class QuizService {
     public QuizService() {
     }
 
-
     //___________________________________________________getters & setters
 
     public long getId() {
@@ -69,36 +68,36 @@ public class QuizService {
         this.user = user;
     }
 
-    public boolean isAddition() {
-        return addition;
+    public boolean isIsAddition() {
+        return IsAddition;
     }
 
-    public void setAddition(boolean addition) {
-        this.addition = addition;
+    public void setIsAddition(boolean addition) {
+        this.IsAddition = addition;
     }
 
-    public boolean isSubtraction() {
-        return subtraction;
+    public boolean isIsSubtraction() {
+        return IsSubtraction;
     }
 
-    public void setSubtraction(boolean subtraction) {
-        this.subtraction = subtraction;
+    public void setIsSubtraction(boolean subtraction) {
+        this.IsSubtraction = subtraction;
     }
 
-    public boolean isMultiplication() {
-        return multiplication;
+    public boolean isIsMultiplication() {
+        return IsMultiplication;
     }
 
-    public void setMultiplication(boolean multiplication) {
-        this.multiplication = multiplication;
+    public void setIsMultiplication(boolean multiplication) {
+        this.IsMultiplication = multiplication;
     }
 
-    public boolean isDivision() {
-        return division;
+    public boolean isIsDivision() {
+        return IsDivision;
     }
 
-    public void setDivision(boolean division) {
-        this.division = division;
+    public void setIsDivision(boolean division) {
+        this.IsDivision = division;
     }
 
     public int getAmountQuestions() {
@@ -193,6 +192,14 @@ public class QuizService {
 
     //___________________________________________________methods
 
+<<<<<<< HEAD
+=======
+    public QuizService createQuizService(String[] answers,String[] questions){
+        return new QuizService();
+    }
+
+>>>>>>> C--Program-Files-tomcat-webapps-quiz
+
 
     //will create the quiz: fill the questions list based on constructor parameters
     public void createQuiz() {
@@ -205,10 +212,10 @@ public class QuizService {
 
         int boundQuestions = 0;
 
-        boundQuestions += this.addition ? 1 : 0;
-        boundQuestions += this.subtraction ? 1 : 0;
-        boundQuestions += this.multiplication ? 1 : 0;
-        boundQuestions += this.division ? 1 : 0;
+        boundQuestions += this.IsAddition ? 1 : 0;
+        boundQuestions += this.IsSubtraction ? 1 : 0;
+        boundQuestions += this.IsMultiplication ? 1 : 0;
+        boundQuestions += this.IsDivision ? 1 : 0;
 
 
         for (int i = 0; i < amountQuestions; i++) {
@@ -248,6 +255,22 @@ public class QuizService {
 
         }
 
+    }
+
+    public static QuizService createQuiz(String[] answers, String[] questions, String userName) {
+        QuizService quizService = new QuizService();
+        List<Question> questionList = new ArrayList<>();
+        User user = new User();
+        user.setName(userName);
+        for (int i = 0 ; i < answers.length ; i++) {
+            Question question = new Question();
+            question = Question.parseQuestionString(questions[i]);
+            question.setAnswer(Double.parseDouble(answers[i]));
+            questionList.add(question);
+        }
+        quizService.setUser(user);
+        quizService.setQuestions(questionList);
+        return quizService;
     }
 
     //get the answer of the user and repeat if when input is not a integer.
@@ -349,6 +372,67 @@ public class QuizService {
 
     }
 
+    public List<String> gradeQuizToList() {
+        List<String> reportList = new ArrayList<>();
+
+
+              reportList.add(String.format(CYAN_BOLD + CYAN_UNDERLINED + "%-20s%-20s%-20s%-20s%-20s%n" + RESET,
+                        "Question", "Your answer", "Correct", "Time", "Result"));
+
+        String alternatingColor = "";
+        int i = 0;
+        String result = "";
+        int goodResults = 0;
+
+        Duration totalDuration = Duration.between(startTimes.get(i), endTimes.get(amountQuestions - 1));
+        totalTime = totalTime.plus(totalDuration);
+
+
+        int dec1 = NumberGenerator.numberOfDecimals(questions.get(0).getFirstNumber());
+        int dec2 = NumberGenerator.numberOfDecimals(questions.get(0).getSecondNumber());
+
+        int amountOfDecimals = dec1 == 0 && dec2 == 0 ? 0 : 2;
+
+        for (QuizQuestion q : this.questions) {
+
+
+            if (userAnswers.get(i)
+                    .equals(NumberGenerator.decimalPlacesController(q.correctAnswer(), amountOfDecimals))) {
+                result = GREEN_BOLD + "correct" + RESET;
+                goodResults++;
+            } else {
+                result = RED + "wrong" + RESET;
+            }
+
+
+            alternatingColor = i % 2 == 0 ? CYAN_BACKGROUND : WHITE;
+
+
+            Duration questionD = Duration.between(startTimes.get(i), endTimes.get(i));
+            String time = questionD.toMinutes() + " min " + questionD.toSecondsPart() + " sec";
+           reportList.add(String.format(alternatingColor + "%-20s" +
+                            "%-20" + QuizQuestion.floatSwitch(userAnswers.get(i)) + "f" +
+                            "%-20" + QuizQuestion.floatSwitch(q.correctAnswer()) + "f" +
+                            "%-20s%-20s%n" + RESET,
+                    q.getQuestion(), userAnswers.get(i), q.correctAnswer(), time, result));
+            i++;
+        }
+
+
+        totalGoodQuestions = goodResults;
+        totalQuestions += this.amountQuestions;
+        totalPercent = ((double) totalGoodQuestions / (double) totalQuestions) * 100;
+
+
+        reportList.add(String.format(CYAN_BOLD + "*****TOTAL*****" + RESET));
+        reportList.add(String.format(CYAN_UNDERLINED + "you have " + totalGoodQuestions +
+                " correct answers out of " + totalQuestions + RESET));
+        reportList.add(String.format(CYAN_BACKGROUND + "You have: " + GREEN_BOLD + " %.0f %%" + RESET + "%n", totalPercent));
+        reportList.add(String.format(CYAN_UNDERLINED + "Total time: " + totalTime.toHoursPart() + " hours " +
+                totalTime.toMinutesPart() + " min " + totalTime.toSecondsPart() + " sec" + RESET));
+        return reportList;
+    }
+
     //inner class that will control the operations of the quiz based on constructor of QuizService
     public class Operations {
         //array of the different operations of the quiz
@@ -357,20 +441,20 @@ public class QuizService {
 
         public Operations() {
 
-            if (!addition && !division && !multiplication && !subtraction) {
-                addition = true;
+            if (!IsAddition && !IsDivision && !IsMultiplication && !IsSubtraction) {
+                IsAddition = true;
             }
 
-            if (addition) {
+            if (IsAddition) {
                 addNumberToArr(0);
             }
-            if (subtraction) {
+            if (IsSubtraction) {
                 addNumberToArr(1);
             }
-            if (multiplication) {
+            if (IsMultiplication) {
                 addNumberToArr(2);
             }
-            if (division) {
+            if (IsDivision) {
                 addNumberToArr(3);
             }
 
@@ -382,22 +466,22 @@ public class QuizService {
             String operations = "";
             String delimiter = "";
             boolean more = false;
-            if (addition) {
+            if (IsAddition) {
                 delimiter = more ? ", " : "";
                 operations += delimiter + "addition";
                 more = true;
             }
-            if (subtraction) {
+            if (IsSubtraction) {
                 delimiter = more ? ", " : "";
                 operations += delimiter + "subtraction";
                 more = true;
             }
-            if (multiplication) {
+            if (IsMultiplication) {
                 delimiter = more ? ", " : "";
                 operations += delimiter + "multiplication";
                 more = true;
             }
-            if (division) {
+            if (IsDivision) {
                 delimiter = more ? ", " : "";
                 operations += delimiter + "division";
                 more = true;

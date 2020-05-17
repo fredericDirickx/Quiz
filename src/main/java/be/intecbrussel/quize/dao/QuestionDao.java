@@ -40,6 +40,12 @@ public class QuestionDao implements QuizDao<Question> {
     public void update(Question question) {
         EntityManager em = JpaSessionUtil.getEntityManager("dataQuiz");
         em.getTransaction().begin();
+<<<<<<< HEAD
 
+=======
+        em.merge(question);
+        em.getTransaction().commit();
+        em.close();
+>>>>>>> C--Program-Files-tomcat-webapps-quiz
     }
 }
