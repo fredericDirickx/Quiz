@@ -21,6 +21,10 @@ public class DivisionQuestion extends Question implements QuizQuestion {
         }
     }
 
+    @Override
+    public void setOperator(String operator) {
+        super.operator = ":";
+    }
 
     @Override
     public double correctAnswer() {

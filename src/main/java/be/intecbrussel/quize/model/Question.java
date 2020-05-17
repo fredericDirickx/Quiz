@@ -15,7 +15,12 @@ public class Question implements QuizQuestion  {
     double firstNumber;
     double secondNumber;
     double answer;
+    String operator;
     long duration;
+
+
+    @Transient
+    String questionString;
 
 
     public Question() {
@@ -53,6 +58,14 @@ public class Question implements QuizQuestion  {
         this.answer = answer;
     }
 
+    public String getOperator() {
+        return operator;
+    }
+
+    public void setOperator(String operator) {
+        this.operator = operator;
+    }
+
     public long getDuration() {
         return duration;
     }
@@ -60,6 +73,27 @@ public class Question implements QuizQuestion  {
     public void setDuration(long duration) {
         this.duration = duration;
     }
+
+    public String getQuestionString() {
+        return getQuestion();
+    }
+
+    public void setQuestionString(String string) {
+        this.questionString = string;
+    }
+
+    public static Question parseQuestionString(String questionString) {
+        questionString = questionString.replaceAll("\\s","");
+        String[] numbers = questionString.split("[+\\-*=:?x]");
+        String operator = questionString.replaceAll("[\\d.?=]","");
+        Question question = new Question();
+        question.setFirstNumber(Double.parseDouble(numbers[0]));
+        question.setSecondNumber(Double.parseDouble(numbers[1]));
+        question.setOperator(operator);
+        return question;
+    }
+
+
 
     @Override
     public String getQuestion() {

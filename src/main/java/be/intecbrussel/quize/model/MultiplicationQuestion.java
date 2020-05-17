@@ -12,6 +12,12 @@ public class MultiplicationQuestion extends Question implements QuizQuestion {
     }
 
     //___________________________________________________methods
+
+    @Override
+    public void setOperator(String operator) {
+        super.operator = "x";
+    }
+
     @Override
     public double correctAnswer() {
         return super.firstNumber * super.secondNumber;
