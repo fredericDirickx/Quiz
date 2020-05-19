@@ -20,22 +20,19 @@ import java.io.PrintWriter;
 import java.util.List;
 
 @WebServlet("/quizSettingsServlet")
-public class quizSettingsServlet extends HttpServlet {
-
-
+public class QuizSettingsServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html");
-        resp.setCharacterEncoding("UTF-8");
-        PrintWriter writer = resp.getWriter();
-
-        writer.println("<p>doGet quizService</p>");
+        HttpSession session = req.getSession();
+        req.setAttribute("userName",session.getAttribute("userName"));
+        req.getRequestDispatcher("/WEB-INF/pages/quizSettings.jsp").forward(req,resp);
     }
 
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
 
         NumberGenerator numberGenerator = new NumberGenerator(
                 0,
@@ -45,9 +42,7 @@ public class quizSettingsServlet extends HttpServlet {
 
         QuizService quizService = new QuizService();
 
-        String userName = req.getParameter("userName");
-        User user = new User();
-        user.setName(userName);
+        User user = (User) session.getAttribute("user");
         quizService.setUser(user);
 
         boolean isAddition = isChecked(req.getParameter("addition"));
@@ -78,10 +73,10 @@ public class quizSettingsServlet extends HttpServlet {
         quizService.createQuiz();
 
 
-        req.setAttribute("quizService",quizService);
-        req.setAttribute("index", 0);
+        session.setAttribute("quizService",quizService);
+        session.setAttribute("index", 0);
 
-        req.getRequestDispatcher("/quizAdmin").forward(req,resp);
+        resp.sendRedirect("/quiz/quizAdmin");
     }
 
     public boolean isChecked(String string) {

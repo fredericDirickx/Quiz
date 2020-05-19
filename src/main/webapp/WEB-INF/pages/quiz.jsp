@@ -18,7 +18,7 @@
 <div>
     <form action="${pageContext.request.contextPath}/quizAdmin" method="post">
             <p>
-                <label for="answer">${question}</label>
+                <label for="answer">${index}: ${question}</label>
                 <input  id="answer" name="answer" type="number">
                 <input hidden name="index" value="${index}">
 

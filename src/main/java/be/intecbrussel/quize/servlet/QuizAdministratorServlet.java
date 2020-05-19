@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.time.Duration;
 import java.time.temporal.Temporal;
 
@@ -20,38 +19,31 @@ public class QuizAdministratorServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
+        int index = convertToInteger(session.getAttribute("index"));
+        QuizService quizService = (QuizService) session.getAttribute("quizService");
+        String question = quizService.getQuestions().get(index).getQuestionString();
+        req.setAttribute("question",question);
+        req.setAttribute("index",++index);
 
+        req.getRequestDispatcher("/WEB-INF/pages/quiz.jsp").forward(req,resp);
 
-            }
+    }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
-        resp.setContentType("text/html");
-        resp.setCharacterEncoding("UTF-8");
-        PrintWriter writer = resp.getWriter();
-
-        writer.println("<p>doGet quizService</p>");
-
-        int index = 0;
-
-        if (session.isNew()) {
-            QuizService quizService = (QuizService) req.getAttribute("quizService");
-            session.setAttribute("sessionQuizService", quizService);
-            session.setAttribute("index", 0);
+        QuizService quizService = (QuizService) session.getAttribute("quizService");
+        int index = convertToInteger(session.getAttribute("index"));
+        double answer = Double.parseDouble(req.getParameter("answer"));
+        quizService.getQuestions().get(index).setAnswer(answer);
+        session.setAttribute("index",req.getParameter("index"));
+        req.getRequestDispatcher("/quizAdmin");
+        if(index<quizService.getQuestions().size()-1) {
+            resp.sendRedirect("/quiz/quizAdmin");
+        }else {
+            resp.sendRedirect("quiz/report");
         }
-
-        QuizService quizService =(QuizService) session.getAttribute("quizService");
-        for(Question q : quizService.getQuestions()) {
-
-            writer.println("<p>");
-            writer.println(q.getQuestionString());
-            writer.println("</p>");
-
-        }
-
-
-
     }
 
 
@@ -59,6 +51,22 @@ public class QuizAdministratorServlet extends HttpServlet {
         Duration duration = Duration.between(start, end);
         return duration.toSeconds();
     }
+
+    public int convertToInteger(Object object){
+        int result = 0;
+        try {
+            result = Integer.parseInt((String) object);
+            return result;
+        }catch (ClassCastException exString){
+            try {
+                result = (Integer) object;
+                return result;
+            }catch (ClassCastException exInt){
+                return result;
+            }
+        }
+    }
+
 
 
 }

@@ -14,7 +14,7 @@
 <body>
 
 <div>
-    <h1>Weclome, ${userName}</h1>
+    <h1>Welcome, ${userName}</h1>
 
     <form action="${pageContext.request.contextPath}/quizSettingsServlet" method="post">
         <input hidden name="userName" value="${userName}">

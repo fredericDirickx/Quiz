@@ -15,7 +15,7 @@
 <body>
 <p>Great Job, ${userName}</p>
 <c:forEach items="${reportList}" var="line">
-    <p>${line}</p>
+    <p>${line.firstNumber} ${line.operator} ${line.secondNumber} = ${line.answer}</p>
 </c:forEach>
 
 </body>
