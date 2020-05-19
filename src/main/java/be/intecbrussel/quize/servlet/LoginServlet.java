@@ -28,8 +28,11 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
         String userName = req.getParameter("userName");
         String passWord = req.getParameter("passWord");
+        session.setAttribute("userName",userName);
+
         User user = new User();
         user.setName(userName);
         user.setPassword(passWord);

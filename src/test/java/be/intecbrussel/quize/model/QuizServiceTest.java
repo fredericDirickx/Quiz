@@ -1,5 +1,9 @@
 package be.intecbrussel.quize.model;
 
+import be.intecbrussel.quize.dao.QuizServiceDao;
+import be.intecbrussel.quize.dao.UserDao;
+import org.junit.jupiter.api.Test;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -35,4 +39,31 @@ class QuizServiceTest {
         factory.close();
     }
 
+//    @Test
+    void gradeQuizToList() {
+        QuizService quizService = new QuizService();
+        User user = new User();
+        user.setName("Frits");
+        user.setPassword("123");
+        quizService.setUser(user);
+        quizService.createQuiz();
+        String[] questions =  quizService.getQuestions().stream().map(Question::getQuestionString).toArray(String[]::new);
+        String[] answers = new String[questions.length];
+        for (int i = 0 ; i < questions.length ; i++) {
+            answers[i] = String.valueOf(i);
+        }
+
+        QuizService quizService1 = QuizService.createQuiz(answers,questions,user.getName());
+
+//        QuizServiceDao quizServiceDao = new QuizServiceDao();
+
+//        quizServiceDao.create(quizService1);
+
+
+        quizService1.gradeQuizToList().forEach(System.out::println);
+
+
+
+
+    }
 }

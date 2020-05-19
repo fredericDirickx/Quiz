@@ -6,7 +6,9 @@ import be.intecbrussel.quize.model.NumberGenerator;
 import be.intecbrussel.quize.model.Question;
 import be.intecbrussel.quize.model.QuizService;
 import be.intecbrussel.quize.model.User;
+import net.bytebuddy.description.type.TypeDescription;
 
+import javax.servlet.DispatcherType;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,29 +16,26 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
-@WebServlet("/quizStart")
-public class QuizServlet extends HttpServlet {
+@WebServlet("/quizSettingsServlet")
+public class quizSettingsServlet extends HttpServlet {
 
 
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("text/html");
+        resp.setCharacterEncoding("UTF-8");
+        PrintWriter writer = resp.getWriter();
 
-
-        HttpSession session = req.getSession();
-        if (session.isNew()) {
-            resp.sendRedirect("/login.jsp");
-        }
-
+        writer.println("<p>doGet quizService</p>");
     }
 
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        HttpSession session = req.getSession();
 
         NumberGenerator numberGenerator = new NumberGenerator(
                 0,
@@ -47,6 +46,9 @@ public class QuizServlet extends HttpServlet {
         QuizService quizService = new QuizService();
 
         String userName = req.getParameter("userName");
+        User user = new User();
+        user.setName(userName);
+        quizService.setUser(user);
 
         boolean isAddition = isChecked(req.getParameter("addition"));
         boolean isSubtraction = isChecked(req.getParameter("subtraction"));
@@ -75,14 +77,11 @@ public class QuizServlet extends HttpServlet {
 
         quizService.createQuiz();
 
-        List<Question> questionList = quizService.getQuestions();
 
+        req.setAttribute("quizService",quizService);
+        req.setAttribute("index", 0);
 
-        session.setAttribute("questionList",questionList);
-        session.setAttribute("userName", userName);
-
-        req.getRequestDispatcher("/quiz.jsp").forward(req,resp);
-
+        req.getRequestDispatcher("/quizAdmin").forward(req,resp);
     }
 
     public boolean isChecked(String string) {

@@ -15,16 +15,14 @@
 </head>
 <body>
 <p>Go For it, ${userName}</p>
-<input hidden name="userName" value="${userName}">
 <div>
     <form action="${pageContext.request.contextPath}/quizAdmin" method="post">
-        <c:forEach items="${questionList}" var="question">
             <p>
-                <label for="answer">${question.questionString}</label>
+                <label for="answer">${question}</label>
                 <input  id="answer" name="answer" type="number">
-                <input hidden name="question" value="${question.questionString}">
+                <input hidden name="index" value="${index}">
+
             </p>
-        </c:forEach>
 
         <button name="submitButton" type="submit">Finished!</button>
     </form>

@@ -44,7 +44,7 @@ public class QuizService {
     @Transient
     private int lastQuestionNr;
     @Transient
-    private NumberGenerator numberGenerator;
+    private NumberGenerator numberGenerator = new NumberGenerator(1,10,1,10);
 
     //___________________________________________________constructors
     public QuizService() {
@@ -240,7 +240,6 @@ public class QuizService {
                     divQuestion.setFirstNumber(numbers[0]);
                     divQuestion.setSecondNumber(numbers[1]);
                 }
-
                 questions.add(divQuestion);
             }
 

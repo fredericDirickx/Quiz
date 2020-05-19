@@ -16,7 +16,7 @@
 <div>
     <h1>Weclome, ${userName}</h1>
 
-    <form action="${pageContext.request.contextPath}/quizStart" method="post">
+    <form action="${pageContext.request.contextPath}/quizSettingsServlet" method="post">
         <input hidden name="userName" value="${userName}">
         <label name="addition">addition</label>
         <input name="addition" type="checkbox" value="true">

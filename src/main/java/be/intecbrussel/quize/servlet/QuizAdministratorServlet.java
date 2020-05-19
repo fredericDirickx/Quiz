@@ -1,6 +1,6 @@
 package be.intecbrussel.quize.servlet;
 
-import be.intecbrussel.quize.dao.QuizServiceDao;
+import be.intecbrussel.quize.model.Question;
 import be.intecbrussel.quize.model.QuizService;
 
 import javax.servlet.ServletException;
@@ -10,35 +10,55 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.List;
-import java.util.Map;
+import java.io.PrintWriter;
+import java.time.Duration;
+import java.time.temporal.Temporal;
 
 @WebServlet("/quizAdmin")
 public class QuizAdministratorServlet extends HttpServlet {
+
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doGet(req, resp);
-    }
+
+
+            }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
+        resp.setContentType("text/html");
+        resp.setCharacterEncoding("UTF-8");
+        PrintWriter writer = resp.getWriter();
 
-        Map<String, String[]> parameterMap = req.getParameterMap();
+        writer.println("<p>doGet quizService</p>");
 
-        String[] answers = parameterMap.get("answer");
-        String[] questions = parameterMap.get("question");
-        String userName = req.getParameter("userName");
+        int index = 0;
 
-        QuizService quizService = QuizService.createQuiz(answers, questions, userName);
-        QuizServiceDao quizServiceDao = new QuizServiceDao();
-        quizServiceDao.create(quizService);
+        if (session.isNew()) {
+            QuizService quizService = (QuizService) req.getAttribute("quizService");
+            session.setAttribute("sessionQuizService", quizService);
+            session.setAttribute("index", 0);
+        }
 
-        List<String> reportList = quizService.gradeQuizToList();
+        QuizService quizService =(QuizService) session.getAttribute("quizService");
+        for(Question q : quizService.getQuestions()) {
 
-        session.setAttribute("reportList",reportList);
+            writer.println("<p>");
+            writer.println(q.getQuestionString());
+            writer.println("</p>");
 
-        req.getRequestDispatcher("/quizReport.jsp").forward(req,resp);
+        }
+
+
 
     }
+
+
+    public long getDuration(Temporal start, Temporal end) {
+        Duration duration = Duration.between(start, end);
+        return duration.toSeconds();
+    }
+
+
 }

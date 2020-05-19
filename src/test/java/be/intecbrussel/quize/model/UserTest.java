@@ -12,14 +12,16 @@ class UserTest {
 
 //    @Test
     public void persistUser(){
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("datasource");
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("dataQuiz");
         EntityManager em = factory.createEntityManager();
         User user = new User();
-        user.setName("Frederic");
+        user.setName("Frits");
+//        user.setPassword("123");
 
-        em.getTransaction().begin();
-        em.persist(user);
-        em.getTransaction().commit();
+        User user1 = em.find(User.class,user.getName());
+
+        System.out.println(user1.getPassword());
+
 
         em.close();
         factory.close();
