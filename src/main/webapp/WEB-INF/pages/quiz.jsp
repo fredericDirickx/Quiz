@@ -10,21 +10,28 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}\style.css"/>
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/styleQuiz.css"/>
     <title>quiz</title>
 </head>
 <body>
-<p>Go For it, ${userName}</p>
-<div>
+<div class="container">
+    <p>Go For it, ${userName}</p>
+
     <form action="${pageContext.request.contextPath}/quizAdmin" method="post">
-            <p>
-                <label for="answer">${index}: ${question}</label>
-                <input  id="answer" name="answer" type="number">
-                <input hidden name="index" value="${index}">
-
-            </p>
-
-        <button name="submitButton" type="submit">Finished!</button>
+        <input hidden name="index" value="${index}">
+        <div class="row">
+            <div class="col-25">
+                <label for="answer">${index})         ${question}</label>
+            </div>
+            <div class="col-75">
+                <input id="answer" name="answer" type="number" autofocus>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-75">
+                <button name="submitButton" type="submit">Finished!</button>
+            </div>
+        </div>
     </form>
 </div>
 </body>

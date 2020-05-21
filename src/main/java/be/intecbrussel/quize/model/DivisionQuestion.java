@@ -9,7 +9,7 @@ public class DivisionQuestion extends Question implements QuizQuestion {
 
 
     public DivisionQuestion() {
-
+        super.operator = ":";
     }
 
     private void switchNumbers() {
@@ -21,9 +21,8 @@ public class DivisionQuestion extends Question implements QuizQuestion {
         }
     }
 
-    @Override
-    public void setOperator(String operator) {
-        super.operator = ":";
+    public String getOperator() {
+        return super.operator;
     }
 
     @Override
@@ -38,6 +37,8 @@ public class DivisionQuestion extends Question implements QuizQuestion {
         return QuizQuestion.question(":", super.firstNumber, super.secondNumber);
 
     }
+
+
 
 
 }

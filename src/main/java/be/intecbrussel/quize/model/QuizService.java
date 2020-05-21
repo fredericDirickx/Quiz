@@ -247,21 +247,6 @@ public class QuizService {
 
     }
 
-    public static QuizService createQuiz(String[] answers, String[] questions, String userName) {
-        QuizService quizService = new QuizService();
-        List<Question> questionList = new ArrayList<>();
-        User user = new User();
-        user.setName(userName);
-        for (int i = 0 ; i < answers.length ; i++) {
-            Question question = new Question();
-            question = Question.parseQuestionString(questions[i]);
-            question.setAnswer(Double.parseDouble(answers[i]));
-            questionList.add(question);
-        }
-        quizService.setUser(user);
-        quizService.setQuestions(questionList);
-        return quizService;
-    }
 
     //get the answer of the user and repeat if when input is not a integer.
     private double getInput() {
@@ -306,6 +291,7 @@ public class QuizService {
     //if the answer of the user was correct.
     //also prints how many answers where correct.
     public void gradeQuiz() {
+
         System.out.printf(CYAN_BOLD + CYAN_UNDERLINED + "%-20s%-20s%-20s%-20s%-20s%n" + RESET,
                 "Question", "Your answer", "Correct", "Time", "Result");
         String alternatingColor = "";
@@ -386,8 +372,7 @@ public class QuizService {
         for (QuizQuestion q : this.questions) {
 
 
-            if (userAnswers.get(i)
-                    .equals(NumberGenerator.decimalPlacesController(q.correctAnswer(), amountOfDecimals))) {
+            if (questions.get(i).getAnswer()==NumberGenerator.decimalPlacesController(q.correctAnswer(), amountOfDecimals)) {
                 result = GREEN_BOLD + "correct" + RESET;
                 goodResults++;
             } else {
@@ -401,10 +386,10 @@ public class QuizService {
             Duration questionD = Duration.between(startTimes.get(i), endTimes.get(i));
             String time = questionD.toMinutes() + " min " + questionD.toSecondsPart() + " sec";
            reportList.add(String.format(alternatingColor + "%-20s" +
-                            "%-20" + QuizQuestion.floatSwitch(userAnswers.get(i)) + "f" +
+                            "%-20" + QuizQuestion.floatSwitch(questions.get(i).getAnswer()) + "f" +
                             "%-20" + QuizQuestion.floatSwitch(q.correctAnswer()) + "f" +
                             "%-20s%-20s%n" + RESET,
-                    q.getQuestion(), userAnswers.get(i), q.correctAnswer(), time, result));
+                    q.getQuestion(), questions.get(i).getAnswer(), q.correctAnswer(), time, result));
             i++;
         }
 

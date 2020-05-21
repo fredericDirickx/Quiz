@@ -8,35 +8,84 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}\style.css"/>
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/styleQuiz.css"/>
     <title>Quiz Settings</title>
 </head>
 <body>
-
-<div>
+<div class="container">
     <h1>Welcome, ${userName}</h1>
 
     <form action="${pageContext.request.contextPath}/quizSettingsServlet" method="post">
+
         <input hidden name="userName" value="${userName}">
-        <label name="addition">addition</label>
-        <input name="addition" type="checkbox" value="true">
-        <label name="subtraction">subtraction</label>
-        <input name="subtraction" type="checkbox" value="true">
-        <label name="multiplication">multiplication</label>
-        <input name="multiplication" type="checkbox" value="true">
-        <label name="division">division</label>
-        <input name="division" type="checkbox" value="true"><br>
-        <label name="amount">amount of questions</label>
-        <input name="amount" type="number" value="10"><br>
-        <label name="firstNumberLowerBound">first Number lower bound</label>
-        <input name="firstNumberLowerBound" type="number" value="1"><br>
-        <label name="firstNumberUpperBound">firstNumber Upper bound</label>
-        <input name="firstNumberUpperBound" type="number" value="11"><br>
-        <label name="secondNumberLowerBound">Second Number lower bound</label>
-        <input name="secondNumberLowerBound" type="number" value="1"><br>
-        <label name="secondNumberUpperBound">Second Number Upper bound</label>
-        <input name="secondNumberUpperBound" type="number" value="11"><br>
-        <button class="submitButton" type="submit">Push here</button>
+
+        <fieldset class="checkBoxes">
+            <label class="checkmarkContainer">+
+                <input name="addition" type="checkbox" value="true">
+                <span class="checkMark"></span>
+            </label>
+
+            <label class="checkmarkContainer">-
+                <input name="substraction" type="checkbox" value="true">
+                <span class="checkMark"></span>
+            </label>
+            <label class="checkmarkContainer">x
+                <input name="multiplication" type="checkbox" checked="checked" value="true">
+                <span class="checkMark"></span>
+            </label>
+            <label class="checkmarkContainer">/
+                <input name="division" type="checkbox" value="true">
+                <span class="checkMark"></span>
+            </label>
+        </fieldset>
+
+        <div class="row">
+            <div class="col-25">
+                <label>amount of questions</label>
+            </div>
+            <div class="col-75">
+                <input name="amount" type="number" value="10">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-25">
+                <label>first Number lower bound</label>
+            </div>
+            <div class="col-75">
+                <input name="firstNumberLowerBound" type="number" value="1">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-25">
+                <label>firstNumber Upper bound</label>
+            </div>
+            <div class="col-75">
+                <input name="firstNumberUpperBound" type="number" value="10">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-25">
+                <label>Second Number lower bound</label>
+            </div>
+            <div class="col-75">
+                <input name="secondNumberLowerBound" type="number" value="1">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-25">
+                <label>Second Number Upper bound</label>
+            </div>
+            <div class="col-75">
+                <input name="secondNumberUpperBound" type="number" value="10">
+            </div>
+        </div>
+        <div class="row">
+            <button class="submitButton" type="submit">Push here</button>
+        </div>
     </form>
 </div>
 

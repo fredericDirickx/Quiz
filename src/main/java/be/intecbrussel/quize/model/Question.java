@@ -7,23 +7,32 @@ import javax.persistence.*;
 @Entity
 @Table(name = "questions")
 @Inheritance
-public class Question implements QuizQuestion  {
-
-    @Id
-    @GeneratedValue
-    long id;
-    double firstNumber;
-    double secondNumber;
-    double answer;
-    String operator;
-    long duration;
-
+public class Question implements QuizQuestion {
 
     @Transient
     String questionString;
+    @Id
+    @GeneratedValue
+    protected long id;
+    protected double firstNumber;
+    protected double secondNumber;
+    protected double answer;
+    protected String operator;
+    protected long duration;
 
 
     public Question() {
+    }
+
+    public static Question parseQuestionString(String questionString) {
+        questionString = questionString.replaceAll("\\s", "");
+        String[] numbers = questionString.split("[+\\-*=:?x]");
+        String operator = questionString.replaceAll("[\\d.?=]", "");
+        Question question = new Question();
+        question.setFirstNumber(Double.parseDouble(numbers[0]));
+        question.setSecondNumber(Double.parseDouble(numbers[1]));
+        question.setOperator(operator);
+        return question;
     }
 
     public long getId() {
@@ -82,18 +91,6 @@ public class Question implements QuizQuestion  {
         this.questionString = string;
     }
 
-    public static Question parseQuestionString(String questionString) {
-        questionString = questionString.replaceAll("\\s","");
-        String[] numbers = questionString.split("[+\\-*=:?x]");
-        String operator = questionString.replaceAll("[\\d.?=]","");
-        Question question = new Question();
-        question.setFirstNumber(Double.parseDouble(numbers[0]));
-        question.setSecondNumber(Double.parseDouble(numbers[1]));
-        question.setOperator(operator);
-        return question;
-    }
-
-
 
     @Override
     public String getQuestion() {
@@ -104,4 +101,6 @@ public class Question implements QuizQuestion  {
     public double correctAnswer() {
         return 0;
     }
+
 }
+

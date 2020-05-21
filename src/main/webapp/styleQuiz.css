@@ -1,0 +1,174 @@
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+
+* {
+    box-sizing: border-box;
+    font-family: 'Indie Flower', cursive;
+    color: dimgray;
+    font-size: 30
+}
+
+
+.container {
+    margin: auto;
+    border-radius: 10px;
+    background-color: burlywood;
+    padding: 20px;
+    width: 80%;
+}
+
+input {
+    width: 50%;
+    padding: 5px 5px 5px 5px;
+    border: none;
+    border-radius: 5px;
+}
+
+.checkBoxes{
+    margin-left: 45%;
+    border: none;
+    padding: 0px;
+}
+
+
+
+/* The containe  */
+.checkmarkContainer {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.checkmarkContainer input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Create a custom checkbox */
+.checkMark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+}
+
+
+/* On mouse-over, add a grey background color */
+.checkmarkContainer:hover input ~ .checkMark {
+    background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.checkmarkContainer input:checked ~ .checkMark {
+    background-color: #2196F3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkMark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.checkmarkContainer input:checked ~ .checkMark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.checkmarkContainer .checkMark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+
+.submitButton {
+    background-color: #DC7633; ;
+    border-radius: 10px;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    cursor: pointer;
+    float: right;
+}
+
+.submitButton:hover {
+    background-color: #DC7633;;
+}
+
+
+
+.col-25 {
+    text-align: right;
+    float: left;
+    width: 45%;
+    margin-top: 6px;
+    margin-right: 10px;
+}
+
+.col-75 {
+    float: left;
+    width: 45%;
+    margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+
+table{
+    margin: auto;
+    width: 99%;
+    table-layout: fixed;
+}
+
+td{
+    word-break:break-all;
+    padding: 10px 10px 10px;
+    color: #F8F9F9
+}
+
+th{
+    background-color: #CD5C5C  ;
+    color: #F8F9F9;
+}
+
+
+
+tr:nth-child(even) {background: #F08080}
+tr:nth-child(odd) {background: #E9967A }
+tr:hover{background-color: #FFA07A }
+
+
+
+
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+    .col-25, .col-75, input[type=submit] {
+        width: 100%;
+        margin-top: 0;
+    }
+}

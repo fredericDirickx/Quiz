@@ -9,9 +9,14 @@ public class SubtractionQuestion extends Question implements QuizQuestion {
 
     //___________________________________________________constructors
     public SubtractionQuestion() {
+        super.operator = "-";
     }
 
     //___________________________________________________methods
+    @Override
+    public String getOperator() {
+        return super.operator;
+    }
 
     private void switchNumbers() {
         double max = Math.max(super.firstNumber, super.secondNumber);
@@ -19,10 +24,6 @@ public class SubtractionQuestion extends Question implements QuizQuestion {
         super.firstNumber = max;
     }
 
-    @Override
-    public void setOperator(String operator) {
-        super.operator = "-";
-    }
 
     @Override
     public double correctAnswer() {
@@ -35,6 +36,7 @@ public class SubtractionQuestion extends Question implements QuizQuestion {
         switchNumbers();
         return QuizQuestion.question("-", super.firstNumber, super.secondNumber);
     }
+
 
 
 }

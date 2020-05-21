@@ -9,13 +9,13 @@ public class AdditionQuestion extends Question implements QuizQuestion {
 
 
     public AdditionQuestion() {
+        super.operator = "+";
     }
 
     //___________________________________________________methods
-
     @Override
-    public void setOperator(String operator) {
-        super.operator = "+";
+    public String getOperator() {
+        return super.operator;
     }
 
     @Override
@@ -27,4 +27,7 @@ public class AdditionQuestion extends Question implements QuizQuestion {
     public String getQuestion() {
         return QuizQuestion.question("+", super.firstNumber, super.secondNumber);
     }
+
 }
+
+
