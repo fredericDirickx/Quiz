@@ -15,8 +15,8 @@ import java.io.IOException;
 public class QuizLoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession();
-        req.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(req,resp);
+            req.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(req, resp);
+
     }
 
     @Override
@@ -24,6 +24,11 @@ public class QuizLoginServlet extends HttpServlet {
         HttpSession session = req.getSession();
         String userName = req.getParameter("userName");
         String passWord = req.getParameter("passWord");
+
+        if(userName.equals("")|passWord.equals("")){
+            req.setAttribute("wrongPassWord", ", username or password can not be empty");
+            req.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(req, resp);
+        }
 
 
         User user = new User();
@@ -43,7 +48,7 @@ public class QuizLoginServlet extends HttpServlet {
                 resp.sendRedirect("/quiz/quizSettingsServlet");
             } else {
                 req.setAttribute("wrongPassWord", ", Wrong password, please try again");
-                resp.sendRedirect("/login");
+                req.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(req, resp);
             }
         }
     }

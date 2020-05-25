@@ -23,6 +23,14 @@ input {
     border-radius: 5px;
 }
 
+input:focus {
+    outline: none;
+}
+
+input:active{
+    outline: none;
+}
+
 .checkBoxes{
     margin-left: 45%;
     border: none;
@@ -101,7 +109,8 @@ input {
 
 
 .submitButton {
-    background-color: #DC7633; ;
+    margin: auto;
+    background-color:  #CD5C5C; ;
     border-radius: 10px;
     color: white;
     padding: 12px 20px;
@@ -110,10 +119,38 @@ input {
     float: right;
 }
 
+
+.submitNewGame{
+    margin: auto;
+    background-color:  #CD5C5C; ;
+    border-radius: 10px;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.submitLogOff{
+    margin: auto;
+    background-color:  #CD5C5C; ;
+    border-radius: 10px;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+
+
+
 .submitButton:hover {
     background-color: #DC7633;;
 }
 
+
+.reportButtonsDiv{
+    margin-left: 1%;
+}
 
 
 .col-25 {
@@ -162,6 +199,28 @@ tr:nth-child(odd) {background: #E9967A }
 tr:hover{background-color: #FFA07A }
 
 
+
+.progressBarBackground, .progressBar{
+    height: 25px;
+}
+
+.progressBarBackground{
+    margin: auto;
+    margin-bottom: 20px;
+    background-color: #E9967A;
+    width: 40%;
+    border-radius: 20px;
+}
+
+.progressBar{
+    color: #F8F9F9;
+    font-size: 15px;
+    padding-right: 10px;
+    text-align: right;
+    border: solid 2px #E9967A;
+    background-color: #CD5C5C;
+    border-radius: 20px;
+}
 
 
 

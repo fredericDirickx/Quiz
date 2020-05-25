@@ -25,8 +25,12 @@ public class QuizSettingsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
-        req.setAttribute("userName",session.getAttribute("userName"));
-        req.getRequestDispatcher("/WEB-INF/pages/quizSettings.jsp").forward(req,resp);
+        if(session.isNew()){
+            resp.sendRedirect("login");
+        }else {
+            req.setAttribute("userName", session.getAttribute("userName"));
+            req.getRequestDispatcher("/WEB-INF/pages/quizSettings.jsp").forward(req, resp);
+        }
     }
 
 

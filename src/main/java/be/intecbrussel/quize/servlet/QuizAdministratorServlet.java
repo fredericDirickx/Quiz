@@ -24,10 +24,16 @@ public class QuizAdministratorServlet extends HttpServlet {
         session.setAttribute("startTime", now);
         int index = convertToInteger(session.getAttribute("index"));
         QuizService quizService = (QuizService) session.getAttribute("quizService");
+        int amountOfQuestions = quizService.getAmountQuestions();
+        int progress = progressPercentage(amountOfQuestions,index);
+        String buttonText = buttonText(amountOfQuestions,index);
+
         quizService.getStartTimes().add(now);
         String question = quizService.getQuestions().get(index).getQuestionString();
         req.setAttribute("question", question);
         req.setAttribute("index", ++index);
+        req.setAttribute("progress", progress);
+        req.setAttribute("buttonText", buttonText);
 
         req.getRequestDispatcher("/WEB-INF/pages/quiz.jsp").forward(req, resp);
 
@@ -44,6 +50,7 @@ public class QuizAdministratorServlet extends HttpServlet {
         int index = convertToInteger(session.getAttribute("index"));
         double answer = Double.parseDouble(req.getParameter("answer"));
 
+
         QuizService quizService = (QuizService) session.getAttribute("quizService");
         quizService.getQuestions().get(index).setAnswer(answer);
         quizService.getQuestions().get(index).setDuration(duration);
@@ -52,6 +59,8 @@ public class QuizAdministratorServlet extends HttpServlet {
         session.setAttribute("index", req.getParameter("index"));
 
         req.getRequestDispatcher("/quizAdmin");
+
+
 
         if (index < quizService.getQuestions().size()-1) {
             resp.sendRedirect("/quiz/quizAdmin");
@@ -79,6 +88,14 @@ public class QuizAdministratorServlet extends HttpServlet {
                 return result;
             }
         }
+    }
+
+    public int progressPercentage(int total, int done){
+        return (int) (100/total)*done;
+    }
+
+    public String buttonText(int total, int index){
+        return index<total-1? "next":"finished!";
     }
 
 

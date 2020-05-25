@@ -40,7 +40,20 @@ class QuizServiceTest {
     }
 
 //    @Test
-    void gradeQuizToList() {
+    void testQuestions() {
+        NumberGenerator numberGenerator = new NumberGenerator(1,10,1,10);
+        QuizService quiz = new QuizService();
+        quiz.setAmountQuestions(10);
+        quiz.setIsMultiplication(true);
+        quiz.setNumberGenerator(numberGenerator);
+        User user = new User();
+        user.setName("Frits");
+        quiz.setUser(user);
+        quiz.createQuiz();
+        for (Question q : quiz.getQuestions()) {
+            System.out.println(q.getOperator());
+        }
+
 
     }
 }

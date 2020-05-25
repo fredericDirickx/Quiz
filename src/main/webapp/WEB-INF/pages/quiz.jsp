@@ -17,11 +17,17 @@
 <div class="container">
     <p>Go For it, ${userName}</p>
 
+    <div class="progressBarBackground">
+        <div class="progressBar" style="width: ${progress}%">
+            ${progress}%
+        </div>
+    </div>
+
     <form action="${pageContext.request.contextPath}/quizAdmin" method="post">
         <input hidden name="index" value="${index}">
         <div class="row">
             <div class="col-25">
-                <label for="answer">${index})         ${question}</label>
+                <label for="answer">${question}</label>
             </div>
             <div class="col-75">
                 <input id="answer" name="answer" type="number" autofocus>
@@ -29,7 +35,7 @@
         </div>
         <div class="row">
             <div class="col-75">
-                <button name="submitButton" type="submit">Finished!</button>
+                <button class="submitButton" name="submitButton" type="submit">${buttonText}</button>
             </div>
         </div>
     </form>

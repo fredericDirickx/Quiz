@@ -64,6 +64,26 @@
             </td>
         </tr>
     </table>
+
+    <br>
+    <div class="reportButtonsDiv">
+        <form action="${pageContext.request.contextPath}/quizSettingsServlet">
+            <div class="row">
+                <div class="col-25">
+            <button class="submitButton" name="submitButton" type="submit" >new game</button>
+                </div>
+            </div>
+        </form>
+        <form action="${pageContext.request.contextPath}/goodbye">
+            <div class="row">
+                <div class="col-25">
+            <button class="submitButton" name="submitButton" type="submit">logoff</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
 </div>
 </body>
 </html>

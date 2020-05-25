@@ -84,7 +84,9 @@
             </div>
         </div>
         <div class="row">
+            <div class="col-25">
             <button class="submitButton" type="submit">Push here</button>
+            </div>
         </div>
     </form>
 </div>

@@ -17,8 +17,8 @@ public class Question implements QuizQuestion {
     protected double firstNumber;
     protected double secondNumber;
     protected double answer;
-    protected String operator;
     protected long duration;
+    protected String operator;
 
 
     public Question() {
