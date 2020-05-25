@@ -22,7 +22,7 @@ public class GeneralQuizApp {
         quizService.setNumberGenerator(numberGenerator);
 
         //adding the amount of questions
-        quizService.setAmountQuestions(2);
+        quizService.setAmountQuestions(100);
 
         //set the kind of operations the questions should contain, can be a mix (Uncomment other options if you like)
         quizService.setMultiplication(true);
