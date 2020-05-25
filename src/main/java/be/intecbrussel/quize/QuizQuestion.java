@@ -16,7 +16,7 @@ public interface QuizQuestion {
         print.append(String.format("%" + QuizQuestion.floatSwitch(firstNumber) + "f", firstNumber));
         print.append(" " + operator + " ");
         print.append(String.format("%" + QuizQuestion.floatSwitch(secondNumber) + "f", secondNumber));
-        print.append(" = ?");
+        print.append(" = ");
         return print.toString();
     }
 

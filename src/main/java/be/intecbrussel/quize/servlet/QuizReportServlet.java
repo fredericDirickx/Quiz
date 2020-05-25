@@ -26,11 +26,13 @@ public class QuizReportServlet extends HttpServlet {
         QuizService quizService = (QuizService) session.getAttribute("quizService");
         QuizReport quizReport = new QuizReport(quizService);
         quizService.setTotalGoodQuestions(quizReport.CorrectAnswers());
+        List<String> colorList = quizReport.colorList(quizService.getQuestions());
         quizService.setTotalPercent(quizReport.getScorePercentage());
         quizService.setTotalTime(quizReport.getTotalDuration());
         session.setAttribute("quizReport", quizReport);
         req.setAttribute("quizReport",quizReport);
         req.setAttribute("totalDuration",StringFormat.durationToString(quizReport.getTotalDuration()));
+        req.setAttribute("colorList",colorList);
         QuizServiceDao quizServiceDao = new QuizServiceDao();
         quizServiceDao.create(quizService);
         req.getRequestDispatcher("/WEB-INF/pages/quizReport.jsp").forward(req, resp);

@@ -9,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/styleQuiz.css"/>
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/styleQuizBlack.css"/>
     <title>quiz report</title>
 </head>
 <body>
@@ -34,7 +34,7 @@
                 <td>
                         ${quizReport.correctAnswers[status.index]}
                 </td>
-                <td>
+                <td style="color: ${colorList[status.index]}">
                         ${quizReport.isCorrectList[status.index]}
                 </td>
                 <td>

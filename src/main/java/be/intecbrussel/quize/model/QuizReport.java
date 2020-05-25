@@ -164,5 +164,16 @@ public class QuizReport {
                 .collect(Collectors.toList());
     }
 
+    public List<String> colorList(List<Question> questionList){
+        return isCorrectList
+                .stream()
+                .map(this::colorIFWrong)
+                .collect(Collectors.toList());
+    }
+
+    public String colorIFWrong(String isTrue){
+       return isTrue.equals("true") ? "#90af2a" : "#CD5C5C";
+    }
+
 
 }
