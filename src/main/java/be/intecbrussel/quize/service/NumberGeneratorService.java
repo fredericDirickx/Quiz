@@ -1,10 +1,10 @@
-package be.intecbrussel.quize.model;
+package be.intecbrussel.quize.service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class NumberGenerator {
+public class NumberGeneratorService {
 
     static private List<Double> firstNumbers = new ArrayList<>();
     static private List<Double> secondNumbers = new ArrayList<>();
@@ -12,9 +12,20 @@ public class NumberGenerator {
     private double lowerBoundFirstNumber;
     private double upperBoundSecondNumber;
     private double lowerBoundSecondNumber;
-    private int amount = 100;
-    private Random random = new Random();
 
+    public NumberGeneratorService(double lowerBoundFirstNumber, double upperBoundFirstNumber) {
+        this.upperBoundFirstNumber = upperBoundFirstNumber;
+        this.lowerBoundFirstNumber = lowerBoundFirstNumber;
+        this.upperBoundSecondNumber = upperBoundFirstNumber;
+        this.lowerBoundSecondNumber = lowerBoundFirstNumber;
+    }
+
+    public NumberGeneratorService(double lowerBoundFirstNumber, double upperBoundFirstNumber, double lowerBoundSecondNumber, double upperBoundSecondNumber) {
+        this.upperBoundFirstNumber = upperBoundFirstNumber;
+        this.lowerBoundFirstNumber = lowerBoundFirstNumber;
+        this.upperBoundSecondNumber = upperBoundSecondNumber;
+        this.lowerBoundSecondNumber = lowerBoundSecondNumber;
+    }
 
     public double getUpperBoundFirstNumber() {
         return upperBoundFirstNumber;
@@ -48,22 +59,6 @@ public class NumberGenerator {
         this.lowerBoundSecondNumber = lowerBoundSecondNumber;
     }
 
-    public NumberGenerator(double lowerBoundFirstNumber, double upperBoundFirstNumber) {
-        this.upperBoundFirstNumber = upperBoundFirstNumber;
-        this.lowerBoundFirstNumber = lowerBoundFirstNumber;
-        this.upperBoundSecondNumber = upperBoundFirstNumber;
-        this.lowerBoundSecondNumber = lowerBoundFirstNumber;
-        this.amount = (int) (upperBoundFirstNumber - lowerBoundFirstNumber);
-    }
-
-
-    public NumberGenerator(double lowerBoundFirstNumber, double upperBoundFirstNumber, double lowerBoundSecondNumber, double upperBoundSecondNumber) {
-        this.upperBoundFirstNumber = upperBoundFirstNumber;
-        this.lowerBoundFirstNumber = lowerBoundFirstNumber;
-        this.upperBoundSecondNumber = upperBoundSecondNumber;
-        this.lowerBoundSecondNumber = lowerBoundSecondNumber;
-        this.amount = (int) (upperBoundFirstNumber - lowerBoundFirstNumber);
-    }
 
     public static double decimalPlacesController(double number, int amountOfDecimals) {
 
@@ -96,9 +91,11 @@ public class NumberGenerator {
         return (int) Math.log10(divisor);
     }
 
-    public double getRandomNumber(double upperBound, double lowerBound, int amount, List numbers, Random random) {
+    public double getRandomNumber(double upperBound, double lowerBound, List numbers) {
 
         double randomNumber = 0;
+        int amount = (int) (upperBoundFirstNumber - lowerBoundFirstNumber);
+        Random random = new Random();
 
         int size = (int) Math.abs(upperBound - lowerBound);
 
@@ -130,11 +127,11 @@ public class NumberGenerator {
     }
 
     public double getFirstNumber() {
-        return getRandomNumber(upperBoundFirstNumber, lowerBoundFirstNumber, amount, firstNumbers, random);
+        return getRandomNumber(upperBoundFirstNumber, lowerBoundFirstNumber, firstNumbers);
     }
 
     public double getSecondNumber() {
-        return getRandomNumber(upperBoundSecondNumber, lowerBoundSecondNumber, amount, secondNumbers, random);
+        return getRandomNumber(upperBoundSecondNumber, lowerBoundSecondNumber, secondNumbers);
     }
 
     private int mostDecimals(double lower, double upper) {
@@ -162,10 +159,11 @@ public class NumberGenerator {
     }
 
     public double getRandomDivisor(double divided, int lowerBound) {
-
+        Random random = new Random();
         List<Double> dividerList = new ArrayList<>();
         double divider = 0;
         int randomIndex;
+
         for (int i = lowerBound; i <= divided; i++) {
             divider = (double) i;
             if (divided % divider == 0) {
@@ -182,6 +180,5 @@ public class NumberGenerator {
         return dividerList.get(randomIndex);
 
     }
-
 
 }

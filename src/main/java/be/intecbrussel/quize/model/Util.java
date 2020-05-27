@@ -1,8 +1,8 @@
-package be.intecbrussel.quize;
+package be.intecbrussel.quize.model;
 
-public interface QuizQuestion {
+public class Util {
 
-    //todo replace this method
+
     static String floatSwitch(double number) {
         if (number % 1 > 0) {
             return ".2";
@@ -10,19 +10,13 @@ public interface QuizQuestion {
         return ".0";
     }
 
-    //todo replace this method
     static String question(String operator, double firstNumber, double secondNumber) {
         StringBuilder print = new StringBuilder();
-        print.append(String.format("%" + QuizQuestion.floatSwitch(firstNumber) + "f", firstNumber));
+        print.append(String.format("%" + Util.floatSwitch(firstNumber) + "f", firstNumber));
         print.append(" " + operator + " ");
-        print.append(String.format("%" + QuizQuestion.floatSwitch(secondNumber) + "f", secondNumber));
+        print.append(String.format("%" + Util.floatSwitch(secondNumber) + "f", secondNumber));
         print.append(" = ");
         return print.toString();
     }
-
-    String getQuestion();
-
-    double correctAnswer();
-
 
 }

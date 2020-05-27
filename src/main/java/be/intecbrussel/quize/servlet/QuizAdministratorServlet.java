@@ -1,6 +1,6 @@
 package be.intecbrussel.quize.servlet;
 
-import be.intecbrussel.quize.model.QuizService;
+import be.intecbrussel.quize.service.QuizService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

@@ -1,14 +1,9 @@
 package be.intecbrussel.quize.servlet;
 
-import be.intecbrussel.quize.dao.QuizServiceDao;
-import be.intecbrussel.quize.dao.UserDao;
-import be.intecbrussel.quize.model.NumberGenerator;
-import be.intecbrussel.quize.model.Question;
-import be.intecbrussel.quize.model.QuizService;
+import be.intecbrussel.quize.service.NumberGeneratorService;
+import be.intecbrussel.quize.service.QuizService;
 import be.intecbrussel.quize.model.User;
-import net.bytebuddy.description.type.TypeDescription;
 
-import javax.servlet.DispatcherType;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,8 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
 
 @WebServlet("/quizSettingsServlet")
 public class QuizSettingsServlet extends HttpServlet {
@@ -38,7 +31,7 @@ public class QuizSettingsServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
 
-        NumberGenerator numberGenerator = new NumberGenerator(
+        NumberGeneratorService numberGenerator = new NumberGeneratorService(
                 0,
                 11,
                 0,
@@ -74,7 +67,7 @@ public class QuizSettingsServlet extends HttpServlet {
         numberGenerator.setUpperBoundSecondNumber(secondNumberUpperBound);
         quizService.setNumberGenerator(numberGenerator);
 
-        quizService.createQuiz();
+        quizService.createQuestions();
 
 
         session.setAttribute("quizService",quizService);

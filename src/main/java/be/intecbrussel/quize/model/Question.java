@@ -1,39 +1,22 @@
 package be.intecbrussel.quize.model;
 
-import be.intecbrussel.quize.QuizQuestion;
-
 import javax.persistence.*;
 
 @Entity
 @Table(name = "questions")
 @Inheritance
-public class Question implements QuizQuestion {
+public abstract class Question implements QuestionInterface {
 
-    @Transient
-    String questionString;
+
     @Id
     @GeneratedValue
-    protected long id;
-    protected double firstNumber;
-    protected double secondNumber;
-    protected double answer;
-    protected long duration;
-    protected String operator;
+    private long id;
+    private double firstNumber;
+    private double secondNumber;
+    private String operator;
+    @OneToOne
+    private Answer answer;
 
-
-    public Question() {
-    }
-
-    public static Question parseQuestionString(String questionString) {
-        questionString = questionString.replaceAll("\\s", "");
-        String[] numbers = questionString.split("[+\\-*=:?x]");
-        String operator = questionString.replaceAll("[\\d.?=]", "");
-        Question question = new Question();
-        question.setFirstNumber(Double.parseDouble(numbers[0]));
-        question.setSecondNumber(Double.parseDouble(numbers[1]));
-        question.setOperator(operator);
-        return question;
-    }
 
     public long getId() {
         return id;
@@ -59,14 +42,6 @@ public class Question implements QuizQuestion {
         this.secondNumber = secondNumber;
     }
 
-    public double getAnswer() {
-        return answer;
-    }
-
-    public void setAnswer(double answer) {
-        this.answer = answer;
-    }
-
     public String getOperator() {
         return operator;
     }
@@ -75,32 +50,20 @@ public class Question implements QuizQuestion {
         this.operator = operator;
     }
 
-    public long getDuration() {
-        return duration;
+
+    public Answer getAnswer() {
+        return answer;
     }
 
-    public void setDuration(long duration) {
-        this.duration = duration;
-    }
-
-    public String getQuestionString() {
-        return getQuestion();
-    }
-
-    public void setQuestionString(String string) {
-        this.questionString = string;
-    }
-
-
-    @Override
-    public String getQuestion() {
-        return "null";
+    public void setAnswer(Answer answer) {
+        this.answer = answer;
     }
 
     @Override
-    public double correctAnswer() {
-        return 0;
+    public String toString() {
+        return firstNumber + " " + operator + " " + secondNumber + " = ";
     }
+
 
 }
 

@@ -1,7 +1,7 @@
 package be.intecbrussel.quize.dao;
 
 import be.intecbrussel.quize.model.Question;
-import be.intecbrussel.quize.model.QuizService;
+import be.intecbrussel.quize.service.QuizService;
 import be.intecbrussel.quize.model.User;
 
 import javax.persistence.EntityManager;

@@ -1,8 +1,7 @@
 package be.intecbrussel.quize.model;
 
-import be.intecbrussel.quize.dao.QuizServiceDao;
-import be.intecbrussel.quize.dao.UserDao;
-import org.junit.jupiter.api.Test;
+import be.intecbrussel.quize.service.NumberGeneratorService;
+import be.intecbrussel.quize.service.QuizService;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -13,7 +12,7 @@ class QuizServiceTest {
 //    @Test
     public void testDb(){
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("datasource");
-        NumberGenerator numberGenerator = new NumberGenerator(1,10,1,10);
+        NumberGeneratorService numberGenerator = new NumberGeneratorService(1,10,1,10);
         QuizService quiz = new QuizService();
         quiz.setAmountQuestions(10);
         quiz.setIsMultiplication(true);
@@ -21,7 +20,7 @@ class QuizServiceTest {
         User user = new User();
         user.setName("Frits");
         quiz.setUser(user);
-        quiz.createQuiz();
+        quiz.createQuestions();
 
         EntityManager em = factory.createEntityManager();
 
@@ -41,7 +40,7 @@ class QuizServiceTest {
 
 //    @Test
     void testQuestions() {
-        NumberGenerator numberGenerator = new NumberGenerator(1,10,1,10);
+        NumberGeneratorService numberGenerator = new NumberGeneratorService(1,10,1,10);
         QuizService quiz = new QuizService();
         quiz.setAmountQuestions(10);
         quiz.setIsMultiplication(true);
@@ -49,7 +48,7 @@ class QuizServiceTest {
         User user = new User();
         user.setName("Frits");
         quiz.setUser(user);
-        quiz.createQuiz();
+        quiz.createQuestions();
         for (Question q : quiz.getQuestions()) {
             System.out.println(q.getOperator());
         }

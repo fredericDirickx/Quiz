@@ -1,12 +1,12 @@
 package be.intecbrussel.quize.model;
 
-import org.junit.jupiter.api.Test;
+import be.intecbrussel.quize.service.NumberGeneratorService;
 
 import java.util.Arrays;
 
 class NumberGeneratorTest {
 
-    NumberGenerator numberGenerator = new NumberGenerator(0, 11, 0, 11);
+    NumberGeneratorService numberGenerator = new NumberGeneratorService(0, 11, 0, 11);
 
 //    @Test
     public void TestGetIntegersForDivQuestion() {
