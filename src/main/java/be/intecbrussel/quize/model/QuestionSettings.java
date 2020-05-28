@@ -1,10 +1,6 @@
 package be.intecbrussel.quize.model;
 
-import be.intecbrussel.quize.service.QuizService;
-
-import java.util.Random;
-
-public class QuestionSelection {
+public class QuestionSettings {
     private boolean IsAddition = true;
     private boolean IsSubtraction;
     private boolean IsMultiplication;

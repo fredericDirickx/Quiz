@@ -3,7 +3,7 @@ package be.intecbrussel.quize.model;
 import javax.persistence.Entity;
 
 @Entity
-public class SubtractionQuestion extends Question {
+public class QuestionSubtraction extends Question {
 
     private void switchNumbers() {
         double max = Math.max(super.firstNumber, super.secondNumber);

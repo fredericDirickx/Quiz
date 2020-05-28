@@ -9,19 +9,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class QuizReport {
-    private Quiz quiz;
 
-
-    public QuizReport(Quiz quiz) {
-        this.quiz = quiz;
-    }
-
-    public double scorePercentage() {
+    public double scorePercentage(Quiz quiz) {
         int totalQuestions = quiz.getQuestions().size();
-        return (100 / (double) totalQuestions) * (totalQuestions - wrongAnswers());
+        return (100 / (double) totalQuestions) * (totalQuestions - wrongAnswers(quiz));
     }
 
-    public int wrongAnswers() {
+    public int wrongAnswers(Quiz quiz) {
         int correctAnswers = 0;
         correctAnswers = (int) quiz.getQuestions()
                 .stream()
@@ -31,7 +25,7 @@ public class QuizReport {
         return correctAnswers;
     }
 
-    private Duration setTotalDuration() {
+    private Duration TotalDuration(Quiz quiz) {
         Temporal start = quiz.getQuestions()
                 .stream()
                 .map(Question::getAnswer)
@@ -48,25 +42,23 @@ public class QuizReport {
         return Duration.between(start, end);
     }
 
-    private List<String> setQuestionStringList() {
+    private List<String> QuestionStringList(Quiz quiz) {
         return quiz.getQuestions()
                 .stream()
                 .map(Question::toString)
                 .collect(Collectors.toList());
     }
 
-    private List<String> setDurationList() {
+    private List<String> DurationList(Quiz quiz) {
         return quiz.getQuestions()
                 .stream()
                 .map(Question::getAnswer)
-                .map(a -> Duration.between(a.getStartTime(), a.getEndTime()))
+                .map(Answer::duration)
                 .map(StringFormat::durationToString)
                 .collect(Collectors.toList());
-
-
     }
 
-    private List<String> isCorrectList() {
+    private List<String> isCorrectList(Quiz quiz) {
         return quiz.getQuestions()
                 .stream()
                 .map(q -> q.getAnswer().getAnswer() == q.correctAnswer())
@@ -74,22 +66,22 @@ public class QuizReport {
                 .collect(Collectors.toList());
     }
 
-    private List<Answer> setUserAnswers() {
+    private List<Answer> UserAnswers(Quiz quiz) {
         return quiz.getQuestions()
                 .stream()
                 .map(Question::getAnswer)
                 .collect(Collectors.toList());
     }
 
-    private List<Double> setCorrectAnswer() {
+    private List<Double> CorrectAnswer(Quiz quiz) {
         return quiz.getQuestions()
                 .stream()
                 .map(Question::correctAnswer)
                 .collect(Collectors.toList());
     }
 
-    public List<String> colorList(List<Question> questionList) {
-        return isCorrectList()
+    public List<String> colorList(Quiz quiz) {
+        return isCorrectList(quiz)
                 .stream()
                 .map(this::colorIFWrong)
                 .collect(Collectors.toList());
@@ -98,6 +90,5 @@ public class QuizReport {
     public String colorIFWrong(String isTrue) {
         return isTrue.equals("true") ? "#90af2a" : "#CD5C5C";
     }
-
 
 }

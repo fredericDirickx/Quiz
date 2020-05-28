@@ -48,4 +48,8 @@ public class Answer {
         this.endTime = endTime;
     }
 
+    public Duration duration(){
+        return Duration.between(this.startTime,this.endTime);
+    }
+
 }

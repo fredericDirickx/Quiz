@@ -1,21 +1,21 @@
 package be.intecbrussel.quize.model;
 
 import javax.persistence.*;
+import java.time.Duration;
 
 @Entity
 @Table(name = "questions")
 @Inheritance
 public abstract class Question implements QuestionInterface {
 
-
     @Id
     @GeneratedValue
-    private long id;
-    private double firstNumber;
-    private double secondNumber;
-    private String operator;
+    protected long id;
+    protected double firstNumber;
+    protected double secondNumber;
+    protected String operator;
     @OneToOne
-    private Answer answer;
+    protected Answer answer;
 
 
     public long getId() {
@@ -58,6 +58,7 @@ public abstract class Question implements QuestionInterface {
     public void setAnswer(Answer answer) {
         this.answer = answer;
     }
+
 
     @Override
     public String toString() {
