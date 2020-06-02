@@ -1,22 +1,25 @@
 package be.intecbrussel.quize.model;
 
 import javax.persistence.*;
-import java.time.Duration;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "questions")
 @Inheritance
-public abstract class Question implements QuestionInterface {
+public abstract class Question {
 
     @Id
     @GeneratedValue
     protected long id;
-    protected double firstNumber;
-    protected double secondNumber;
+    protected BigDecimal firstNumber;
+    protected BigDecimal secondNumber;
     protected String operator;
     @OneToOne
     protected Answer answer;
 
+    public Question(){
+        this.operator = this.operatorString();
+    }
 
     public long getId() {
         return id;
@@ -26,19 +29,19 @@ public abstract class Question implements QuestionInterface {
         this.id = id;
     }
 
-    public double getFirstNumber() {
+    public BigDecimal getFirstNumber() {
         return firstNumber;
     }
 
-    public void setFirstNumber(double firstNumber) {
+    public void setFirstNumber(BigDecimal firstNumber) {
         this.firstNumber = firstNumber;
     }
 
-    public double getSecondNumber() {
+    public BigDecimal getSecondNumber() {
         return secondNumber;
     }
 
-    public void setSecondNumber(double secondNumber) {
+    public void setSecondNumber(BigDecimal secondNumber) {
         this.secondNumber = secondNumber;
     }
 
@@ -50,7 +53,6 @@ public abstract class Question implements QuestionInterface {
         this.operator = operator;
     }
 
-
     public Answer getAnswer() {
         return answer;
     }
@@ -59,10 +61,13 @@ public abstract class Question implements QuestionInterface {
         this.answer = answer;
     }
 
+    public abstract BigDecimal correctAnswer();
+
+    public abstract String operatorString();
 
     @Override
     public String toString() {
-        return firstNumber + " " + operator + " " + secondNumber + " = ";
+        return firstNumber + " " + this.operatorString() + " " + secondNumber + " = ";
     }
 
 

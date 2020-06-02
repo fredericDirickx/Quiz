@@ -1,20 +1,21 @@
 package be.intecbrussel.quize.model;
 
 import javax.persistence.Entity;
+import java.math.BigDecimal;
 
 @Entity
 public class QuestionSubtraction extends Question {
 
     private void switchNumbers() {
-        double max = Math.max(super.firstNumber, super.secondNumber);
-        super.secondNumber = Math.min(super.firstNumber, super.secondNumber);
+        BigDecimal max = super.firstNumber.max(super.secondNumber);
+        super.secondNumber = super.firstNumber.min(super.secondNumber);
         super.firstNumber = max;
     }
 
     @Override
-    public double correctAnswer() {
+    public BigDecimal correctAnswer() {
         switchNumbers();
-        return super.firstNumber - super.secondNumber;
+        return super.firstNumber.subtract(super.secondNumber);
     }
 
     @Override

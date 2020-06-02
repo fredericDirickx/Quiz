@@ -5,7 +5,7 @@ import be.intecbrussel.quize.model.User;
 import javax.persistence.EntityManager;
 import java.util.List;
 
-public class UserDao implements QuizDao<User>{
+public class UserDaoImpl implements QuizDao<User> {
     @Override
     public List getList() {
         EntityManager em = JpaSessionUtil.getEntityManager("dataQuiz");
@@ -25,7 +25,7 @@ public class UserDao implements QuizDao<User>{
     }
 
 
-    public User findByName(String userName){
+    public User findByName(String userName) {
         EntityManager em = JpaSessionUtil.getEntityManager("dataQuiz");
         em.getTransaction().begin();
         User foundUser = em.find(User.class, userName);

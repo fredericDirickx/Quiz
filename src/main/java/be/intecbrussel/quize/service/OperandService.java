@@ -7,6 +7,4 @@ import java.util.List;
 
 public interface OperandService {
     List<BigDecimal[]> operandsList(OperandBoundaries settings);
-
-
 }

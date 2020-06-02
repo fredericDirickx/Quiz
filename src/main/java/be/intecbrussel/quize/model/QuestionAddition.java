@@ -1,13 +1,14 @@
 package be.intecbrussel.quize.model;
 
 import javax.persistence.Entity;
+import java.math.BigDecimal;
 
 @Entity
-public class QuestionAddition extends Question  {
+public class QuestionAddition extends Question {
 
     @Override
-    public double correctAnswer() {
-        return super.firstNumber + super.secondNumber;
+    public BigDecimal correctAnswer() {
+        return super.firstNumber.add(this.secondNumber);
     }
 
     @Override

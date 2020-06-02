@@ -1,11 +1,13 @@
 package be.intecbrussel.quize.dao;
 
+import be.intecbrussel.quize.model.Answer;
 import be.intecbrussel.quize.model.Question;
+import be.intecbrussel.quize.model.Quiz;
 
 import javax.persistence.EntityManager;
 import java.util.List;
 
-public class QuestionDao implements QuizDao<Question> {
+public class QuestionDaoImpl implements QuizDao<Question> {
 
 
     @Override
@@ -23,6 +25,7 @@ public class QuestionDao implements QuizDao<Question> {
         EntityManager em = JpaSessionUtil.getEntityManager("dataQuiz");
         em.getTransaction().begin();
         em.persist(question);
+        em.persist(question.getAnswer());
         em.getTransaction().commit();
         em.close();
     }
@@ -32,7 +35,10 @@ public class QuestionDao implements QuizDao<Question> {
         EntityManager em = JpaSessionUtil.getEntityManager("dataQuiz");
         em.getTransaction().begin();
         Question attachedQuestion = em.merge(question);
+        Answer attachedAnswer = em.merge(attachedQuestion.getAnswer());
         em.remove(attachedQuestion);
+        em.remove(attachedAnswer);
+        em.getTransaction().commit();
         em.close();
     }
 
@@ -40,7 +46,8 @@ public class QuestionDao implements QuizDao<Question> {
     public void update(Question question) {
         EntityManager em = JpaSessionUtil.getEntityManager("dataQuiz");
         em.getTransaction().begin();
-        em.merge(question);
+        Question foundQuestion = em.merge(em.find(Question.class,question.getId()));
+        em.merge(em.find(Answer.class, foundQuestion.getAnswer().getId()));
         em.getTransaction().commit();
         em.close();
     }

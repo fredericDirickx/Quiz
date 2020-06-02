@@ -31,7 +31,6 @@ public class OperandServiceImpl implements OperandService {
         return operandsList;
     }
 
-
     public List<BigDecimal> operandList(BigDecimal lower, BigDecimal upper) {
         List<BigDecimal> operandList = new ArrayList();
         upper = upper.max(lower);

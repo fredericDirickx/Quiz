@@ -37,6 +37,10 @@
                 <input name="division" type="checkbox" value="true">
                 <span class="checkMark"></span>
             </label>
+            <label class="checkmarkContainer">shuffle
+                <input name="shuffle" type="checkbox" value="true">
+                <span class="checkMark"></span>
+            </label>
         </fieldset>
 
         <div class="row">

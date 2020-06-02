@@ -1,6 +1,6 @@
 package be.intecbrussel.quize.servlet;
 
-import be.intecbrussel.quize.dao.UserDao;
+import be.intecbrussel.quize.dao.UserDaoImpl;
 import be.intecbrussel.quize.model.User;
 
 import javax.servlet.ServletException;
@@ -34,7 +34,7 @@ public class QuizLoginServlet extends HttpServlet {
         User user = new User();
         user.setName(userName);
         user.setPassword(passWord);
-        UserDao userDao = new UserDao();
+        UserDaoImpl userDao = new UserDaoImpl();
         User foundUser = userDao.findByName(user.getName());
         session.setAttribute("userName", user.getName());
 

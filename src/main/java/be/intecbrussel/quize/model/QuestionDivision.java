@@ -1,14 +1,15 @@
 package be.intecbrussel.quize.model;
 
 import javax.persistence.Entity;
+import java.math.BigDecimal;
 
 @Entity
 public class QuestionDivision extends Question {
 
     @Override
-    public double correctAnswer() {
+    public BigDecimal correctAnswer() {
         switchNumbers();
-        return super.firstNumber / super.secondNumber;
+        return super.firstNumber.divide(super.secondNumber);
     }
 
     @Override
@@ -17,11 +18,11 @@ public class QuestionDivision extends Question {
     }
 
     private void switchNumbers() {
-        double max = Math.max(super.firstNumber, super.secondNumber);
-        super.secondNumber = Math.min(super.firstNumber, super.secondNumber);
+        BigDecimal max = super.firstNumber.max(super.secondNumber) ;
+        super.secondNumber = super.firstNumber.max(super.secondNumber);
         super.firstNumber = max;
-        if (super.secondNumber == 0.0) {
-            super.secondNumber += 1;
+        if (super.secondNumber.equals(BigDecimal.ZERO)) {
+            super.secondNumber = BigDecimal.valueOf(1);
         }
     }
 

@@ -1,13 +1,10 @@
 package be.intecbrussel.quize.model;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
+@Entity
 public class Quiz {
     @Id
     @GeneratedValue
@@ -16,7 +13,10 @@ public class Quiz {
     private User user = new User();
     private LocalDate date = LocalDate.now();
     private int amountQuestions = 10;
-
+    @OneToOne
+    private OperandBoundaries boundaries;
+    @OneToOne
+    private QuizSettings settings;
     @OneToMany
     private List<Question> questions = new ArrayList<>();
 
@@ -53,6 +53,22 @@ public class Quiz {
         this.amountQuestions = amountQuestions;
     }
 
+    public OperandBoundaries getBoundaries() {
+        return boundaries;
+    }
+
+    public void setBoundaries(OperandBoundaries boundaries) {
+        this.boundaries = boundaries;
+    }
+
+    public QuizSettings getSettings() {
+        return settings;
+    }
+
+    public void setSettings(QuizSettings settings) {
+        this.settings = settings;
+    }
+
     public List<Question> getQuestions() {
         return questions;
     }
@@ -60,5 +76,4 @@ public class Quiz {
     public void setQuestions(List<Question> questions) {
         this.questions = questions;
     }
-
 }

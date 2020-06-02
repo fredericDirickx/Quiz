@@ -12,7 +12,7 @@ class OperandServiceImplTest {
     OperandBoundaries operandBoundaries = new OperandBoundaries();
 
 
-    @Test
+//    @Test
     void operandsList() {
         operandBoundaries.setLowerBoundFirstNumber(BigDecimal.valueOf(1));
         operandBoundaries.setUpperBoundFirstNumber(BigDecimal.valueOf(2));

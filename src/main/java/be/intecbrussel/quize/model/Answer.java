@@ -3,18 +3,19 @@ package be.intecbrussel.quize.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.math.BigDecimal;
 import java.time.Duration;
 import java.time.LocalDateTime;
-import java.time.temporal.Temporal;
 
 @Entity
 public class Answer {
     @Id
     @GeneratedValue
     private int id;
-    private double answer;
+    private BigDecimal answer;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
+
 
     public int getId() {
         return id;
@@ -24,11 +25,11 @@ public class Answer {
         this.id = id;
     }
 
-    public double getAnswer() {
+    public BigDecimal getAnswer() {
         return answer;
     }
 
-    public void setAnswer(double answer) {
+    public void setAnswer(BigDecimal answer) {
         this.answer = answer;
     }
 
@@ -48,8 +49,8 @@ public class Answer {
         this.endTime = endTime;
     }
 
-    public Duration duration(){
-        return Duration.between(this.startTime,this.endTime);
+    public Duration duration() {
+        return Duration.between(this.startTime, this.endTime);
     }
 
 }

@@ -23,22 +23,22 @@
             <th>result</th>
             <th>time</th>
         </tr>
-        <c:forEach items="${quizReport.questionList}" varStatus="status">
+        <c:forEach items="${questionList}" varStatus="status">
             <tr>
                 <td>
-                        ${quizReport.questionList[status.index]}
+                        ${questionList[status.index]}
                 </td>
                 <td>
-                        ${quizReport.userAnswers[status.index]}
+                        ${answerList[status.index]}
                 </td>
                 <td>
-                        ${quizReport.correctAnswers[status.index]}
+                        ${correctAnswerList[status.index]}
                 </td>
                 <td style="color: ${colorList[status.index]}">
-                        ${quizReport.isCorrectList[status.index]}
+                        ${isCorrectList[status.index]}
                 </td>
                 <td>
-                        ${quizReport.durationList[status.index]}
+                        ${durationList[status.index]}
                 </td>
 
             </tr>
@@ -50,12 +50,12 @@
         </th>
         <tr>
             <td>
-                you have ${quizReport.wrongAnswers} mistakes
+                you have ${wrongAnswers} mistakes
             </td>
         </tr>
         <tr>
             <td>
-                your score : ${quizReport.scorePercentage} %
+                your score : ${scorePercentage} %
             </td>
         </tr>
         <tr>
