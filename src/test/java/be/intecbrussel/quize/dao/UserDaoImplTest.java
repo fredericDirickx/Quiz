@@ -25,6 +25,7 @@ class UserDaoImplTest {
         User foundUser = userDao.findByName(name);
         if(foundUser==null) {
             userDao.create(user);
+            foundUser = userDao.findByName(name);
         }
         Assertions.assertEquals(foundUser.getName(),user.getName());
     }
