@@ -35,11 +35,21 @@ public class UserDaoImpl implements QuizDao<User> {
 
     @Override
     public void delete(User user) {
+        EntityManager em = JpaSessionUtil.getEntityManager("dataQuiz");
+        em.getTransaction().begin();
+        em.remove(em.find(User.class,user.getName()));
+        em.getTransaction().commit();
+        em.close();
 
     }
 
     @Override
     public void update(User user) {
+        EntityManager em = JpaSessionUtil.getEntityManager("dataQuiz");
+        em.getTransaction().begin();
+        em.merge(user);
+        em.getTransaction().commit();
+        em.close();
 
     }
 }
