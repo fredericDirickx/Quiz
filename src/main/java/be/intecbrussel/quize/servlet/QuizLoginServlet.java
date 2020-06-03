@@ -11,8 +11,22 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+import static java.lang.Class.forName;
+
 @WebServlet("/login")
 public class QuizLoginServlet extends HttpServlet {
+
+
+    @Override
+    public void init() throws ServletException {
+        try {
+            Class.forName("com.mysql.jdbc.driver");
+        }catch (Exception ex){
+            ex.fillInStackTrace();
+        }
+
+    }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
             req.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(req, resp);
