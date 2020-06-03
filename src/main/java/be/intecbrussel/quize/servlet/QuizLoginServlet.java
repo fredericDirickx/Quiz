@@ -17,15 +17,15 @@ import static java.lang.Class.forName;
 public class QuizLoginServlet extends HttpServlet {
 
 
-    @Override
-    public void init() throws ServletException {
-        try {
-            Class.forName("com.mysql.jdbc.driver");
-        }catch (Exception ex){
-            ex.fillInStackTrace();
-        }
-
-    }
+//    @Override
+//    public void init() throws ServletException {
+//        try {
+//            Class.forName("com.mysql.jdbc.driver");
+//        }catch (Exception ex){
+//            ex.fillInStackTrace();
+//        }
+//
+//    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
