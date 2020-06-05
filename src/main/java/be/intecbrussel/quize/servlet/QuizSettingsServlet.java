@@ -5,7 +5,7 @@ import be.intecbrussel.quize.model.Quiz;
 import be.intecbrussel.quize.model.QuizSettings;
 import be.intecbrussel.quize.model.User;
 import be.intecbrussel.quize.service.QuizService;
-import be.intecbrussel.quize.service.QuizServiceImpl;
+import be.intecbrussel.quize.service.services.QuizServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,7 +25,8 @@ public class QuizSettingsServlet extends HttpServlet {
         if (session.isNew()) {
             resp.sendRedirect("login");
         } else {
-            req.setAttribute("userName", session.getAttribute("userName"));
+            User user = (User) session.getAttribute("user");
+            req.setAttribute("userName", user.getName());
             req.getRequestDispatcher("/WEB-INF/pages/quizSettings.jsp").forward(req, resp);
         }
     }

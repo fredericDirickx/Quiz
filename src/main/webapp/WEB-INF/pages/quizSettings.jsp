@@ -48,7 +48,7 @@
                 <label>amount of questions</label>
             </div>
             <div class="col-75">
-                <input name="amount" type="number" value="10">
+                <input name="amount" type="number" value="100">
             </div>
         </div>
 
@@ -57,7 +57,7 @@
                 <label>first Number lower bound</label>
             </div>
             <div class="col-75">
-                <input name="firstNumberLowerBound" type="number" value="1">
+                <input name="firstNumberLowerBound" type="number" value="2">
             </div>
         </div>
 
@@ -66,7 +66,7 @@
                 <label>firstNumber Upper bound</label>
             </div>
             <div class="col-75">
-                <input name="firstNumberUpperBound" type="number" value="10">
+                <input name="firstNumberUpperBound" type="number" value="9">
             </div>
         </div>
 
@@ -75,7 +75,7 @@
                 <label>Second Number lower bound</label>
             </div>
             <div class="col-75">
-                <input name="secondNumberLowerBound" type="number" value="1">
+                <input name="secondNumberLowerBound" type="number" value="2">
             </div>
         </div>
 
@@ -84,7 +84,7 @@
                 <label>Second Number Upper bound</label>
             </div>
             <div class="col-75">
-                <input name="secondNumberUpperBound" type="number" value="10">
+                <input name="secondNumberUpperBound" type="number" value="9">
             </div>
         </div>
         <div class="row">

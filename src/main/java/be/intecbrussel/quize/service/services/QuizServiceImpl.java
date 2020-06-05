@@ -1,8 +1,12 @@
-package be.intecbrussel.quize.service;
+package be.intecbrussel.quize.service.services;
 
 import be.intecbrussel.quize.model.Answer;
 import be.intecbrussel.quize.model.Question;
 import be.intecbrussel.quize.model.Quiz;
+import be.intecbrussel.quize.service.OperandService;
+import be.intecbrussel.quize.service.QuizService;
+import be.intecbrussel.quize.service.services.OperandServiceImpl;
+import be.intecbrussel.quize.service.services.QuestionFactory;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

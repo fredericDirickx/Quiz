@@ -3,7 +3,7 @@ package be.intecbrussel.quize.servlet;
 import be.intecbrussel.quize.dao.QuizDao;
 import be.intecbrussel.quize.dao.QuizDaoImpl;
 import be.intecbrussel.quize.model.Quiz;
-import be.intecbrussel.quize.service.QuizReport;
+import be.intecbrussel.quize.service.services.QuizReport;
 import be.intecbrussel.quize.view.StringFormat;
 
 import javax.servlet.ServletException;
@@ -35,10 +35,12 @@ public class QuizReportServlet extends HttpServlet {
         int wrongAnswers = quizReport.wrongAnswers(quiz);
         double scorePercentage = quizReport.scorePercentage(quiz);
 
+        req.setAttribute("userName", quiz.getUser().getName());
         req.setAttribute("isCorrectList", isCorrectList);
         req.setAttribute("questionList", questionList);
         req.setAttribute("answerList",answerList);
         req.setAttribute("correctAnswerList",correctAnswerList);
+        req.setAttribute("durationList",durationList);
         req.setAttribute("totalDuration", StringFormat.durationToString(quizReport.totalDuration(quiz)));
         req.setAttribute("colorList", colorList);
         req.setAttribute("wrongAnswers",wrongAnswers);

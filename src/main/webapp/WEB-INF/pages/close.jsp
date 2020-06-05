@@ -13,7 +13,7 @@
 </head>
 <body>
 <div class="container">
-    <h1>See you, ${userName}</h1>
+    <h1>See you, ${user.name}</h1>
 
         </div>
 </body>

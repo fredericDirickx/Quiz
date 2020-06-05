@@ -50,10 +50,9 @@ public class QuizLoginServlet extends HttpServlet {
         user.setPassword(passWord);
         UserDaoImpl userDao = new UserDaoImpl();
         User foundUser = userDao.findByName(user.getName());
-        session.setAttribute("userName", user.getName());
 
         if (foundUser == null) {
-            userDao.create(user);
+           userDao.create(user);
             session.setAttribute("user", user);
            resp.sendRedirect("/quiz/quizSettingsServlet");
         } else {

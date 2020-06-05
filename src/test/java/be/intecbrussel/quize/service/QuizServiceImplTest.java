@@ -3,7 +3,7 @@ package be.intecbrussel.quize.service;
 import be.intecbrussel.quize.dao.QuizDao;
 import be.intecbrussel.quize.dao.QuizDaoImpl;
 import be.intecbrussel.quize.model.*;
-import org.junit.jupiter.api.Test;
+import be.intecbrussel.quize.service.services.QuizServiceImpl;
 
 import java.math.BigDecimal;
 

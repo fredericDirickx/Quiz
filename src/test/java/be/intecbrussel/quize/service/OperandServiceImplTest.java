@@ -1,7 +1,7 @@
 package be.intecbrussel.quize.service;
 
 import be.intecbrussel.quize.model.OperandBoundaries;
-import org.junit.jupiter.api.Test;
+import be.intecbrussel.quize.service.services.OperandServiceImpl;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
