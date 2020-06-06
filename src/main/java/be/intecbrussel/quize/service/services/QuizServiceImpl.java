@@ -5,8 +5,6 @@ import be.intecbrussel.quize.model.Question;
 import be.intecbrussel.quize.model.Quiz;
 import be.intecbrussel.quize.service.OperandService;
 import be.intecbrussel.quize.service.QuizService;
-import be.intecbrussel.quize.service.services.OperandServiceImpl;
-import be.intecbrussel.quize.service.services.QuestionFactory;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -28,8 +26,8 @@ public class QuizServiceImpl implements QuizService {
         List<String> operators = quiz.getSettings().selectedOperators();
         for (int i = 0; i< quiz.getAmountQuestions() ; i++) {
             Question question = QuestionFactory.createQuestion(operators);
-            question.setFirstNumber(operandsList.get(i)[0]);
-            question.setSecondNumber(operandsList.get(i)[1]);
+            question.setOperandFirst(operandsList.get(i)[0]);
+            question.setOperandSecond(operandsList.get(i)[1]);
             question.setAnswer(new Answer());
             question.getAnswer().setAnswer(new BigDecimal("0"));
             questionList.add(question);

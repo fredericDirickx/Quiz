@@ -8,7 +8,7 @@ public class QuestionMultiplication extends Question {
 
     @Override
     public BigDecimal correctAnswer() {
-        return super.firstNumber.multiply(super.secondNumber);
+        return super.operandFirst.multiply(super.operandSecond);
     }
 
     @Override

@@ -8,7 +8,7 @@ public class QuestionAddition extends Question {
 
     @Override
     public BigDecimal correctAnswer() {
-        return super.firstNumber.add(this.secondNumber);
+        return super.operandFirst.add(this.operandSecond);
     }
 
     @Override

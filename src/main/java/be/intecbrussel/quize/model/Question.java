@@ -11,8 +11,8 @@ public abstract class Question {
     @Id
     @GeneratedValue
     protected long id;
-    protected BigDecimal firstNumber;
-    protected BigDecimal secondNumber;
+    protected BigDecimal operandFirst;
+    protected BigDecimal operandSecond;
     protected String operator;
     @OneToOne
     protected Answer answer;
@@ -29,20 +29,20 @@ public abstract class Question {
         this.id = id;
     }
 
-    public BigDecimal getFirstNumber() {
-        return firstNumber;
+    public BigDecimal getOperandFirst() {
+        return operandFirst;
     }
 
-    public void setFirstNumber(BigDecimal firstNumber) {
-        this.firstNumber = firstNumber;
+    public void setOperandFirst(BigDecimal firstNumber) {
+        this.operandFirst = firstNumber;
     }
 
-    public BigDecimal getSecondNumber() {
-        return secondNumber;
+    public BigDecimal getOperandSecond() {
+        return operandSecond;
     }
 
-    public void setSecondNumber(BigDecimal secondNumber) {
-        this.secondNumber = secondNumber;
+    public void setOperandSecond(BigDecimal secondNumber) {
+        this.operandSecond = secondNumber;
     }
 
     public String getOperator() {
@@ -67,7 +67,7 @@ public abstract class Question {
 
     @Override
     public String toString() {
-        return firstNumber + " " + this.operatorString() + " " + secondNumber + " = ";
+        return operandFirst + " " + this.operatorString() + " " + operandSecond + " = ";
     }
 
 

@@ -7,15 +7,15 @@ import java.math.BigDecimal;
 public class QuestionSubtraction extends Question {
 
     private void switchNumbers() {
-        BigDecimal max = super.firstNumber.max(super.secondNumber);
-        super.secondNumber = super.firstNumber.min(super.secondNumber);
-        super.firstNumber = max;
+        BigDecimal max = super.operandFirst.max(super.operandSecond);
+        super.operandSecond = super.operandFirst.min(super.operandSecond);
+        super.operandFirst = max;
     }
 
     @Override
     public BigDecimal correctAnswer() {
         switchNumbers();
-        return super.firstNumber.subtract(super.secondNumber);
+        return super.operandFirst.subtract(super.operandSecond);
     }
 
     @Override

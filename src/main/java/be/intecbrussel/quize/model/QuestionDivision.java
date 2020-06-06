@@ -9,7 +9,7 @@ public class QuestionDivision extends Question {
     @Override
     public BigDecimal correctAnswer() {
         switchNumbers();
-        return super.firstNumber.divide(super.secondNumber);
+        return super.operandFirst.divide(super.operandSecond);
     }
 
     @Override
@@ -18,11 +18,11 @@ public class QuestionDivision extends Question {
     }
 
     private void switchNumbers() {
-        BigDecimal max = super.firstNumber.max(super.secondNumber) ;
-        super.secondNumber = super.firstNumber.max(super.secondNumber);
-        super.firstNumber = max;
-        if (super.secondNumber.equals(BigDecimal.ZERO)) {
-            super.secondNumber = BigDecimal.valueOf(1);
+        BigDecimal max = super.operandFirst.max(super.operandSecond) ;
+        super.operandSecond = super.operandFirst.max(super.operandSecond);
+        super.operandFirst = max;
+        if (super.operandSecond.equals(BigDecimal.ZERO)) {
+            super.operandSecond = BigDecimal.valueOf(1);
         }
     }
 
