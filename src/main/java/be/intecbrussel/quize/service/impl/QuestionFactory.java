@@ -1,4 +1,4 @@
-package be.intecbrussel.quize.service.services;
+package be.intecbrussel.quize.service.impl;
 
 import be.intecbrussel.quize.model.*;
 

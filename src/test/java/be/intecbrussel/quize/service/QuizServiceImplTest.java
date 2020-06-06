@@ -1,9 +1,9 @@
 package be.intecbrussel.quize.service;
 
 import be.intecbrussel.quize.dao.QuizDao;
-import be.intecbrussel.quize.dao.QuizDaoImpl;
+import be.intecbrussel.quize.dao.impl.QuizDaoImpl;
 import be.intecbrussel.quize.model.*;
-import be.intecbrussel.quize.service.services.QuizServiceImpl;
+import be.intecbrussel.quize.service.impl.QuizServiceImpl;
 
 import java.math.BigDecimal;
 

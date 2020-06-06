@@ -1,4 +1,4 @@
-package be.intecbrussel.quize.dao;
+package be.intecbrussel.quize.dao.impl;
 
 import org.hibernate.Session;
 

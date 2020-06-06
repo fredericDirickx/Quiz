@@ -1,4 +1,4 @@
-package be.intecbrussel.quize.service.services;
+package be.intecbrussel.quize.service.impl;
 
 import be.intecbrussel.quize.model.Answer;
 import be.intecbrussel.quize.model.Question;
@@ -16,8 +16,8 @@ public class QuizServiceImpl implements QuizService {
 
     public List<Question> createQuestions(Quiz quiz) {
         List<Question> questionList = new ArrayList<>();
-        OperandService operandService = new OperandServiceImpl();
-        List<BigDecimal[]> operandsList = operandService.operandsList(quiz.getBoundaries());
+        OperandService operandService = new OperandServiceCommutativeImpl(quiz.getBoundaries());
+        List<BigDecimal[]> operandsList = operandService.operandsList();
 
         if (quiz.getSettings().isShuffled()) {
             Collections.shuffle(operandsList);

@@ -1,5 +1,7 @@
-package be.intecbrussel.quize.dao;
+package be.intecbrussel.quize.dao.impl;
 
+import be.intecbrussel.quize.dao.QuizDao;
+import be.intecbrussel.quize.dao.impl.JpaSessionUtil;
 import be.intecbrussel.quize.model.User;
 
 import javax.persistence.EntityManager;

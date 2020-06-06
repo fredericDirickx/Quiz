@@ -5,7 +5,7 @@ import be.intecbrussel.quize.model.Quiz;
 import be.intecbrussel.quize.model.QuizSettings;
 import be.intecbrussel.quize.model.User;
 import be.intecbrussel.quize.service.QuizService;
-import be.intecbrussel.quize.service.services.QuizServiceImpl;
+import be.intecbrussel.quize.service.impl.QuizServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

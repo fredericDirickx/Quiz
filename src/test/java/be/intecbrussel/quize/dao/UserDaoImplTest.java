@@ -1,5 +1,6 @@
 package be.intecbrussel.quize.dao;
 
+import be.intecbrussel.quize.dao.impl.UserDaoImpl;
 import be.intecbrussel.quize.model.User;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

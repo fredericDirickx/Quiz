@@ -1,9 +1,9 @@
 package be.intecbrussel.quize.servlet;
 
 import be.intecbrussel.quize.dao.QuizDao;
-import be.intecbrussel.quize.dao.QuizDaoImpl;
+import be.intecbrussel.quize.dao.impl.QuizDaoImpl;
 import be.intecbrussel.quize.model.Quiz;
-import be.intecbrussel.quize.service.services.QuizReport;
+import be.intecbrussel.quize.service.impl.QuizReport;
 import be.intecbrussel.quize.view.StringFormat;
 
 import javax.servlet.ServletException;

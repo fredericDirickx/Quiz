@@ -1,14 +1,14 @@
 package be.intecbrussel.quize.service;
 
 import be.intecbrussel.quize.model.OperandBoundaries;
-import be.intecbrussel.quize.service.services.OperandServiceImpl;
+import be.intecbrussel.quize.service.impl.OperandServiceCommutativeImpl;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
 
 class OperandServiceImplTest {
 
-    OperandServiceImpl operandService = new OperandServiceImpl();
+    OperandServiceCommutativeImpl operandService = new OperandServiceCommutativeImpl();
     OperandBoundaries operandBoundaries = new OperandBoundaries();
 
 

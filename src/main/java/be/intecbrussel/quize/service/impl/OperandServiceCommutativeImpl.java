@@ -1,4 +1,4 @@
-package be.intecbrussel.quize.service.services;
+package be.intecbrussel.quize.service.impl;
 
 import be.intecbrussel.quize.model.OperandBoundaries;
 import be.intecbrussel.quize.service.OperandService;
@@ -7,9 +7,16 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OperandServiceImpl implements OperandService {
+public class OperandServiceCommutativeImpl implements OperandService {
+
+    private OperandBoundaries boundaries;
+
+    public OperandServiceCommutativeImpl(OperandBoundaries boundaries) {
+        this.boundaries = boundaries;
+    }
+
     @Override
-    public List<BigDecimal[]> operandsList(OperandBoundaries boundaries) {
+    public List<BigDecimal[]> operandsList() {
         List<BigDecimal[]> operandsList = new ArrayList<>();
         List<BigDecimal> firstOperandList =
                 operandList(boundaries.getLowerBoundFirstNumber(), boundaries.getUpperBoundFirstNumber());

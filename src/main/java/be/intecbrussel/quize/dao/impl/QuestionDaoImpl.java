@@ -1,8 +1,8 @@
-package be.intecbrussel.quize.dao;
+package be.intecbrussel.quize.dao.impl;
 
+import be.intecbrussel.quize.dao.QuizDao;
 import be.intecbrussel.quize.model.Answer;
 import be.intecbrussel.quize.model.Question;
-import be.intecbrussel.quize.model.Quiz;
 
 import javax.persistence.EntityManager;
 import java.util.List;

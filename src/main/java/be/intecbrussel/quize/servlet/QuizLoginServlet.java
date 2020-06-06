@@ -1,6 +1,6 @@
 package be.intecbrussel.quize.servlet;
 
-import be.intecbrussel.quize.dao.UserDaoImpl;
+import be.intecbrussel.quize.dao.impl.UserDaoImpl;
 import be.intecbrussel.quize.model.User;
 
 import javax.servlet.ServletException;
