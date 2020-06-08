@@ -7,13 +7,13 @@ import be.intecbrussel.quize.service.OperandService;
 import java.math.BigDecimal;
 import java.util.List;
 
-public class OperandFactory {
+public class OperandsFactory {
     private List<BigDecimal[]> commutativeOperands;
     private List<BigDecimal[]> divisionOperands;
     private List<BigDecimal[]> subtractOperands;
 
 
-    public OperandFactory(QuizSettings settings, OperandBoundaries boundaries){
+    public OperandsFactory(QuizSettings settings, OperandBoundaries boundaries){
 
         if(settings.isAddition() || settings.isMultiplication()) {
             OperandService operandService = new OperandServiceCommutativeImpl(boundaries);
