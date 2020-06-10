@@ -24,7 +24,7 @@ public class QuizReport {
         int correctAnswers = 0;
         correctAnswers = (int) quiz.getQuestions()
                 .stream()
-                .filter(s -> s.correctAnswer().equals(s.getAnswer().getAnswer()) )
+                .filter(s -> s.correctAnswer().equals(s.getAnswer().getAnswer()))
                 .count();
 
         return correctAnswers;

@@ -7,8 +7,8 @@ import java.util.Random;
 
 public class QuestionFactory {
 
-    public static Question createQuestion(String operator){
-        switch (operator){
+    public static Question createQuestion(String operator) {
+        switch (operator) {
             case "*":
                 return new QuestionMultiplication();
             case "-":
@@ -20,10 +20,10 @@ public class QuestionFactory {
         }
     }
 
-    public static Question createQuestion(List<String> operators){
+    public static Question createQuestion(List<String> operators) {
         Random random = new Random();
         int randomIndex = random.nextInt(operators.size());
-       return createQuestion(operators.get(randomIndex));
+        return createQuestion(operators.get(randomIndex));
     }
 
 }

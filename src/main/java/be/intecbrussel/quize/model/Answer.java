@@ -16,7 +16,6 @@ public class Answer {
     private LocalDateTime startTime;
     private LocalDateTime endTime;
 
-
     public int getId() {
         return id;
     }

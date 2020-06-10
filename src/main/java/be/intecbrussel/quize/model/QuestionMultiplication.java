@@ -16,7 +16,6 @@ public class QuestionMultiplication extends Question {
         return "*";
     }
 
-
 }
 
 

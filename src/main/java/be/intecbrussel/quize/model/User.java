@@ -1,7 +1,7 @@
 package be.intecbrussel.quize.model;
 
-import javax.persistence.*;
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Entity
 public class User {
@@ -9,8 +9,6 @@ public class User {
     @Id
     private String name;
     private String password;
-
-    public User(){}
 
     public String getName() {
         return name;

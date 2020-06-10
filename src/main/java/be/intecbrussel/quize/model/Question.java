@@ -17,7 +17,7 @@ public abstract class Question {
     @OneToOne
     protected Answer answer;
 
-    public Question(){
+    public Question() {
         this.operator = this.operatorString();
     }
 
@@ -69,7 +69,6 @@ public abstract class Question {
     public String toString() {
         return operandFirst + " " + this.operatorString() + " " + operandSecond + " = ";
     }
-
 
 }
 

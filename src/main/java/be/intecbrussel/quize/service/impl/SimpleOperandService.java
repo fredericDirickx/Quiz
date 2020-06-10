@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SimpleOperandFactory {
+public class SimpleOperandService {
 
     public static List<BigDecimal> operandList(BigDecimal lower, BigDecimal upper) {
         List<BigDecimal> operandList = new ArrayList();
@@ -25,4 +25,5 @@ public class SimpleOperandFactory {
 
         return operandList;
     }
+
 }

@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import static be.intecbrussel.quize.service.impl.SimpleOperandFactory.operandList;
+import static be.intecbrussel.quize.service.impl.SimpleOperandService.operandList;
 
 public class OperandServiceCommutativeImpl implements OperandService {
 
@@ -18,7 +18,7 @@ public class OperandServiceCommutativeImpl implements OperandService {
     }
 
     @Override
-    public List<BigDecimal[]> operandsList() {
+    public List<BigDecimal[]> createOperandsList() {
         List<BigDecimal[]> operandsList = new ArrayList<>();
         List<BigDecimal> firstOperandList =
                 operandList(boundaries.getLowerBoundFirstNumber(), boundaries.getUpperBoundFirstNumber());
@@ -33,12 +33,8 @@ public class OperandServiceCommutativeImpl implements OperandService {
                 operandsList.add(operands);
             }
         }
-
-
         return operandsList;
     }
-
-
 
 
 }

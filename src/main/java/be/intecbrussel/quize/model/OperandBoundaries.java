@@ -2,7 +2,6 @@ package be.intecbrussel.quize.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.math.BigDecimal;
 
@@ -15,6 +14,14 @@ public class OperandBoundaries {
     private BigDecimal upperBoundFirstNumber = BigDecimal.valueOf(10);
     private BigDecimal lowerBoundSecondNumber = BigDecimal.valueOf(1);
     private BigDecimal upperBoundSecondNumber = BigDecimal.valueOf(10);
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public BigDecimal getLowerBoundFirstNumber() {
         return lowerBoundFirstNumber;

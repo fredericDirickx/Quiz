@@ -7,38 +7,31 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import static be.intecbrussel.quize.service.impl.SimpleOperandFactory.operandList;
 
-public class OperandServiceDivsionImpl implements OperandService {
+import static be.intecbrussel.quize.service.impl.SimpleOperandService.operandList;
+
+public class OperandServiceDivisionImpl implements OperandService {
 
     private OperandBoundaries boundaries;
 
-    public OperandServiceDivsionImpl(OperandBoundaries boundaries) {
+    public OperandServiceDivisionImpl(OperandBoundaries boundaries) {
         this.boundaries = boundaries;
     }
 
     @Override
-    public List<BigDecimal[]> operandsList() {
+    public List<BigDecimal[]> createOperandsList() {
         List<BigDecimal[]> operandsList = new ArrayList<>();
         List<BigDecimal> firstOperandList =
-                operandList(boundaries.getLowerBoundFirstNumber(),boundaries.getUpperBoundSecondNumber());
+                operandList(boundaries.getLowerBoundFirstNumber(), boundaries.getUpperBoundFirstNumber());
 
-        return null;
-    }
+        for (BigDecimal operandFirst : firstOperandList) {
+            BigDecimal[] operandsArr = new BigDecimal[2];
+            operandsArr[0] = operandFirst;
+            operandsArr[1] = getRandomDivisor(operandFirst, boundaries.getLowerBoundSecondNumber());
+            operandsList.add(operandsArr);
+        }
 
-
-
-
-    public BigDecimal[] getIntegersForDivQuestion(BigDecimal operandFirst, BigDecimal lowerBoundOperandSecond) {
-        BigDecimal[] numbers = new BigDecimal[2];
-        BigDecimal firstOp = operandFirst;
-        BigDecimal secondOp = getRandomDivisor(firstOp, lowerBoundOperandSecond);
-
-        numbers[0] = firstOp;
-        numbers[1] = secondOp;
-
-        return numbers;
-
+        return operandsList;
     }
 
     public BigDecimal getRandomDivisor(BigDecimal dividend, BigDecimal lowerBound) {
@@ -50,7 +43,7 @@ public class OperandServiceDivsionImpl implements OperandService {
 
         for (int i = lowerBound.intValue(); i <= dividend.intValue(); i++) {
             divisor = BigDecimal.valueOf(i);
-            if (dividend.divide(divisor).equals(BigDecimal.ZERO)) {
+            if (dividend.remainder(divisor).equals(BigDecimal.ZERO)) {
                 dividerList.add(divisor);
             }
         }

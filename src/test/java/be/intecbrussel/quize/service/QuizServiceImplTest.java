@@ -4,17 +4,21 @@ import be.intecbrussel.quize.dao.QuizDao;
 import be.intecbrussel.quize.dao.impl.QuizDaoImpl;
 import be.intecbrussel.quize.model.*;
 import be.intecbrussel.quize.service.impl.QuizServiceImpl;
+import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 
 class QuizServiceImplTest {
 
-//    @Test
+    @Test
     void createQuestions() {
         Quiz quiz = new Quiz();
 
         QuizSettings settings = new QuizSettings();
-        settings.setMultiplication(true);
+        settings.setDivision(true);
+        settings.setShuffled(false);
+//        settings.setSubtraction(true);
+
         settings.setShuffled(true);
         quiz.setSettings(settings);
 
@@ -36,7 +40,9 @@ class QuizServiceImplTest {
         quiz.setQuestions(quizService.createQuestions(quiz));
 
         QuizDao<Quiz> quizDao = new QuizDaoImpl();
-        quizDao.create(quiz);
+//        quizDao.create(quiz);
+
+        quiz.getQuestions().forEach(System.out::println);
 
     }
 }
