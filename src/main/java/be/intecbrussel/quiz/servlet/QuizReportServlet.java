@@ -2,7 +2,7 @@ package be.intecbrussel.quiz.servlet;
 
 import be.intecbrussel.quiz.dao.QuizDao;
 import be.intecbrussel.quiz.dao.impl.QuizDaoImpl;
-import be.intecbrussel.quiz.service.impl.QuizReport;
+import be.intecbrussel.quiz.service.impl.QuizReportService;
 import be.intecbrussel.quiz.view.StringFormat;
 import be.intecbrussel.quiz.model.Quiz;
 
@@ -25,7 +25,7 @@ public class QuizReportServlet extends HttpServlet {
 
         QuizDao quizDao = new QuizDaoImpl();
         quizDao.create(quiz);
-        QuizReport quizReport = new QuizReport();
+        QuizReportService quizReport = new QuizReportService();
         List<String> colorList = quizReport.colorList(quiz);
         List<String> questionList = quizReport.questionStringList(quiz);
         List<String> answerList = quizReport.UserAnswers(quiz);

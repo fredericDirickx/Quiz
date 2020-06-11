@@ -12,7 +12,7 @@ import java.time.temporal.Temporal;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class QuizReport {
+public class QuizReportService {
 
 
     public double scorePercentage(Quiz quiz) {
