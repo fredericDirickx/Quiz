@@ -1,9 +1,13 @@
 package be.intecbrussel.quize.service;
 
-import be.intecbrussel.quize.dao.QuizDao;
-import be.intecbrussel.quize.dao.impl.QuizDaoImpl;
-import be.intecbrussel.quize.model.*;
-import be.intecbrussel.quize.service.impl.QuizServiceImpl;
+import be.intecbrussel.quiz.dao.QuizDao;
+import be.intecbrussel.quiz.dao.impl.QuizDaoImpl;
+import be.intecbrussel.quiz.model.OperandBoundaries;
+import be.intecbrussel.quiz.model.Quiz;
+import be.intecbrussel.quiz.model.QuizSettings;
+import be.intecbrussel.quiz.model.User;
+import be.intecbrussel.quiz.service.QuizService;
+import be.intecbrussel.quiz.service.impl.QuizServiceImpl;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -42,7 +46,6 @@ class QuizServiceImplTest {
         QuizDao<Quiz> quizDao = new QuizDaoImpl();
 //        quizDao.create(quiz);
 
-        quiz.getQuestions().forEach(System.out::println);
 
     }
 }

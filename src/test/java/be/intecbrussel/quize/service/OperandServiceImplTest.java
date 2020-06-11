@@ -1,7 +1,7 @@
 package be.intecbrussel.quize.service;
 
-import be.intecbrussel.quize.model.OperandBoundaries;
-import be.intecbrussel.quize.service.impl.OperandServiceCommutativeImpl;
+import be.intecbrussel.quiz.model.OperandBoundaries;
+import be.intecbrussel.quiz.service.impl.OperandServiceCommutativeImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

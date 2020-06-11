@@ -1,7 +1,7 @@
 package be.intecbrussel.quize.dao;
 
-import be.intecbrussel.quize.dao.impl.UserDaoImpl;
-import be.intecbrussel.quize.model.User;
+import be.intecbrussel.quiz.dao.impl.UserDaoImpl;
+import be.intecbrussel.quiz.model.User;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -57,6 +57,7 @@ class UserDaoImplTest {
     @Test
     void delete() {
         User user = this.user;
+        System.out.println(user);
         userDao.delete(user);
         user.setName("Updated");
         userDao.delete(user);
