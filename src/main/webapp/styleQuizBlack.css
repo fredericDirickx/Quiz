@@ -47,7 +47,7 @@ input:focus {
 
 
 /* The containe  */
-.checkmarkContainer {
+.checkMarkContainer {
     display: block;
     position: relative;
     padding-left: 35px;
@@ -60,7 +60,7 @@ input:focus {
 }
 
 /* Hide the browser's default checkbox */
-.checkmarkContainer input {
+.checkMarkContainer input {
     position: absolute;
     opacity: 0;
     cursor: pointer;
@@ -81,13 +81,13 @@ input:focus {
 
 
 /* On mouse-over, add a grey background color */
-.checkmarkContainer:hover input ~ .checkMark {
+.checkMarkContainer:hover input ~ .checkMark {
     background-color: black;
     border: solid whitesmoke 1px;
 }
 
 /* When the checkbox is checked, add a blue background */
-.checkmarkContainer input:checked ~ .checkMark {
+.checkMarkContainer input:checked ~ .checkMark {
     background-color: black;
     border: whitesmoke solid 1px;
 }
@@ -100,12 +100,12 @@ input:focus {
 }
 
 /* Show the checkmark when checked */
-.checkmarkContainer input:checked ~ .checkMark:after {
+.checkMarkContainer input:checked ~ .checkMark:after {
     display: block;
 }
 
 /* Style the checkmark/indicator */
-.checkmarkContainer .checkMark:after {
+.checkMarkContainer .checkMark:after {
     left: 8px;
     top: 4px;
     width: 5px;

@@ -20,24 +20,24 @@
         <input hidden name="userName" value="${userName}">
 
         <fieldset class="checkBoxes">
-            <label class="checkmarkContainer">+
+            <label class="checkMarkContainer">+
                 <input name="addition" type="checkbox" value="true">
                 <span class="checkMark"></span>
             </label>
 
-            <label class="checkmarkContainer">-
-                <input name="substraction" type="checkbox" value="true">
+            <label class="checkMarkContainer">-
+                <input name="subtraction" type="checkbox" value="true">
                 <span class="checkMark"></span>
             </label>
-            <label class="checkmarkContainer">x
+            <label class="checkMarkContainer">x
                 <input name="multiplication" type="checkbox" checked="checked" value="true">
                 <span class="checkMark"></span>
             </label>
-            <label class="checkmarkContainer">/
+            <label class="checkMarkContainer">/
                 <input name="division" type="checkbox" value="true">
                 <span class="checkMark"></span>
             </label>
-            <label class="checkmarkContainer">shuffle
+            <label class="checkMarkContainer">shuffle
                 <input name="shuffle" type="checkbox" value="true">
                 <span class="checkMark"></span>
             </label>

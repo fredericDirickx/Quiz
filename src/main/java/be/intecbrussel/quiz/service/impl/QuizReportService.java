@@ -17,10 +17,10 @@ public class QuizReportService {
 
     public double scorePercentage(Quiz quiz) {
         int totalQuestions = quiz.getQuestions().size();
-        return (100 / (double) totalQuestions) * (totalQuestions - wrongAnswers(quiz));
+        return (100 / (double) totalQuestions) * amountCorrectAnswers(quiz);
     }
 
-    public int wrongAnswers(Quiz quiz) {
+    public int amountCorrectAnswers(Quiz quiz) {
         int correctAnswers = 0;
         correctAnswers = (int) quiz.getQuestions()
                 .stream()

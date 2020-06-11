@@ -32,7 +32,7 @@ public class QuizReportServlet extends HttpServlet {
         List<String> correctAnswerList = quizReport.correctAnswer(quiz);
         List<String> isCorrectList = quizReport.isCorrectList(quiz);
         List<String> durationList = quizReport.durationList(quiz);
-        int wrongAnswers = quizReport.wrongAnswers(quiz);
+        int wrongAnswers = quizReport.amountCorrectAnswers(quiz);
         double scorePercentage = quizReport.scorePercentage(quiz);
 
         req.setAttribute("userName", quiz.getUser().getName());
