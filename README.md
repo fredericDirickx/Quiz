@@ -15,7 +15,7 @@ This can me useful for schools or research on groups.
 for example: what kind of arithmetic's are the most difficult for which age group. 
 Or what kind of colors in the background are influencing the speed of reading the exercises.
 
-#Author
+#Contact
 **Frederic Dirickx**
 
 *frederic.dirickx@gmail.com*
