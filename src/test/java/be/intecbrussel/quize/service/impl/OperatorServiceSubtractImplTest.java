@@ -1,7 +1,7 @@
 package be.intecbrussel.quize.service.impl;
 
-import be.intecbrussel.quiz.model.OperandBoundaries;
-import be.intecbrussel.quiz.service.impl.OperatorServiceSubtractImpl;
+import be.intecbrussel.littlearithmetics.model.OperandBoundaries;
+import be.intecbrussel.littlearithmetics.service.impl.OperandServiceSubtractImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +16,7 @@ class OperatorServiceSubtractImplTest {
         boundaries.setUpperBoundFirstNumber(BigDecimal.valueOf(5));
         boundaries.setLowerBoundSecondNumber(BigDecimal.valueOf(2));
         boundaries.setUpperBoundSecondNumber(BigDecimal.valueOf(3));
-        OperatorServiceSubtractImpl operatorServiceSubtract = new OperatorServiceSubtractImpl(boundaries);
+        OperandServiceSubtractImpl operatorServiceSubtract = new OperandServiceSubtractImpl(boundaries);
 
         operatorServiceSubtract
                 .createOperandsList()

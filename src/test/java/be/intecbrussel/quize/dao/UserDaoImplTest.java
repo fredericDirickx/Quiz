@@ -1,7 +1,7 @@
 package be.intecbrussel.quize.dao;
 
-import be.intecbrussel.quiz.dao.impl.UserDaoImpl;
-import be.intecbrussel.quiz.model.User;
+import be.intecbrussel.littlearithmetics.dao.impl.UserDaoImpl;
+import be.intecbrussel.littlearithmetics.model.User;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

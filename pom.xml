@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>be.intecbrussel</groupId>
-    <artifactId>Quiz</artifactId>
+    <artifactId>Little Arithmetics</artifactId>
     <version>1.0.0</version>
     <packaging>war</packaging>
 
@@ -17,7 +17,7 @@
     </properties>
 
     <build>
-        <finalName>quiz</finalName>
+        <finalName>littlearithmetics</finalName>
 
         <plugins>
             <plugin>
