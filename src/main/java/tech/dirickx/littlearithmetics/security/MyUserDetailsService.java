@@ -15,11 +15,10 @@ import java.util.Optional;
 @Primary
 public class MyUserDetailsService implements UserDetailsService {
 
-
     UserRepository userRepository;
 
     @Autowired
-    public MyUserDetailsService(UserRepository userRepository){
+    public MyUserDetailsService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
@@ -27,6 +26,6 @@ public class MyUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
         Optional<User> user = userRepository.findByUserName(userName);
         user.orElseThrow(() -> new UsernameNotFoundException("Not Found: " + userName));
-        return new MyUserDetails(user.get());
+        return user.map(MyUserDetails::new).get();
     }
 }

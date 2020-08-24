@@ -20,35 +20,5 @@ import java.time.LocalDate;
 public class LittlearithmeticsApplication {
     public static void main(String[] args){
         ApplicationContext applicationContext = SpringApplication.run(LittlearithmeticsApplication.class, args);
-//        Address address = new Address();
-//        address.setCity("Anderlecht");
-//        address.setCountry("Belgium");
-//        address.setPostalCode("1070");
-//        address.setStreet("Wandelingstraat");
-//        address.setStreetNumber("40");
-//
-//        Person person = new Person();
-//        person.setFamilyName("Dirickx");
-//        person.setFirstName("Frederic");
-//        person.setEmail("frederic.dirickx@gmail.com");
-//        person.setPhoneNumber("0479826952");
-//        person.setDateOfBith(LocalDate.of(1980, 3,4));
-//        person.setAddress(address);
-//
-//        Role role = new Role();
-//        role.setName("USER");
-//
-//        User user = new User();
-//        user.addRole(role);
-//        user.setUserName("Frits");
-//        user.setPassword("123");
-//        user.setPerson(person);
-//
-//        UserDao userDao = new UserDaoImpl();
-//
-//        userDao.create(user);
-
-
-
     }
 }

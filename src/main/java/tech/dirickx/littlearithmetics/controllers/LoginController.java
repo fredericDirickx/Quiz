@@ -11,16 +11,15 @@ public class LoginController {
         return ("login/login");
     }
 
-    @GetMapping("/user")
+    @GetMapping("/newUser")
     public String user() {
-        return "<h1>Hello User</h1>";
+        return "login/newUser";
     }
 
 
-    @GetMapping("/admin")
+    @GetMapping("/settings")
     public String admin() {
-        return ("<h1>Welcome Admin</h1>");
+        return ("quiz/settings");
     }
-
 
 }

@@ -5,11 +5,11 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import tech.dirickx.littlearithmetics.models.User;
 
+import javax.transaction.Transactional;
 import java.util.Optional;
 
-@Repository
+@Transactional
 public interface UserRepository extends JpaRepository<User, Integer> {
     @Query("SELECT u FROM User u WHERE u.userName = ?1")
     Optional<User> findByUserName(String userName);
-
 }
