@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 public abstract class Question {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     protected long id;
     protected BigDecimal operandFirst;
     protected BigDecimal operandSecond;

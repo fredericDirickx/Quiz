@@ -16,12 +16,20 @@ public class Person {
     private String familyName;
     private String email;
     private String phoneNumber;
-    private LocalDate dateOfBith;
+    private LocalDate dateOfBirth;
     @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private Address address;
-
-    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @OneToOne(cascade = {CascadeType.MERGE})
     private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
 
     public long getId() {
         return id;
@@ -63,12 +71,12 @@ public class Person {
         this.phoneNumber = phoneNumber;
     }
 
-    public LocalDate getDateOfBith() {
-        return dateOfBith;
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
     }
 
-    public void setDateOfBith(LocalDate dateOfBith) {
-        this.dateOfBith = dateOfBith;
+    public void setDateOfBirth(LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
     public Address getAddress() {
@@ -79,13 +87,15 @@ public class Person {
         this.address = address;
     }
 
+
+
     @Override
     public String toString() {
         return "Person{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", familyName='" + familyName + '\'' +
-                ", age=" + dateOfBith +
+                ", age=" + dateOfBirth +
                 ", address=" + address +
                 '}';
     }

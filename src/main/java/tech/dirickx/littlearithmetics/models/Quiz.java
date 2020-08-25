@@ -11,7 +11,7 @@ import java.util.List;
 @Component
 public class Quiz {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     @OneToOne
     private User user = new User();
