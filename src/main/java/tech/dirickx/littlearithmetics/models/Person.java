@@ -1,5 +1,6 @@
 package tech.dirickx.littlearithmetics.models;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
@@ -16,6 +17,7 @@ public class Person {
     private String familyName;
     private String email;
     private String phoneNumber;
+    @DateTimeFormat (pattern="yyyy-MM-dd")
     private LocalDate dateOfBirth;
     @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private Address address;
