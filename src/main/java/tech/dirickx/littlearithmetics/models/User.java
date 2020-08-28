@@ -16,10 +16,9 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String userName;
-    @Transient
     private String password;
 
-    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
     @JoinTable(
             name = "users_roles",
             joinColumns = @JoinColumn(
@@ -28,7 +27,7 @@ public class User {
                     name = "role_id", referencedColumnName = "id"))
     private Collection<Role> roles = new ArrayList<>();
 
-    private String encryptedPassword;
+
     private Boolean isEnabled = true;
 
 
@@ -47,12 +46,12 @@ public class User {
         roles.add(role);
     }
 
-    public String getEncryptedPassword() {
-        return encryptedPassword;
+    public String getPassword() {
+        return password;
     }
 
-    public void setEncryptedPassword(String encryptedPassword) {
-        this.encryptedPassword = encryptedPassword;
+    public void setPassword(String encryptedPassword) {
+        this.password = encryptedPassword;
     }
 
     public Boolean isEnabled() {
@@ -77,14 +76,6 @@ public class User {
 
     public void setUserName(String name) {
         this.userName = name;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public Integer getId() {

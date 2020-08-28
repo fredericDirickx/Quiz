@@ -19,7 +19,7 @@ public class LoginController {
     private UserService userService;
 
     @Autowired
-    public void LoginController(UserService userService) {
+    public void setUserService(UserService userService) {
         this.userService = userService;
     }
 
@@ -43,12 +43,12 @@ public class LoginController {
         Person person = user.getPerson();
         person.setUser(user);
         userService.save(user);
-        return "quiz/settings";
+        return "login/login";
     }
 
 
     @GetMapping("/settings")
-    public String admin() {
+    public String settings() {
         return ("quiz/settings");
     }
 
