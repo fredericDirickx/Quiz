@@ -1,10 +1,17 @@
 <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link th:href="@{css/styleQuizBlack.css}" rel="stylesheet" media="screen"/>
+    <title>Welcome</title>
 </head>
 <body>
 <h1>WELCOME, USER</h1>
+
+<a th:href="${'/overview'}">overview</a>
+<a th:href="${'/settings'}">start a quiz</a>
+
 </body>
 </html>

@@ -38,7 +38,7 @@ public class LoginController {
     @RequestMapping(value = "/saveUser", method = RequestMethod.POST)
     public String saveNewUser(User user) {
         Role role = new Role();
-        role.setName("USER");
+        role.setName("ROLE_USER");
         user.addRole(role);
         Person person = user.getPerson();
         person.setUser(user);
@@ -46,10 +46,5 @@ public class LoginController {
         return "login/login";
     }
 
-
-    @GetMapping("/settings")
-    public String settings() {
-        return ("quiz/settings");
-    }
 
 }
