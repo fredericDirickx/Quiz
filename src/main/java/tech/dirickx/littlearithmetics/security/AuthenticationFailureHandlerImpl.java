@@ -1,11 +1,8 @@
 package tech.dirickx.littlearithmetics.security;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
-import org.springframework.security.web.authentication.ExceptionMappingAuthenticationFailureHandler;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.ServletException;
@@ -22,11 +19,11 @@ public class AuthenticationFailureHandlerImpl implements AuthenticationFailureHa
         System.out.println("Login failed");
         System.out.println(exception);
 
-        if(exception.getClass().equals(InternalAuthenticationServiceException.class)){
+        if (exception.getClass().equals(InternalAuthenticationServiceException.class)) {
             response.sendRedirect("/newUser");
-        }else{
-            request.setAttribute("wrongPassword","Wrong password, please try again");
-            request.getRequestDispatcher("/login").forward(request,response);
+        } else {
+            request.setAttribute("wrongPassword", "Wrong password, please try again");
+            request.getRequestDispatcher("/login").forward(request, response);
         }
 
     }

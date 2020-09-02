@@ -4,13 +4,13 @@
 <head>
     <title>Little Arithmetics Login</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link th:href="@{css/styleQuizBlack.css}" rel="stylesheet" media="screen"/>
+    <link type="text/css" th:href="@{css/styleQuizBlack.css}" rel="stylesheet" media="screen"/>
 
 </head>
-<div class="container">
-    <h1>Welcome, ${userName}</h1>
+<div class="container" th:object="${userName}">
+    <h1 th:text="*{toUpperCase()}">Welcome, ... </h1>
 
-    <form action="${pageContext.request.contextPath}/quizSettingsServlet" method="post">
+    <form th:action="${'/quiz'}"  method="post">
 
         <input hidden name="userName" value="${userName}">
 

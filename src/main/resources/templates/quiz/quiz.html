@@ -8,6 +8,31 @@
     <title>Quiz</title>
 </head>
 <body>
-<h1>Quiz</h1>
+<div class="container" th:object="${quiz}">
+    <p th:text="*{user.person.firstName}">Go For it, </p>
+
+    <div class="progressBarBackground">
+        <div class="progressBar" style="width: ${progress}%">
+            ${progress}%
+        </div>
+    </div>
+
+    <form th:action="@{/quizAdmin}" method="post">
+        <input hidden name="index" value="${index}">
+        <div class="row">
+            <div class="col-25">
+                <label for="answer">${question}</label>
+            </div>
+            <div class="col-75">
+                <input id="answer" name="answer" type="number" autofocus>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-75">
+                <button class="submitButton" name="submitButton" type="submit">${buttonText}</button>
+            </div>
+        </div>
+    </form>
+</div>
 </body>
 </html>
