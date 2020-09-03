@@ -1,14 +1,10 @@
 package tech.dirickx.littlearithmetics.controllers;
 
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import tech.dirickx.littlearithmetics.models.Quiz;
-import tech.dirickx.littlearithmetics.models.User;
-import tech.dirickx.littlearithmetics.services.UserService;
-import tech.dirickx.littlearithmetics.services.impl.UserDetailsServiceImpl;
+import tech.dirickx.littlearithmetics.services.modelservice.UserService;
 
 import java.security.Principal;
 

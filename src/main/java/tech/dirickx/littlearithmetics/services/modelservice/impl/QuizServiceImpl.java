@@ -1,9 +1,9 @@
-package tech.dirickx.littlearithmetics.services.impl;
+package tech.dirickx.littlearithmetics.services.modelservice.impl;
 
 import tech.dirickx.littlearithmetics.models.Answer;
 import tech.dirickx.littlearithmetics.models.Question;
 import tech.dirickx.littlearithmetics.models.Quiz;
-import tech.dirickx.littlearithmetics.services.QuizService;
+import tech.dirickx.littlearithmetics.services.modelservice.QuizService;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;

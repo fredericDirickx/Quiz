@@ -1,22 +1,21 @@
-package tech.dirickx.littlearithmetics.services.impl;
+package tech.dirickx.littlearithmetics.services.reposervices.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import tech.dirickx.littlearithmetics.models.User;
 import tech.dirickx.littlearithmetics.repositories.UserRepository;
-import tech.dirickx.littlearithmetics.services.UserService;
+import tech.dirickx.littlearithmetics.services.modelservice.UserService;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceRepoImpl implements UserService {
 
     private UserRepository userRepository;
     private BCryptPasswordEncoder passwordEncoder;
 
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository,BCryptPasswordEncoder passwordEncoder) {
+    public UserServiceRepoImpl(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
     }

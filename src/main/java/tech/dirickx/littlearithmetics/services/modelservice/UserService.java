@@ -1,4 +1,4 @@
-package tech.dirickx.littlearithmetics.services;
+package tech.dirickx.littlearithmetics.services.modelservice;
 
 import tech.dirickx.littlearithmetics.models.User;
 

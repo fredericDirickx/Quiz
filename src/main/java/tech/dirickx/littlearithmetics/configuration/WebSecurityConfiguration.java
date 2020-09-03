@@ -2,8 +2,6 @@ package tech.dirickx.littlearithmetics.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -12,12 +10,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
-import org.springframework.security.web.authentication.ExceptionMappingAuthenticationFailureHandler;
 import tech.dirickx.littlearithmetics.security.AuthenticationFailureHandlerImpl;
-import tech.dirickx.littlearithmetics.services.impl.UserDetailsServiceImpl;
-
-import java.util.HashMap;
-import java.util.Map;
+import tech.dirickx.littlearithmetics.security.UserDetailsServiceImpl;
 
 @Configuration
 @EnableWebSecurity

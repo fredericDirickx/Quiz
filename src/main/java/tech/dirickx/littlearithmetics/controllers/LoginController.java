@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import tech.dirickx.littlearithmetics.models.Person;
 import tech.dirickx.littlearithmetics.models.Role;
 import tech.dirickx.littlearithmetics.models.User;
-import tech.dirickx.littlearithmetics.services.UserService;
+import tech.dirickx.littlearithmetics.services.modelservice.UserService;
 
 import java.time.LocalDate;
 

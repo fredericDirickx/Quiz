@@ -1,4 +1,4 @@
-package tech.dirickx.littlearithmetics.services.impl;
+package tech.dirickx.littlearithmetics.services.modelservice.impl;
 
 import org.springframework.stereotype.Service;
 

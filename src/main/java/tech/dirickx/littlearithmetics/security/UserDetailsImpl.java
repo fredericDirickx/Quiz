@@ -1,8 +1,9 @@
-package tech.dirickx.littlearithmetics.models;
+package tech.dirickx.littlearithmetics.security;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import tech.dirickx.littlearithmetics.models.User;
 
 import java.util.Collection;
 import java.util.stream.Collectors;

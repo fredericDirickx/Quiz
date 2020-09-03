@@ -1,7 +1,7 @@
-package tech.dirickx.littlearithmetics.services.impl;
+package tech.dirickx.littlearithmetics.services.modelservice.impl;
 
 import tech.dirickx.littlearithmetics.models.OperandBoundaries;
-import tech.dirickx.littlearithmetics.services.OperandService;
+import tech.dirickx.littlearithmetics.services.modelservice.OperandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

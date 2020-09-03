@@ -1,4 +1,4 @@
-package tech.dirickx.littlearithmetics.services.impl;
+package tech.dirickx.littlearithmetics.services.modelservice.impl;
 
 import tech.dirickx.littlearithmetics.models.Answer;
 import tech.dirickx.littlearithmetics.models.Question;
