@@ -3,14 +3,14 @@ package tech.dirickx.littlearithmetics.services.modelservice.impl;
 import tech.dirickx.littlearithmetics.models.Answer;
 import tech.dirickx.littlearithmetics.models.Question;
 import tech.dirickx.littlearithmetics.models.Quiz;
-import tech.dirickx.littlearithmetics.services.modelservice.QuizService;
+import tech.dirickx.littlearithmetics.services.modelservice.QuizModelService;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 @Service
-public class QuizServiceImpl implements QuizService {
+public class QuizServiceImpl implements QuizModelService {
 
     public List<Question> createQuestions(Quiz quiz) {
 
