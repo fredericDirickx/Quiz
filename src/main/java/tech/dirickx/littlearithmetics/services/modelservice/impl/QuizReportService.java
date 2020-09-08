@@ -15,13 +15,22 @@ import java.util.stream.Collectors;
 @Component
 public class QuizReportService {
 
+    private Quiz quiz;
 
-    public double scorePercentage(Quiz quiz) {
-        int totalQuestions = quiz.getQuestions().size();
-        return (100 / (double) totalQuestions) * amountCorrectAnswers(quiz);
+    public Quiz getQuiz() {
+        return quiz;
     }
 
-    public int amountCorrectAnswers(Quiz quiz) {
+    public void setQuiz(Quiz quiz) {
+        this.quiz = quiz;
+    }
+
+    public double scorePercentage() {
+        int totalQuestions = quiz.getQuestions().size();
+        return (100 / (double) totalQuestions) * amountCorrectAnswers();
+    }
+
+    public int amountCorrectAnswers() {
         int correctAnswers = 0;
         correctAnswers = (int) quiz.getQuestions()
                 .stream()
@@ -31,7 +40,7 @@ public class QuizReportService {
         return correctAnswers;
     }
 
-    public Duration totalDuration(Quiz quiz) {
+    public String totalDuration() {
         Temporal start = quiz.getQuestions()
                 .stream()
                 .map(Question::getAnswer)
@@ -45,17 +54,18 @@ public class QuizReportService {
                 .map(Answer::getEndTime)
                 .max(LocalDateTime::compareTo)
                 .get();
-        return Duration.between(start, end);
+        return StringFormat.durationToString(Duration.between(start, end));
     }
 
-    public List<String> questionStringList(Quiz quiz) {
+
+    public List<String> questionStringList() {
         return quiz.getQuestions()
                 .stream()
                 .map(Question::toString)
                 .collect(Collectors.toList());
     }
 
-    public List<String> durationList(Quiz quiz) {
+    public List<String> durationList() {
         return quiz.getQuestions()
                 .stream()
                 .map(Question::getAnswer)
@@ -64,7 +74,7 @@ public class QuizReportService {
                 .collect(Collectors.toList());
     }
 
-    public List<String> isCorrectList(Quiz quiz) {
+    public List<String> isCorrectList() {
         return quiz.getQuestions()
                 .stream()
                 .map(q -> q.getAnswer().getAnswer().equals(q.correctAnswer()))
@@ -72,7 +82,7 @@ public class QuizReportService {
                 .collect(Collectors.toList());
     }
 
-    public List<String> UserAnswers(Quiz quiz) {
+    public List<String> UserAnswers() {
         return quiz.getQuestions()
                 .stream()
                 .map(Question::getAnswer)
@@ -81,7 +91,7 @@ public class QuizReportService {
                 .collect(Collectors.toList());
     }
 
-    public List<String> correctAnswer(Quiz quiz) {
+    public List<String> correctAnswer() {
         return quiz.getQuestions()
                 .stream()
                 .map(Question::correctAnswer)
@@ -89,8 +99,8 @@ public class QuizReportService {
                 .collect(Collectors.toList());
     }
 
-    public List<String> colorList(Quiz quiz) {
-        return isCorrectList(quiz)
+    public List<String> colorList() {
+        return isCorrectList()
                 .stream()
                 .map(this::colorIFWrong)
                 .collect(Collectors.toList());

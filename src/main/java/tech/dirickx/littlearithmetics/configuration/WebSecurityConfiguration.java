@@ -17,6 +17,7 @@ import tech.dirickx.littlearithmetics.security.UserDetailsServiceImpl;
 @EnableWebSecurity
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
+
     @Bean
     public UserDetailsService userDetailsService() {
         return new UserDetailsServiceImpl();
@@ -47,15 +48,18 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers("/newUser", "/css/**","/images/**").permitAll()
-                .antMatchers("/quiz/**","/report/**").hasAnyRole("ROLE_USER")
+        http
+                .authorizeRequests()
+                .antMatchers("/css/**","/webjars/**","/js/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/login").permitAll()
-                .failureHandler(authenticationFailureHandler())
+                .successForwardUrl("/quiz/welcome")
                 .and()
-                .logout().permitAll();
+                .logout().permitAll()
+                .logoutUrl("/login/logout");
+
+
     }
 
 

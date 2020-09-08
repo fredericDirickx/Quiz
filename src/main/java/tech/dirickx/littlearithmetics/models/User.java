@@ -95,4 +95,5 @@ public class User {
     public Boolean getEnabled() {
         return isEnabled;
     }
+
 }

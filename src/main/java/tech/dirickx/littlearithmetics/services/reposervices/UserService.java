@@ -1,4 +1,4 @@
-package tech.dirickx.littlearithmetics.services.reposervices.impl;
+package tech.dirickx.littlearithmetics.services.reposervices;
 
 import tech.dirickx.littlearithmetics.models.User;
 

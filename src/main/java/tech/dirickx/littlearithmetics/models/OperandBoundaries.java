@@ -13,10 +13,10 @@ public class OperandBoundaries {
     @Id
     @GeneratedValue
     private int id;
-    private BigDecimal lowerBoundFirstNumber = BigDecimal.valueOf(1);
-    private BigDecimal upperBoundFirstNumber = BigDecimal.valueOf(10);
-    private BigDecimal lowerBoundSecondNumber = BigDecimal.valueOf(1);
-    private BigDecimal upperBoundSecondNumber = BigDecimal.valueOf(10);
+    private BigDecimal lowerBoundFirstNumber = BigDecimal.valueOf(2);
+    private BigDecimal upperBoundFirstNumber = BigDecimal.valueOf(9);
+    private BigDecimal lowerBoundSecondNumber = BigDecimal.valueOf(2);
+    private BigDecimal upperBoundSecondNumber = BigDecimal.valueOf(9);
 
     public int getId() {
         return id;
@@ -56,5 +56,16 @@ public class OperandBoundaries {
 
     public void setUpperBoundSecondNumber(BigDecimal upperBoundSecondNumber) {
         this.upperBoundSecondNumber = upperBoundSecondNumber;
+    }
+
+    @Override
+    public String toString() {
+        return "OperandBoundaries{" +
+                "id=" + id +
+                ", lowerBoundFirstNumber=" + lowerBoundFirstNumber +
+                ", upperBoundFirstNumber=" + upperBoundFirstNumber +
+                ", lowerBoundSecondNumber=" + lowerBoundSecondNumber +
+                ", upperBoundSecondNumber=" + upperBoundSecondNumber +
+                '}';
     }
 }

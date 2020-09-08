@@ -1,39 +1,38 @@
 <!DOCTYPE html>
-<html  lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 <head>
     <title>Little Arithmetics Login</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link type="text/css" th:href="@{css/styleQuizBlack.css}" rel="stylesheet" media="screen"/>
-
+    <link th:href="@{/css/styleQuizBlack.css}" rel="stylesheet" media="screen"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
 </head>
-<div class="container" th:object="${userName}">
-    <h1 th:text="*{toUpperCase()}">Welcome, ... </h1>
+<div class="container" th:object="${quiz}">
+    <h1 th:text="|Welcome, *{user.person.firstName}|"></h1>
 
-    <form th:action="${'/quiz'}"  method="post">
-
-        <input hidden name="userName" value="${userName}">
+    <form th:action="@{/quiz/question}" method="post">
 
         <fieldset class="checkBoxes">
             <label class="checkmarkContainer">+
-                <input name="addition" type="checkbox" value="true">
+                <input name="addition" th:field="*{settings.addition}" type="checkbox" value="true">
                 <span class="checkMark"></span>
             </label>
 
             <label class="checkmarkContainer">-
-                <input name="substraction" type="checkbox" value="true">
+                <input name="subtraction" th:field="*{settings.subtraction}" type="checkbox" value="true">
                 <span class="checkMark"></span>
             </label>
             <label class="checkmarkContainer">x
-                <input name="multiplication" type="checkbox" checked="checked" value="true">
+                <input name="multiplication" th:field="*{settings.multiplication}" type="checkbox" checked="checked"
+                       value="true">
                 <span class="checkMark"></span>
             </label>
             <label class="checkmarkContainer">/
-                <input name="division" type="checkbox" value="true">
+                <input name="division" th:field="*{settings.division}" type="checkbox" value="true">
                 <span class="checkMark"></span>
             </label>
             <label class="checkmarkContainer">shuffle
-                <input name="shuffle" type="checkbox" value="true">
+                <input name="shuffle" th:field="*{settings.shuffled}" type="checkbox" value="true">
                 <span class="checkMark"></span>
             </label>
         </fieldset>
@@ -43,7 +42,7 @@
                 <label>amount of questions</label>
             </div>
             <div class="col-75">
-                <input name="amount" type="number" value="10">
+                <input name="amount" th:field="*{amountQuestions}" type="number" value="2">
             </div>
         </div>
 
@@ -52,7 +51,8 @@
                 <label>first Number lower bound</label>
             </div>
             <div class="col-75">
-                <input name="firstNumberLowerBound" type="number" value="1">
+                <input name="lowerBoundFirstNumber" th:field="*{boundaries.lowerBoundFirstNumber}" type="number"
+                       value="2">
             </div>
         </div>
 
@@ -61,7 +61,8 @@
                 <label>firstNumber Upper bound</label>
             </div>
             <div class="col-75">
-                <input name="firstNumberUpperBound" type="number" value="10">
+                <input name="upperBoundFirstNumber" th:field="*{boundaries.upperBoundFirstNumber}" type="number"
+                       value="9">
             </div>
         </div>
 
@@ -70,7 +71,8 @@
                 <label>Second Number lower bound</label>
             </div>
             <div class="col-75">
-                <input name="secondNumberLowerBound" type="number" value="1">
+                <input name="lowerBoundSecondNumber" th:field="*{boundaries.lowerBoundSecondNumber}" type="number"
+                       value="2">
             </div>
         </div>
 
@@ -79,7 +81,8 @@
                 <label>Second Number Upper bound</label>
             </div>
             <div class="col-75">
-                <input name="secondNumberUpperBound" type="number" value="10">
+                <input name="upperBoundSecondNumber" th:field="*{boundaries.upperBoundSecondNumber}" type="number"
+                       value="9">
             </div>
         </div>
         <div class="row">

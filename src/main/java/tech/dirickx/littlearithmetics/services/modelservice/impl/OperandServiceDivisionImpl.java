@@ -1,7 +1,7 @@
 package tech.dirickx.littlearithmetics.services.modelservice.impl;
 
 import tech.dirickx.littlearithmetics.models.OperandBoundaries;
-import tech.dirickx.littlearithmetics.services.modelservice.OperandService;
+import tech.dirickx.littlearithmetics.services.modelservice.OperandModelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 @Component
-public class OperandServiceDivisionImpl implements OperandService {
+public class OperandServiceDivisionImpl implements OperandModelService {
 
     private OperandBoundaries boundaries;
 

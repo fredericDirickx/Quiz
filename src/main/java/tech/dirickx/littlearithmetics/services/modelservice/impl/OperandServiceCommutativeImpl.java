@@ -1,7 +1,7 @@
 package tech.dirickx.littlearithmetics.services.modelservice.impl;
 
 import tech.dirickx.littlearithmetics.models.OperandBoundaries;
-import tech.dirickx.littlearithmetics.services.modelservice.OperandService;
+import tech.dirickx.littlearithmetics.services.modelservice.OperandModelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 @Component
-public class OperandServiceCommutativeImpl implements OperandService {
+public class OperandServiceCommutativeImpl implements OperandModelService {
 
     private OperandBoundaries boundaries;
 

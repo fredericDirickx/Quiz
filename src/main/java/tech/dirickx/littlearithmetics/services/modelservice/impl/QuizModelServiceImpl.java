@@ -10,9 +10,9 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 @Service
-public class QuizServiceImpl implements QuizModelService {
+public class QuizModelServiceImpl implements QuizModelService {
 
-    public List<Question> createQuestions(Quiz quiz) {
+    public void createQuestions(Quiz quiz) {
 
         List<Question> questionList = new ArrayList<>();
         OperandsFactory operandsFactory =
@@ -29,7 +29,7 @@ public class QuizServiceImpl implements QuizModelService {
             questionList.add(question);
         }
 
-        return questionList;
+        quiz.setQuestions(questionList);
     }
 
 }

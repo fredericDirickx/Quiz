@@ -5,7 +5,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import tech.dirickx.littlearithmetics.models.User;
 import tech.dirickx.littlearithmetics.repositories.UserRepository;
-import tech.dirickx.littlearithmetics.services.modelservice.UserService;
+import tech.dirickx.littlearithmetics.services.reposervices.UserService;
 
 @Service
 public class UserServiceRepoImpl implements UserService {

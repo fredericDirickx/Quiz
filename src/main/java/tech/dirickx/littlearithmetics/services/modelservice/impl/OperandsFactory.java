@@ -3,7 +3,7 @@ package tech.dirickx.littlearithmetics.services.modelservice.impl;
 import tech.dirickx.littlearithmetics.models.OperandBoundaries;
 import tech.dirickx.littlearithmetics.models.Question;
 import tech.dirickx.littlearithmetics.models.QuizSettings;
-import tech.dirickx.littlearithmetics.services.modelservice.OperandService;
+import tech.dirickx.littlearithmetics.services.modelservice.OperandModelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -23,14 +23,14 @@ public class OperandsFactory {
     public OperandsFactory(QuizSettings settings, OperandBoundaries boundaries) {
 
         if (settings.isAddition() || settings.isMultiplication()) {
-            OperandService operandService = new OperandServiceCommutativeImpl(boundaries);
+            OperandModelService operandService = new OperandServiceCommutativeImpl(boundaries);
             commutativeOperands = operandService.createOperandsList();
             if (settings.isShuffled()) {
                 Collections.shuffle(commutativeOperands);
             }
         }
         if (settings.isDivision()) {
-            OperandService operandService = new OperandServiceDivisionImpl(boundaries);
+            OperandModelService operandService = new OperandServiceDivisionImpl(boundaries);
             divisionOperands = operandService.createOperandsList();
             if (settings.isShuffled()) {
                 Collections.shuffle(divisionOperands);
@@ -38,7 +38,7 @@ public class OperandsFactory {
         }
 
         if (settings.isSubtraction()) {
-            OperandService operandService = new OperandServiceSubtractImpl(boundaries);
+            OperandModelService operandService = new OperandServiceSubtractImpl(boundaries);
             subtractOperands = operandService.createOperandsList();
             if (settings.isShuffled()) {
                 Collections.shuffle(subtractOperands);

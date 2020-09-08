@@ -4,10 +4,70 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link th:href="@{css/styleQuizBlack.css}" rel="stylesheet" media="screen"/>
+    <link th:href="@{/css/styleQuizBlack.css}" rel="stylesheet" media="screen"/>
     <title>Report</title>
 </head>
 <body>
-<h1>Report</h1>
+<div class="container">
+    <p th:text="'Greate job, ' + ${report.quiz.user.person.firstName} + '!'">Great Job, user</p>
+    <table>
+        <tr>
+            <th>question</th>
+            <th>your Answer</th>
+            <th>correct</th>
+            <th>result</th>
+            <th>time</th>
+        </tr>
+        <tr th:each="question, iState : ${report.questionStringList()}">
+            <td th:text="${question}"></td>
+            <td th:text="${report.UserAnswers().get(iState.index)}"></td>
+            <td th:text="${report.correctAnswer().get(iState.index)}"></td>
+            <td th:text="${report.isCorrectList().get(iState.index)}"
+                th:style="'color:' + ${report.colorList().get(iState.index)}"></td>
+            <td th:text="${report.durationList().get(iState.index)}"></td>
+        </tr>
+    </table>
+    <table>
+        <th>
+            TOTAL
+        </th>
+        <tr>
+            <td th:text="'you have ' + ${report.amountCorrectAnswers()} + ' correct answers'"></td>
+        </tr>
+        <tr>
+            <td th:text="'your score :' + ${report.scorePercentage()} + '%'"></td>
+        </tr>
+        <tr>
+            <td th:text="'you did it in : ' + ${report.totalDuration()}"></td>
+        </tr>
+    </table>
+
+    <br>
+    <div class="reportButtonsDiv">
+        <form th:action="@{/quiz/settings}" method="post">
+            <div class="row">
+                <div class="col-25">
+                    <button class="submitButton" type="submit">new game</button>
+                </div>
+            </div>
+        </form>
+        <form th:action="@{/logout}" method="post">
+            <div class="row">
+                <div class="col-25">
+                    <button class="submitButton" type="submit">logoff</button>
+                </div>
+            </div>
+        </form>
+        <form th:action="@{/overview}" method="post">
+            <div class="row">
+                <div class="col-25">
+                    <button class="submitButton" type="submit">overview</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+</div>
 </body>
 </html>

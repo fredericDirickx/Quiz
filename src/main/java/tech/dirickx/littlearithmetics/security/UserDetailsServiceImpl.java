@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import tech.dirickx.littlearithmetics.models.User;
-import tech.dirickx.littlearithmetics.services.modelservice.UserService;
+import tech.dirickx.littlearithmetics.services.reposervices.UserService;
 
 @Service
 @Primary

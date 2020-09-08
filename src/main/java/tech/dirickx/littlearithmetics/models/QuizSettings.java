@@ -16,7 +16,7 @@ public class QuizSettings {
     int id;
     private boolean isAddition;
     private boolean isSubtraction;
-    private boolean isMultiplication;
+    private boolean isMultiplication = true;
     private boolean isDivision;
     private boolean isShuffled;
 

@@ -5,6 +5,6 @@ import tech.dirickx.littlearithmetics.models.Quiz;
 
 import java.util.List;
 
-public interface QuizService {
-    public List<Question> createQuestions(Quiz quiz);
+public interface QuizModelService {
+    public void createQuestions(Quiz quiz);
 }

@@ -17,7 +17,7 @@ public abstract class Question {
     protected BigDecimal operandFirst;
     protected BigDecimal operandSecond;
     protected String operator;
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     protected Answer answer;
 
     public Question() {

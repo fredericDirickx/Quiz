@@ -17,11 +17,11 @@ public class Quiz {
     private User user = new User();
     private LocalDate date = LocalDate.now();
     private int amountQuestions = 10;
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private OperandBoundaries boundaries;
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private QuizSettings settings;
-    @OneToMany
+    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private List<Question> questions = new ArrayList<>();
 
 
@@ -79,5 +79,18 @@ public class Quiz {
 
     public void setQuestions(List<Question> questions) {
         this.questions = questions;
+    }
+
+    @Override
+    public String toString() {
+        return "Quiz{" +
+                "id=" + id +
+                ", user=" + user +
+                ", date=" + date +
+                ", amountQuestions=" + amountQuestions +
+                ", boundaries=" + boundaries +
+                ", settings=" + settings +
+                ", questions=" + questions +
+                '}';
     }
 }

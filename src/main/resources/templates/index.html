@@ -7,11 +7,28 @@
     <link th:href="@{css/styleQuizBlack.css}" rel="stylesheet" media="screen"/>
     <title>Welcome</title>
 </head>
-<body>
-<h1>WELCOME, USER</h1>
+<body >
+<h1> Welcome, </h1>
 
-<a th:href="${'/overview'}">overview</a>
-<a th:href="${'/settings'}">start a quiz</a>
+
+<div class="row">
+    <div class="col-25">
+        <a class="submitButton" th:href="${'/overview/simple'}">overview</a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-25">
+        <a class="submitButton" th:href="${'/quiz/settings'}">start a quiz</a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-25">
+        <a class="submitButton" th:href="${'/logout'}">Log Out</a>
+    </div>
+</div>
+
+
+
 
 </body>
 </html>
