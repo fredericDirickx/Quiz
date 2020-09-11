@@ -7,10 +7,13 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.annotation.web.configurers.AbstractAuthenticationFilterConfigurer;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import tech.dirickx.littlearithmetics.security.AuthenticationFailureHandlerImpl;
+import tech.dirickx.littlearithmetics.security.AuthenticationSuccessHandlerImpl;
 import tech.dirickx.littlearithmetics.security.UserDetailsServiceImpl;
 
 @Configuration
@@ -46,15 +49,20 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         auth.authenticationProvider(authenticationProvider());
     }
 
+    public AuthenticationSuccessHandler authenticationSuccessHandler(){
+        return new AuthenticationSuccessHandlerImpl();
+    }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/css/**","/webjars/**","/js/**").permitAll()
+                .antMatchers("/css/**","/webjars/**","/js/**","/newUser","/saveUser","/").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/login").permitAll()
-                .successForwardUrl("/quiz/welcome")
+                .failureHandler(authenticationFailureHandler()).permitAll()
+                .successHandler(authenticationSuccessHandler()).permitAll()
                 .and()
                 .logout().permitAll()
                 .logoutUrl("/login/logout");

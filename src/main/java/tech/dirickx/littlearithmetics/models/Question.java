@@ -1,6 +1,7 @@
 package tech.dirickx.littlearithmetics.models;
 
 import org.springframework.stereotype.Component;
+import tech.dirickx.littlearithmetics.views.StringFormat;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -70,7 +71,9 @@ public abstract class Question {
 
     @Override
     public String toString() {
-        return operandFirst + " " + this.operatorString() + " " + operandSecond + " = ";
+        return StringFormat.bigDecimalToString(operandFirst) + " " +
+                this.operatorString() + " " +
+                StringFormat.bigDecimalToString(operandSecond) + " = ";
     }
 
 }

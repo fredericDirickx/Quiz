@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link th:href="@{/css/styleQuizBlack.css}" rel="stylesheet" media="screen"/>
+    <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js}"></script>
+    <title>overviewOfQuiz</title>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-25">
+            <canvas id="pieChart" style="height: 200px;"></canvas>
+        </div>
+        <div class="col-25">
+            <canvas id="barChart"></canvas>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-25">
+            <form action="/overview/simple">
+                <button class="submitButton" type="submit">overview</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script th:inline="javascript">
+    var pieCtx = document.getElementById('pieChart').getContext('2d');
+    var correctAnswers =  /*[[${quizReport.amountCorrectAnswersArray()}]]*/;
+
+    var pieChart = new Chart(pieCtx, {
+        type: 'pie',
+        data: {
+            labels: ['correct', 'wrong'],
+            datasets: [{
+                label: 'answers',
+                data: correctAnswers,
+                backgroundColor: [
+                    'rgba(41,153,153, 0.9)',
+                    'rgba(153,41,41, 0.9)'
+                ],
+                borderColor: [
+                    'rgba(41,153,153, 1)',
+                    'rgba(153,41,41, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+    });
+
+    var barCtx = document.getElementById('barChart').getContext('2d');
+
+    var questions = /*[[${quizReport.questionStringList()}]]*/;
+    var times = /*[[${quizReport.durationList()}]]*/;
+
+    var barChart = new Chart(barCtx, {
+        type: 'bar',
+        data: {
+            labels: questions,
+            datasets: [{
+                label: 'time',
+                data: times,
+                backgroundColor: 'rgba(41,153,153, 0.9)'
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+
+    });
+
+
+</script>
+
+
+</body>
+</html>

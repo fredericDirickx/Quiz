@@ -16,6 +16,7 @@ import tech.dirickx.littlearithmetics.services.reposervices.QuizService;
 import tech.dirickx.littlearithmetics.services.reposervices.UserService;
 
 import javax.persistence.criteria.CriteriaBuilder;
+import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
 import java.security.Principal;
 import java.time.LocalDateTime;
@@ -40,8 +41,10 @@ public class QuizController {
     }
 
     @RequestMapping("/welcome")
-    public String welcome() {
-        return "/index";
+    public String welcome(Principal principal, Model model) {
+        User user = getUserFromPrincipal(principal);
+        model.addAttribute("person", user.getPerson().getFirstName());
+        return "/quiz/welcome";
     }
 
     @RequestMapping("/settings")

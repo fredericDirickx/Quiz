@@ -24,7 +24,7 @@
             <td th:text="${report.correctAnswer().get(iState.index)}"></td>
             <td th:text="${report.isCorrectList().get(iState.index)}"
                 th:style="'color:' + ${report.colorList().get(iState.index)}"></td>
-            <td th:text="${report.durationList().get(iState.index)}"></td>
+            <td th:text="${report.durationStringList().get(iState.index)}"></td>
         </tr>
     </table>
     <table>
@@ -58,7 +58,7 @@
                 </div>
             </div>
         </form>
-        <form th:action="@{/overview}" method="post">
+        <form th:action="@{/overview/simple}" method="post">
             <div class="row">
                 <div class="col-25">
                     <button class="submitButton" type="submit">overview</button>

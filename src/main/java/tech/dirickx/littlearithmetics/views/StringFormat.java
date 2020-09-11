@@ -1,5 +1,7 @@
 package tech.dirickx.littlearithmetics.views;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.Duration;
 
 public class StringFormat {
@@ -23,6 +25,15 @@ public class StringFormat {
         } else {
             return "wrong";
         }
+    }
+
+    public static String bigDecimalToString(BigDecimal bigDecimal){
+        int scale = bigDecimal.scale();
+        scale = Math.min(scale, 3);
+        return bigDecimal
+                .setScale(scale, RoundingMode.HALF_UP)
+                .stripTrailingZeros()
+                .toPlainString();
     }
 
 }

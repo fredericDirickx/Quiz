@@ -7,16 +7,17 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import tech.dirickx.littlearithmetics.services.reposervices.QuizService;
+import tech.dirickx.littlearithmetics.services.reposervices.impl.QuizServiceRepoImpl;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class LoginTest {
 
-//    @Autowired
-//    private MockMvc mockMvc;
-//
-//    @Test
-//    @WithMockUser(roles = "USER")
-//    public void loginWithRoleUserExpectPass() throws Exception {
-//        mockMvc.perform(MockMvcRequestBuilders.get("/quiz/settings"))
-//                .andExpect(MockMvcResultMatchers.status().isForbidden());
-//    }
+public void test(){
+
+
+
+    }
 }

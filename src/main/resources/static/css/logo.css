@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jockey+One&display=swap');
+
+.welcomeBody {
+    background-color: black;
+    display: flex;
+    justify-content: center;
+}
+
+
+
+
+.title {
+    margin-bottom: 1vw;
+    color: #299999;
+    font-family: 'Jockey One', sans-serif;
+    text-align: center;
+    font-size: 5vw;
+}
+
+table {
+    color: rgba(255, 254, 255, 0.986);
+    border: solid whitesmoke 0.3vw;
+    margin: auto;
+    text-align: center;
+    font-family: "Times New Roman";
+    font-weight: bold;
+    font-size: 7vw;
+    height: 20vw;
+    width: 20vw;
+}
+
+
+td {
+    width: 25%;
+}
+
+
+button {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 4vw;
+    margin-top: 5px;
+    background-color: black;
+    color: white;
+    padding: 12px 20px;
+    border: solid 1px black;
+}
+
+button:hover {
+    color: #299999;
+}

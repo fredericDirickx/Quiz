@@ -7,6 +7,7 @@ import tech.dirickx.littlearithmetics.views.StringFormat;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.temporal.Temporal;
@@ -34,10 +35,14 @@ public class QuizReportService {
         int correctAnswers = 0;
         correctAnswers = (int) quiz.getQuestions()
                 .stream()
-                .filter(s -> s.correctAnswer().equals(s.getAnswer().getAnswer()))
+                .filter(question -> question.correctAnswer().setScale(2).equals(question.getAnswer().getAnswer().setScale(2)))
                 .count();
 
         return correctAnswers;
+    }
+
+    public int[] amountCorrectAnswersArray(){
+        return new int[]{amountCorrectAnswers(), quiz.getAmountQuestions() - amountCorrectAnswers()};
     }
 
     public String totalDuration() {
@@ -65,7 +70,7 @@ public class QuizReportService {
                 .collect(Collectors.toList());
     }
 
-    public List<String> durationList() {
+    public List<String> durationStringList() {
         return quiz.getQuestions()
                 .stream()
                 .map(Question::getAnswer)
@@ -74,10 +79,19 @@ public class QuizReportService {
                 .collect(Collectors.toList());
     }
 
+    public List<Long> durationList() {
+        return quiz.getQuestions()
+                .stream()
+                .map(Question::getAnswer)
+                .map(Answer::duration)
+                .map(duration -> duration.toSeconds())
+                .collect(Collectors.toList());
+    }
+
     public List<String> isCorrectList() {
         return quiz.getQuestions()
                 .stream()
-                .map(q -> q.getAnswer().getAnswer().equals(q.correctAnswer()))
+                .map(q -> q.getAnswer().getAnswer().setScale(2).equals(q.correctAnswer().setScale(2)))
                 .map(b -> Boolean.toString(b))
                 .collect(Collectors.toList());
     }
@@ -87,7 +101,7 @@ public class QuizReportService {
                 .stream()
                 .map(Question::getAnswer)
                 .map(Answer::getAnswer)
-                .map(BigDecimal::toString)
+                .map(StringFormat::bigDecimalToString)
                 .collect(Collectors.toList());
     }
 
@@ -95,7 +109,7 @@ public class QuizReportService {
         return quiz.getQuestions()
                 .stream()
                 .map(Question::correctAnswer)
-                .map(BigDecimal::toString)
+                .map(StringFormat::bigDecimalToString)
                 .collect(Collectors.toList());
     }
 

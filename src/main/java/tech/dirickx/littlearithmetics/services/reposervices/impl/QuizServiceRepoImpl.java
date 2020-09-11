@@ -31,4 +31,8 @@ public class QuizServiceRepoImpl implements QuizService {
         quizRepository.save(quiz);
     }
 
+    @Override
+    public Quiz findQuizById(Long id) {
+       return quizRepository.findById(id).get();
+    }
 }

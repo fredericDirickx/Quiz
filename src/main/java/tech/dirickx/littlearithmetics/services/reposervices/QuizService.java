@@ -7,5 +7,6 @@ import java.util.List;
 
 public interface QuizService {
     List<Quiz> findListOfQuizByUserName(String userName);
+    Quiz findQuizById(Long id);
     void save(Quiz quiz);
 }

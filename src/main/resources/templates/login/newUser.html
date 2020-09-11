@@ -12,7 +12,7 @@
 <div class="container">
     <h1>Hello arithmetician, </h1>
 
-    <form name="f" th:action="@{/saveUser}" th:object="${user}" method="post">
+    <form th:action="@{/saveUser}" th:object="${user}" method="post">
         <input type="hidden" th:field="*{id}"/>
         <h1>User data</h1>
 
@@ -132,7 +132,7 @@
 
         <div class="row">
             <div class="userInput">
-                <button class="submitButton" type="submit">Push here</button>
+                <button class="submitButton" type="submit">submit</button>
             </div>
         </div>
 
