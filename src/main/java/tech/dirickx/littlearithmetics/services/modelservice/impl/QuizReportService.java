@@ -41,10 +41,6 @@ public class QuizReportService {
         return correctAnswers;
     }
 
-    public int[] amountCorrectAnswersArray(){
-        return new int[]{amountCorrectAnswers(), quiz.getAmountQuestions() - amountCorrectAnswers()};
-    }
-
     public String totalDuration() {
         Temporal start = quiz.getQuestions()
                 .stream()

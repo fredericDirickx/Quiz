@@ -68,4 +68,16 @@ public class QuizSettings {
         if(isSubtraction){operators.add("-");}
         return operators;
     }
+
+    @Override
+    public String toString() {
+        return "QuizSettings{" +
+                "id=" + id +
+                ", isAddition=" + isAddition +
+                ", isSubtraction=" + isSubtraction +
+                ", isMultiplication=" + isMultiplication +
+                ", isDivision=" + isDivision +
+                ", isShuffled=" + isShuffled +
+                '}';
+    }
 }

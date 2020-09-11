@@ -56,4 +56,13 @@ public class Answer {
         return Duration.between(this.startTime, this.endTime);
     }
 
+    @Override
+    public String toString() {
+        return "Answer{" +
+                "id=" + id +
+                ", answer=" + answer +
+                ", startTime=" + startTime +
+                ", endTime=" + endTime +
+                '}';
+    }
 }

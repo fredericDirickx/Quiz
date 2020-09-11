@@ -96,4 +96,15 @@ public class User {
         return isEnabled;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", roles=" + roles +
+                ", isEnabled=" + isEnabled +
+                ", person=" + person +
+                '}';
+    }
 }
