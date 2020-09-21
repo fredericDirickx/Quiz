@@ -1,5 +1,8 @@
 package tech.dirickx.littlearithmetics.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
@@ -18,7 +21,6 @@ public class User {
     @Column(unique = true)
     private String userName;
     private String password;
-
     @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
     @JoinTable(
             name = "users_roles",
@@ -27,11 +29,7 @@ public class User {
             inverseJoinColumns = @JoinColumn(
                     name = "role_id", referencedColumnName = "id"))
     private Collection<Role> roles = new ArrayList<>();
-
-
     private Boolean isEnabled = true;
-
-
     @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private Person person;
 
@@ -94,17 +92,5 @@ public class User {
 
     public Boolean getEnabled() {
         return isEnabled;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", userName='" + userName + '\'' +
-                ", password='" + password + '\'' +
-                ", roles=" + roles +
-                ", isEnabled=" + isEnabled +
-                ", person=" + person +
-                '}';
     }
 }

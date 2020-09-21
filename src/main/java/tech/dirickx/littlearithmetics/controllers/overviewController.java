@@ -51,6 +51,12 @@ public class overviewController {
     }
 
 
+    @RequestMapping("/mainOverview")
+    public String all(){
+        return "/report/overviewAll";
+    }
+
+
 
 
 

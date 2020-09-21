@@ -35,4 +35,5 @@ public class QuizServiceRepoImpl implements QuizService {
     public Quiz findQuizById(Long id) {
        return quizRepository.findById(id).get();
     }
+
 }

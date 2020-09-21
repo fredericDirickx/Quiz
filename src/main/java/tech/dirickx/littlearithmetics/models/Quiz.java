@@ -1,5 +1,6 @@
 package tech.dirickx.littlearithmetics.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
@@ -79,18 +80,5 @@ public class Quiz {
 
     public void setQuestions(List<Question> questions) {
         this.questions = questions;
-    }
-
-    @Override
-    public String toString() {
-        return "Quiz{" +
-                "id=" + id +
-                ", user=" + user +
-                ", date=" + date +
-                ", amountQuestions=" + amountQuestions +
-                ", boundaries=" + boundaries +
-                ", settings=" + settings +
-                ", questions=" + questions +
-                '}';
     }
 }

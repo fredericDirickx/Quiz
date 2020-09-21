@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Overview All</title>
+    <link th:href="@{/css/styleOverview.css}" rel="stylesheet" media="screen"/>
+    <script th:src="@{https://code.jquery.com/jquery-3.2.1.min.js}"></script>
+    <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js}"></script>
+    <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min.js}"></script>
+    <script th:src="@{/js/quizRestService.js}"></script>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="chartBox">
+        <canvas class="chart" id="chartMaxMinQuiz"></canvas>
+    </div>
+    <div class="chartBox">
+        <canvas class="chart" id="chartQuestionsDuration"></canvas>
+    </div>
+    <div class="chartBox">
+        <canvas class="chart" id="chartPieCorrectAnswers"></canvas>
+    </div>
+    <div class="chartBox">
+        <canvas class="chart" id="chartBarQuizScores"></canvas>
+    </div>
+</div>
+
+<div class="buttonBox">
+    <form action="/quiz/welcome">
+        <button class="submitButton" type="submit">overview</button>
+    </form>
+</div>
+
+
+<script>
+    var quizRepo = new QuizRepository();
+
+    $(document).ready(function () {
+
+
+        $.getJSON("/allQuiz", function (data) {
+
+            quizRepo.data = data;
+
+            var ctx = document.getElementById('chartMaxMinQuiz').getContext('2d');
+            var chartMaxMinQuiz = new Chart(ctx, {
+
+                type: 'bar',
+                data: {
+                    labels: quizRepo.getAllQuizId(),
+                    datasets: [{
+                        label: 'Max Duration',
+                        data: quizRepo.getMaxDurationAnswerPerQuiz(),
+                        backgroundColor: 'rgba(41, 153, 153, 0.2)',
+                        borderColor: 'rgba(41, 153, 153, 1)',
+                        borderWidth: 1
+                    }, {
+                        label: 'Min Duration',
+                        data: quizRepo.getMinDurationAnswerPerQuiz(),
+                        backgroundColor: 'rgba(63, 127, 191, 0.2)',
+                        borderColor: 'rgba(63, 127, 191, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    title: {
+                        display: true,
+                        text: 'Max and Minimun duration of Answer per Quiz'
+                    },
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+
+
+
+            ctx = document.getElementById('chartQuestionsDuration').getContext('2d');
+            var chartQuestionsDuration = new Chart(ctx, {
+
+                type: 'line',
+                data: {
+                    labels: quizRepo.getAllQuestions(),
+                    datasets: [{
+                        label: 'Answer duration',
+                        data: quizRepo.getAllAnswersDuration(),
+                        backgroundColor: 'rgba(41, 153, 153, 0.2)',
+                        borderColor: 'rgba(41, 153, 153, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    title: {
+                        display: true,
+                        text: 'Duration per answer'
+                    },
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+
+
+
+            ctx = document.getElementById('chartPieCorrectAnswers').getContext('2d');
+            var chartPieCorrectAnswers = new Chart(ctx, {
+
+                type: 'doughnut',
+                data: {
+                    labels: ['correct', 'wrong'],
+                    datasets: [{
+                        label: 'Answer duration',
+                        data: quizRepo.getAmountOfCorrectAnswers(),
+                        backgroundColor: ['rgba(41, 153, 153, 0.2)',
+                            'rgba(63, 127, 191, 0.2)'],
+                        borderColor: ['rgba(41, 153, 153, 1)',
+                            'rgba(63, 127, 191, 1)'],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    title: {
+                        display: true,
+                        text: 'Total correct answers'
+                    },
+                    legend : {
+                        hidden: true,
+                        text: 'test'
+
+
+                    },
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+
+
+
+
+            ctx = document.getElementById('chartBarQuizScores').getContext('2d');
+            var chartBarQuizScores = new Chart(ctx, {
+
+                type: 'bar',
+                data: {
+                    labels: quizRepo.getAllQuizId(),
+                    datasets: [{
+                        label: 'Correct answer',
+                        data: quizRepo.getCorrectAnswerPerQuiz()[0],
+                        backgroundColor: 'rgba(41, 153, 153, 0.2)',
+                        borderColor: 'rgba(41, 153, 153, 1)',
+                        borderWidth: 1
+                    },{
+                        label: 'wrong',
+                        data: quizRepo.getCorrectAnswerPerQuiz()[1],
+                        backgroundColor: 'rgba(63, 127, 191, 0.2)',
+                        borderColor: 'rgba(63, 127, 191, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    title: {
+                        display: true,
+                        text: 'Correct answers per quiz'
+                    },
+                    scales: {
+                        yAxes: [{
+                            stacked: true,
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }],
+                        xAxes : [{
+                            stacked: true
+                        }]
+                    }
+                }
+            });
+
+
+        });
+
+    });
+
+</script>
+
+</body>
+
+</html>

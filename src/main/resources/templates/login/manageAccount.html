@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html  lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <title>Account</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link th:href="@{css/styleQuizBlack.css}" rel="stylesheet" media="screen"/>
+
+</head>
+<body>
+
+<div class="container">
+    <h1>Hello arithmetician, </h1>
+
+    <form th:action="@{/updateUser}" th:object="${user}" method="post">
+        <input type="hidden" th:field="*{id}"/>
+
+        <h1>Person data</h1>
+
+        <input type="hidden" th:field="*{person.id}"/>
+
+        <div class="row">
+            <div class="col-25">
+                <label>first name : </label>
+            </div>
+            <div class="col-75">
+                <input type="text" th:field="*{person.firstName}"/>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-25">
+                <label>family name : </label>
+            </div>
+            <div class="col-75">
+                <input type="text" th:field="*{person.familyName}">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-25">
+                <label>email : </label>
+            </div>
+            <div class="col-75">
+                <input type="email" th:field="*{person.email}">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-25">
+                <label>phone number : </label>
+            </div>
+            <div class="col-75">
+                <input type="text" th:field="*{person.phoneNumber}">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-25">
+                <label>date of birth : </label>
+            </div>
+            <div class="col-75">
+                <input type="date" th:field="*{person.dateOfBirth}" th:value="${#dates.createNow()}"/>
+            </div>
+        </div>
+
+        <h1>Address</h1>
+
+        <input type="hidden" th:field="*{person.address.person.id}"/>
+
+        <div class="row">
+            <div class="col-25">
+                <label>street : </label>
+            </div>
+            <div class="col-75">
+                <input type="text" th:field="*{person.address.street}">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-25">
+                <label>street number : </label>
+            </div>
+            <div class="col-75">
+                <input type="text" th:field="*{person.address.streetNumber}">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-25">
+                <label>city : </label>
+            </div>
+            <div class="col-75">
+                <input type="text" th:field="*{person.address.city}">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-25">
+                <label>postal code : </label>
+            </div>
+            <div class="col-75">
+                <input type="text"th:field="*{person.address.postalCode}">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-25">
+                <label>country : </label>
+            </div>
+            <div class="col-75">
+                <input type="text" th:field="*{person.address.country}">
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="userInput">
+                <button class="submitButton" type="submit">submit</button>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+</body>
+</html>

@@ -1,5 +1,9 @@
 package tech.dirickx.littlearithmetics.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.Collection;
 
@@ -10,6 +14,8 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String name;
+
+    @JsonIgnore
     @ManyToMany(mappedBy = "roles")
     private Collection<User> users;
 
@@ -37,12 +43,4 @@ public class Role {
         this.users = users;
     }
 
-    @Override
-    public String toString() {
-        return "Role{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", users=" + users +
-                '}';
-    }
 }

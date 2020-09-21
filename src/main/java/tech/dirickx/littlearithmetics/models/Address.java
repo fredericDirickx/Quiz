@@ -1,5 +1,6 @@
 package tech.dirickx.littlearithmetics.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
@@ -17,8 +18,18 @@ public class Address {
     private String postalCode;
     private String country;
 
-    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JsonIgnore
+    @OneToOne(cascade = {CascadeType.MERGE})
     private Person person;
+
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getStreet() {
         return street;

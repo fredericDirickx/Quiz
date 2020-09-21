@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100&display=swap');
+
+* {
+    box-sizing: border-box;
+    font-family: 'Noto Sans JP', sans-serif;
+;
+    color: whitesmoke;
+    font-size: 25pt;
+}
+
+body {
+    background-color: black;
+}
+
+
+.container {
+    margin: auto;
+    background-color: black;
+    padding: 20px;
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: space-around;
+    flex-grow: 1;
+}
+
+.chartBox {
+    margin: 5px;
+    width: 1000px;
+    border: solid white 1px;
+}
+
+.chart {
+    padding: 1vw;
+}
+
+
+form {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    width: 50%;
+}
+
+
+
+
+
+button:hover {
+    border: none;
+    outline: none;
+}
+
+button:focus {
+    border: none;
+    outline: none;
+}
+
+button:active {
+    border: none;
+    outline: none;
+}
+
+button::-moz-focus-inner {
+    border: none;
+
+}
+
+button::-moz-focus-outer {
+    outline: none;
+    border: none;
+}
+
+button {
+    margin: auto;
+    background-color: black;
+    color: white;
+    padding: 12px 20px;
+    border: solid 1px;
+    cursor: pointer;
+    float: right;
+}
+
+
+.reportButtonsDiv {
+    margin-left: 1%;
+}
+
+
+.col-25 {
+    text-align: right;
+    float: left;
+    width: 45%;
+    margin-top: 6px;
+    margin-right: 10px;
+}
+
+.col-75 {
+    float: left;
+    width: 45%;
+    margin-top: 6px;
+}
+
+
+
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+
+    .col-25,
+    .col-75,
+    input[type=submit] {
+        width: 100%;
+        margin-top: 0;
+    }
+}

@@ -1,5 +1,8 @@
 package tech.dirickx.littlearithmetics.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
@@ -21,6 +24,8 @@ public class Person {
     private LocalDate dateOfBirth;
     @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private Address address;
+
+    @JsonIgnore
     @OneToOne(cascade = {CascadeType.MERGE})
     private User user;
 

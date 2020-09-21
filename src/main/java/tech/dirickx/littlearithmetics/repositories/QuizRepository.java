@@ -12,6 +12,4 @@ import java.util.List;
 @Repository
 public interface QuizRepository extends JpaRepository<Quiz, Long> {
 
-//    @Query(value = "SELECT question FROM ")
-//    List<Question> findAllQuestionsByUserId(@Param("user_id")Integer userId);
 }
