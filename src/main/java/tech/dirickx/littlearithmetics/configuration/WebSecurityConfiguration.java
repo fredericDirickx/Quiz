@@ -57,15 +57,16 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/css/**","/webjars/**","/js/**","/newUser","/saveUser","/", "/allQuiz").permitAll()
+                .antMatchers("/css/**", "/webjars/**", "/js/**", "/newUser", "/saveUser").permitAll()
+                .antMatchers().hasRole("USER")
+                .antMatchers("/overview/*").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/login").permitAll()
                 .failureHandler(authenticationFailureHandler()).permitAll()
                 .successHandler(authenticationSuccessHandler()).permitAll()
                 .and()
-                .logout().permitAll()
-                .logoutUrl("/login/logout");
+                .logout().logoutUrl("/login/logout").permitAll();
 
 
     }

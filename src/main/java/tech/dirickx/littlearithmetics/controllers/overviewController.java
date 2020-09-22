@@ -29,31 +29,31 @@ public class overviewController {
         this.quizService = quizService;
     }
 
-    @RequestMapping("/simple")
+    @RequestMapping("/list")
     public String simpleOverview(Principal principal, Model model){
         List<Quiz> quizList = quizService.findListOfQuizByUserName(principal.getName());
         model.addAttribute("quizList", quizList);
-        return "report/overview";
+        return "overview/list";
     }
 
-    @RequestMapping("/overviewOfQuiz/{id}")
+    @RequestMapping("/byQuizGraph/{id}")
     public String overviewOfQuiz(@PathVariable Long id, Model model){
         quizReportService.setQuiz(quizService.findQuizById(id));
         model.addAttribute("quizReport", quizReportService);
-        return "report/overviewOfQuiz";
+        return "overview/byQuizGraph";
     }
 
     @RequestMapping("/report/{id}")
     public String reportOfQuiz(@PathVariable Long id, Model model){
         quizReportService.setQuiz(quizService.findQuizById(id));
         model.addAttribute("report", quizReportService);
-        return "report/report";
+        return "overview/report";
     }
 
 
-    @RequestMapping("/mainOverview")
+    @RequestMapping("/all")
     public String all(){
-        return "/report/overviewAll";
+        return "/overview/all";
     }
 
 

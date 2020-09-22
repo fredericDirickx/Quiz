@@ -43,7 +43,7 @@ public class QuizController {
     @RequestMapping("/welcome")
     public String welcome(Principal principal, Model model) {
         User user = getUserFromPrincipal(principal);
-        model.addAttribute("person", user.getPerson().getFirstName());
+        model.addAttribute("firstName", user.getPerson().getFirstName());
         return "/quiz/welcome";
     }
 

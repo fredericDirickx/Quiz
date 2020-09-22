@@ -12,16 +12,19 @@ import tech.dirickx.littlearithmetics.models.*;
 import tech.dirickx.littlearithmetics.repositories.AddressRepository;
 import tech.dirickx.littlearithmetics.services.reposervices.PersonService;
 import tech.dirickx.littlearithmetics.services.reposervices.QuizService;
+import tech.dirickx.littlearithmetics.services.reposervices.RoleService;
 import tech.dirickx.littlearithmetics.services.reposervices.UserService;
 
 import java.security.Principal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 @Controller
 public class LoginController {
 
     private UserService userService;
-    private PersonService personService;
+    private RoleService roleService;
+    private final  String defaultRole = "ROLE_USER";
 
 
 
@@ -31,8 +34,8 @@ public class LoginController {
     }
 
     @Autowired
-    public void setPersonService(PersonService personService) {
-        this.personService = personService;
+    public void setRoleService(RoleService roleService) {
+        this.roleService = roleService;
     }
 
     @GetMapping("/login")
@@ -49,35 +52,25 @@ public class LoginController {
 
     @RequestMapping(value = "/saveUser", method = RequestMethod.POST)
     public String saveUser(User user) {
-        Role role = new Role();
-        role.setName("ROLE_USER");
-        role.setId(2);
-        user.addRole(role);
-        user.getPerson().setUser(user);
-        user.getPerson().getAddress().setPerson(user.getPerson());
+        Role role = createRoleIfNotExists(defaultRole);
+        ArrayList<Role> roles = new ArrayList<>();
+        roles.add(role);
+        user.setRoles(roles);
+
         userService.save(user);
         return "login/login";
     }
 
-    @RequestMapping(value = "/updateUser", method = RequestMethod.POST)
-    public String updateUser(User user) {
-        Person person = user.getPerson();
-        person.setUser(new User());
-        person.getUser().setId(user.getId());
-        person.setAddress(user.getPerson().getAddress());
-        person.getAddress().setPerson(person);
-        personService.save(person);
-        return "login/login";
+    public Role createRoleIfNotExists(String name) {
+        Role role = roleService.findRoleByName(name);
+       if( role == null){
+           Role newRole = new Role();
+           newRole.setName(name);
+           roleService.save(newRole);
+       }
+       return role;
     }
 
-
-
-    @GetMapping("/manageAccount")
-    public String manageAccount(Model model, Principal principal){
-        User user = userService.findUserByName(principal.getName());
-        model.addAttribute("user", user);
-        return "login/manageAccount";
-    }
 
     @RequestMapping("/logout")
     public String logout(){

@@ -18,10 +18,6 @@ public class Address {
     private String postalCode;
     private String country;
 
-    @JsonIgnore
-    @OneToOne(cascade = {CascadeType.MERGE})
-    private Person person;
-
 
     public long getId() {
         return id;
@@ -69,14 +65,6 @@ public class Address {
 
     public void setCountry(String country) {
         this.country = country;
-    }
-
-    public Person getPerson() {
-        return person;
-    }
-
-    public void setPerson(Person person) {
-        this.person = person;
     }
 
     @Override

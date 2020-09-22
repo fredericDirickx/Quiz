@@ -28,29 +28,41 @@ public class User {
                     name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(
                     name = "role_id", referencedColumnName = "id"))
-    private Collection<Role> roles = new ArrayList<>();
+    private Collection<Role> roles;
     private Boolean isEnabled = true;
     @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private Person person;
 
-    public Collection<Role> getRoles() {
-        return roles;
+    public Integer getId() {
+        return id;
     }
 
-    public void setRoles(List<Role> roles) {
-        this.roles = roles;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public void addRole(Role role){
-        roles.add(role);
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String encryptedPassword) {
-        this.password = encryptedPassword;
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Collection<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Collection<Role> roles) {
+        this.roles = roles;
     }
 
     public Boolean isEnabled() {
@@ -67,30 +79,5 @@ public class User {
 
     public void setPerson(Person person) {
         this.person = person;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String name) {
-        this.userName = name;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public void setRoles(Collection<Role> roles) {
-        this.roles = roles;
-    }
-
-
-    public Boolean getEnabled() {
-        return isEnabled;
     }
 }
