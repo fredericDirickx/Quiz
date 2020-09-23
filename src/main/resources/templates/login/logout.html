@@ -5,12 +5,20 @@
     <meta charset="UTF-8">
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link th:href="@{css/styleQuizBlack.css}" rel="stylesheet" media="screen"/>
+    <link th:href="@{/css/mainStyleBlack.css}" rel="stylesheet" media="screen"/>
     <title>logout</title>
 </head>
 <body>
-<h1>You have been successfully logged out</h1>
-<a th:href="${'/login'}">Log back in</a>
+<div class="container">
 
+    <div class="row">
+        <h1>You have been successfully logged out</h1>
+    </div>
+
+    <div class="row">
+        <a class="submitButton" th:href="${'/login'}">Log back in</a>
+    </div>
+
+</div>
 </body>
 </html>

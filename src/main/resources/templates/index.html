@@ -8,7 +8,6 @@
     <title>Welcome</title>
 </head>
 <body class="welcomeBody">
-
 <div class="logoBox">
     <h1 class="title">Little Arithmatics</h1>
 
@@ -23,13 +22,17 @@
         </tr>
     </table>
 
-    <div class=title>
-        <form th:action="@{/overview/simple}" method="post">
-            <button class="submitButton" type="submit">login</button>
-        </form>
-    </div>
-</div>
 
+    <div class="buttons">
+        <a class="submitButton" th:href="${'/login'}">log in</a>
+    </div>
+
+    <div class="buttons">
+        <a class="submitButton" th:href="${'/newUser'}">sign up</a>
+    </div>
+
+
+</div>
 </body>
 
 </html>

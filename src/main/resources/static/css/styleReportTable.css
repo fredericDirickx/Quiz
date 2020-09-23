@@ -1,0 +1,29 @@
+table {
+    margin: auto;
+    width: 99%;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+td {
+    word-break: break-all;
+    padding: 10px 10px 10px;
+    color: #F8F9F9
+}
+
+th {
+    text-align: left;
+    background-color: black;
+    color: #299999;
+    border-bottom: solid 1px #299999;
+}
+
+
+/* tr:nth-child(even) {} */
+tr:nth-child(odd) {
+    background: #299999
+}
+
+tr:hover {
+    background-color: rgb(109, 109, 109);
+}

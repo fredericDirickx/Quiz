@@ -4,7 +4,7 @@
 
 <head>
     <title>Overview All</title>
-    <link th:href="@{/css/styleOverview.css}" rel="stylesheet" media="screen"/>
+    <link th:href="@{/css/mainStyleBlack.css}" rel="stylesheet" media="screen"/>
     <script th:src="@{https://code.jquery.com/jquery-3.2.1.min.js}"></script>
     <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js}"></script>
     <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min.js}"></script>
@@ -13,7 +13,7 @@
 
 <body>
 
-<div class="container">
+<div class="chartContainter">
     <div class="chartBox">
         <canvas class="chart" id="chartMaxMinQuiz"></canvas>
     </div>
@@ -28,10 +28,8 @@
     </div>
 </div>
 
-<div class="buttonBox">
-    <form action="/quiz/welcome">
-        <button class="submitButton" type="submit">overview</button>
-    </form>
+<div class="row">
+    <a class="submitButton" th:href="${'/overview/list'}">back to list</a>
 </div>
 
 
@@ -81,7 +79,6 @@
             });
 
 
-
             ctx = document.getElementById('chartQuestionsDuration').getContext('2d');
             var chartQuestionsDuration = new Chart(ctx, {
 
@@ -112,7 +109,6 @@
             });
 
 
-
             ctx = document.getElementById('chartPieCorrectAnswers').getContext('2d');
             var chartPieCorrectAnswers = new Chart(ctx, {
 
@@ -134,7 +130,7 @@
                         display: true,
                         text: 'Total correct answers'
                     },
-                    legend : {
+                    legend: {
                         hidden: true,
                         text: 'test'
 
@@ -151,8 +147,6 @@
             });
 
 
-
-
             ctx = document.getElementById('chartBarQuizScores').getContext('2d');
             var chartBarQuizScores = new Chart(ctx, {
 
@@ -165,7 +159,7 @@
                         backgroundColor: 'rgba(41, 153, 153, 0.2)',
                         borderColor: 'rgba(41, 153, 153, 1)',
                         borderWidth: 1
-                    },{
+                    }, {
                         label: 'wrong',
                         data: quizRepo.getCorrectAnswerPerQuiz()[1],
                         backgroundColor: 'rgba(63, 127, 191, 0.2)',
@@ -185,7 +179,7 @@
                                 beginAtZero: true
                             }
                         }],
-                        xAxes : [{
+                        xAxes: [{
                             stacked: true
                         }]
                     }

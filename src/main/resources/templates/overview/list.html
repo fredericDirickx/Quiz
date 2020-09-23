@@ -4,33 +4,35 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link th:href="@{/css/styleQuizBlack.css}" rel="stylesheet" media="screen"/>
+    <link th:href="@{/css/mainStyleBlack.css}" rel="stylesheet" media="screen"/>
+    <link th:href="@{/css/styleReportTable.css}" rel="stylesheet" media="screen"/>
     <title>Overview</title>
 </head>
 <body>
 <div class="container">
-    <table>
-        <tr>
-            <th>id</th>
-            <th>date</th>
-            <th>amount of questions</th>
-            <th>overview</th>
-            <th>report</th>
-        </tr>
-        <tr th:each="quiz : ${quizList}">
-            <td th:text="${quiz.id}"></td>
-            <td th:text ="${quiz.date.toString()}"></td>
-            <td th:text="${quiz.amountQuestions}"></td>
-            <td><a th:href="${'/overview/overviewOfQuiz/' + quiz.id}">view</a></td>
-            <td><a th:href="${'/overview/report/' + quiz.id}">view</a></td>
-        </tr>
-    </table>
     <div class="row">
-        <div class="col-25">
-            <form action="/quiz/welcome">
-                <button class="submitButton" type="submit">home</button>
-            </form>
-        </div>
+        <table class="tableReport">
+            <tr>
+                <th>id</th>
+                <th>date</th>
+                <th>amount of questions</th>
+                <th>charts</th>
+                <th>report</th>
+            </tr>
+            <tr th:each="quiz : ${quizList}">
+                <td th:text="${quiz.id}">test</td>
+                <td th:text="${quiz.date.toString()}">test</td>
+                <td th:text="${quiz.amountQuestions}">test</td>
+                <td><a th:href="${'/overview/charts/' + quiz.id}">view</a></td>
+                <td><a th:href="${'/overview/report/' + quiz.id}">view</a></td>
+            </tr>
+        </table>
+    </div>
+    <div class="row">
+        <a class="submitButton" th:href="${'/quiz/welcome'}">back</a>
+    </div>
+    <div class="row">
+        <a class="submitButton" th:href="${'/overview/chartsAll'}">overall chart view</a>
     </div>
 </div>
 </body>

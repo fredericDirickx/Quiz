@@ -4,7 +4,7 @@
 <head>
     <title>Account</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link th:href="@{../../static/css/styleQuizBlack.css}" rel="stylesheet" media="screen"/>
+    <link th:href="@{/css/mainStyleBlack.css}" rel="stylesheet" media="screen"/>
 
 </head>
 <body>
@@ -13,53 +13,52 @@
     <h1>Hello arithmetician, </h1>
 
     <form th:action="@{/person/save}" th:object="${person}" method="post">
-        <input type="hidden" th:field="*{id}"/>
 
         <h1>Person data</h1>
 
         <input type="hidden" th:field="*{id}"/>
 
         <div class="row">
-            <div class="col-25">
+            <div class="colLeft">
                 <label>first name : </label>
             </div>
-            <div class="col-75">
+            <div class="colRight">
                 <input type="text" th:field="*{firstName}"/>
             </div>
         </div>
 
         <div class="row">
-            <div class="col-25">
+            <div class="colLeft">
                 <label>family name : </label>
             </div>
-            <div class="col-75">
+            <div class="colRight">
                 <input type="text" th:field="*{familyName}">
             </div>
         </div>
 
         <div class="row">
-            <div class="col-25">
+            <div class="colLeft">
                 <label>email : </label>
             </div>
-            <div class="col-75">
+            <div class="colRight">
                 <input type="email" th:field="*{email}">
             </div>
         </div>
 
         <div class="row">
-            <div class="col-25">
+            <div class="colLeft">
                 <label>phone number : </label>
             </div>
-            <div class="col-75">
+            <div class="colRight">
                 <input type="text" th:field="*{phoneNumber}">
             </div>
         </div>
 
         <div class="row">
-            <div class="col-25">
+            <div class="colLeft">
                 <label>date of birth : </label>
             </div>
-            <div class="col-75">
+            <div class="colRight">
                 <input type="date" th:field="*{dateOfBirth}" th:value="${#dates.createNow()}"/>
             </div>
         </div>
@@ -69,46 +68,46 @@
         <input type="hidden" th:field="*{address.id}"/>
 
         <div class="row">
-            <div class="col-25">
+            <div class="colLeft">
                 <label>street : </label>
             </div>
-            <div class="col-75">
+            <div class="colRight">
                 <input type="text" th:field="*{address.street}">
             </div>
         </div>
 
         <div class="row">
-            <div class="col-25">
+            <div class="colLeft">
                 <label>street number : </label>
             </div>
-            <div class="col-75">
+            <div class="colRight">
                 <input type="text" th:field="*{address.streetNumber}">
             </div>
         </div>
 
         <div class="row">
-            <div class="col-25">
+            <div class="colLeft">
                 <label>city : </label>
             </div>
-            <div class="col-75">
+            <div class="colRight">
                 <input type="text" th:field="*{address.city}">
             </div>
         </div>
 
         <div class="row">
-            <div class="col-25">
+            <div class="colLeft">
                 <label>postal code : </label>
             </div>
-            <div class="col-75">
+            <div class="colRight">
                 <input type="text"th:field="*{address.postalCode}">
             </div>
         </div>
 
         <div class="row">
-            <div class="col-25">
+            <div class="colLeft">
                 <label>country : </label>
             </div>
-            <div class="col-75">
+            <div class="colRight">
                 <input type="text" th:field="*{address.country}">
             </div>
         </div>

@@ -4,12 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link th:href="@{/css/styleQuizBlack.css}" rel="stylesheet" media="screen"/>
+    <link th:href="@{/css/mainStyleBlack.css}" rel="stylesheet" media="screen"/>
+    <link th:href="@{/css/styleReportTable.css}" rel="stylesheet" media="screen"/>
     <title>Report</title>
 </head>
 <body>
 <div class="container">
-    <p th:text="'Greate job, ' + ${report.quiz.user.person.firstName} + '!'">Great Job, user</p>
+    <h3 th:text="'great job, ' + ${report.quiz.user.person.firstName} + '!'">great job, User</h3>
     <table>
         <tr>
             <th>question</th>
@@ -43,29 +44,25 @@
     </table>
 
     <br>
-    <div class="reportButtonsDiv">
+
+    <div class="row">
         <form th:action="@{/quiz/settings}" method="post">
-            <div class="row">
-                <div class="col-25">
-                    <button class="submitButton" type="submit">new game</button>
-                </div>
-            </div>
-        </form>
-        <form th:action="@{/logout}" method="post">
-            <div class="row">
-                <div class="col-25">
-                    <button class="submitButton" type="submit">logoff</button>
-                </div>
-            </div>
-        </form>
-        <form th:action="@{/overview/simple}" method="post">
-            <div class="row">
-                <div class="col-25">
-                    <button class="submitButton" type="submit">overview</button>
-                </div>
-            </div>
+            <button class="submitButton" type="submit">new game</button>
         </form>
     </div>
+
+    <div class="row">
+        <form th:action="@{/overview/list}" method="post">
+            <button class="submitButton" type="submit">back to list</button>
+        </form>
+    </div>
+
+    <div class="row">
+        <form th:action="@{/logout}" method="post">
+            <button class="submitButton" type="submit">logoff</button>
+        </form>
+    </div>
+
 </div>
 
 </div>

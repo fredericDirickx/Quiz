@@ -4,37 +4,78 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link th:href="@{/css/styleQuizBlack.css}" rel="stylesheet" media="screen"/>
+    <link th:href="@{/css/mainStyleBlack.css}" rel="stylesheet" media="screen"/>
     <title>Welcome</title>
 </head>
 <body>
 
+<div class="dropdown">
+    <button onclick="myFunction()" class="dropbtn">
+        <div class="logoBox">
+            <h1 class="logoTitle">Little Arithmatics</h1>
+            <table class="logoTable">
+                <tr class="logoRow">
+                    <td class="logoCell">+</td>
+                    <td class="logoCell">-</td>
+                </tr>
+                <tr class="logoRow">
+                    <td class="logoCell">*</td>
+                    <td class="logoCell">/</td>
+                </tr>
+            </table>
+        </div>
+    </button>
+    <div id="myDropdown" class="dropdown-content">
+        <p th:text="${firstName} + ${familyName}">FirstName LastName</p>
+        <a th:href="${'/person/update'}">Manage Account</a>
+    </div>
+</div>
+
+
 <div class="container">
-    <h1 th:text="'Welcome, ' + ${firstName}"> Welcome, </h1>
 
+    <h1 th:text="'Welcome, ' + ${firstName}"> Welcome, User </h1>
 
     <div class="row">
-        <div class="col-25">
-            <a class="submitButton" th:href="${'/overview/simple'}">quiz list overview</a>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-25">
-            <a class="submitButton" th:href="${'/overview/mainOverview'}">overview all</a>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-25">
+        <div class="colLeft">
             <a class="submitButton" th:href="${'/quiz/settings'}">start a quiz</a>
         </div>
     </div>
     <div class="row">
-        <div class="col-25">
+        <div class="colLeft">
+            <a class="submitButton" th:href="${'/overview/list'}">overview</a>
+        </div>
+    </div>
+    <div class="row"></div>
+    <div class="row">
+        <div class="colLeft">
             <a class="submitButton" th:href="${'/logout'}">Log Out</a>
         </div>
     </div>
 </div>
 
+
+<script>
+    /* When the user clicks on the button,
+    toggle between hiding and showing the dropdown content */
+    function myFunction() {
+        document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function (event) {
+        if (event.target.matches('.logoBox')) {
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
+</script>
 
 </body>
 </html>

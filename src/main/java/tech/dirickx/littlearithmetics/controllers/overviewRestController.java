@@ -56,10 +56,6 @@ public class overviewRestController {
         return quizService.findListOfQuizByUserName(principal.getName());
     }
 
-    @RequestMapping("/greetings")
-    public String all(){
-        return "{\"id\":1,\"content\":\"Hello, World!\"}";
-    }
 
 
 }

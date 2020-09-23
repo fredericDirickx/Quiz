@@ -44,6 +44,7 @@ public class QuizController {
     public String welcome(Principal principal, Model model) {
         User user = getUserFromPrincipal(principal);
         model.addAttribute("firstName", user.getPerson().getFirstName());
+        model.addAttribute("familyName", user.getPerson().getFamilyName());
         return "/quiz/welcome";
     }
 
@@ -52,6 +53,8 @@ public class QuizController {
         User user = getUserFromPrincipal(principal);
         this.quiz = new Quiz();
         quiz.setUser(user);
+        model.addAttribute("firstName", user.getPerson().getFirstName());
+        model.addAttribute("familyName", user.getPerson().getFamilyName());
         model.addAttribute("quiz", quiz);
         return "/quiz/settings";
     }
@@ -94,7 +97,7 @@ public class QuizController {
             QuizReportService reportService = new QuizReportService();
             reportService.setQuiz(this.quiz);
             model.addAttribute("report", reportService);
-            return "/report/report";
+            return "/overview/report";
         }
 
         ++questionNr;
@@ -151,7 +154,7 @@ public class QuizController {
 
     @RequestMapping("/overview")
     public String overview() {
-        return "/report/overview";
+        return "/overview/list";
     }
 
 

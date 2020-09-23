@@ -36,11 +36,11 @@ public class overviewController {
         return "overview/list";
     }
 
-    @RequestMapping("/byQuizGraph/{id}")
+    @RequestMapping("/charts/{id}")
     public String overviewOfQuiz(@PathVariable Long id, Model model){
         quizReportService.setQuiz(quizService.findQuizById(id));
         model.addAttribute("quizReport", quizReportService);
-        return "overview/byQuizGraph";
+        return "overview/charts";
     }
 
     @RequestMapping("/report/{id}")
@@ -50,10 +50,9 @@ public class overviewController {
         return "overview/report";
     }
 
-
-    @RequestMapping("/all")
+    @RequestMapping("/chartsAll")
     public String all(){
-        return "/overview/all";
+        return "overview/chartsAll";
     }
 
 

@@ -1,0 +1,211 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jockey+One&display=swap');
+
+
+
+body{
+    padding-right: 200px;
+    font-family: 'Jockey One', sans-serif;
+    color: #D6D6D6;
+    font-size: 1vw;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+
+.logoBox {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+
+
+.logoTitle {
+    color: #299999;
+    font-family: 'Jockey One', sans-serif;
+    text-align: center;
+    font-size: 1vw;
+}
+
+.logoTable {
+    color: rgba(255, 254, 255, 0.986);
+    border: solid whitesmoke 0.1vw;
+    margin: auto;
+    text-align: center;
+    font-family: "Times New Roman";
+    font-weight: bold;
+    font-size: 2vw;
+    height: 6vw;
+    width: 6vw;
+}
+
+.logoTable:hover{
+    color:  #299999;
+}
+
+
+.logoCell {
+    width: 25%;
+}
+
+
+.dropbtn {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 1vw;
+    margin-top: 5px;
+    background-color: black;
+    color:whitesmoke;
+    padding-right: 12px;
+    border: solid 1px black;
+    outline: none;
+}
+
+
+
+.dropdown {
+    align-self: flex-end;
+    margin-right: 200px;
+    width: 10%;
+    float: right;
+    position: relative;
+    display: inline-flexbox;
+    flex-direction: column;
+}
+
+.dropdown-content {
+    position: absolute;
+    overflow: auto;
+    display: none;
+    background-color:black;
+    z-index: 1;
+
+}
+
+.dropdown-content a, p {
+    text-align: center;
+    color: whitesmoke;
+    text-decoration: none;
+    display: block;
+}
+
+p{
+    color: grey;
+}
+
+.dropdown a:hover {color: #299999;}
+
+.show {display: block;}
+
+
+.container{
+    margin: auto;
+    width: 40%;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+.row {
+    padding: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.colLeft {
+    margin: 5px;
+    width: 50%;
+    text-align: right;
+}
+
+.colRight {
+    margin: 5px;
+    width: 50%;
+}
+
+
+.submitButton{
+    border: whitesmoke solid 1px;
+    font-family: 'Jockey One', sans-serif;
+    font-size: 1vw;
+    background-color: black;
+    color: whitesmoke;
+    padding: 12px;
+}
+
+.submitButton:hover{
+    color:  #299999;
+}
+
+input {
+    font-family: 'Jockey One', sans-serif;
+    font-size: 1vw;
+    padding: 5px 5px 5px 5px;
+    border: none;
+    background-color: black;
+    color: whitesmoke;
+    border-bottom: dotted 4px whitesmoke;
+}
+
+
+input:active {
+    outline: none;
+    border: none;
+}
+
+input:focus {
+    outline: none;
+}
+
+
+
+.progressBarBackground {
+    height: 25px;
+    margin: auto;
+    padding: 1px;
+    margin-bottom: 20px;
+    outline: solid 1px;
+    width: 20%;
+}
+
+.progressBar {
+    height: 23px;
+    color: #F8F9F9;
+    font-size: 15px;
+    padding-right: 10px;
+    text-align: right;
+    border: solid 1px;
+}
+
+.answer{
+    width: 10%;
+}
+
+
+.chartContainter{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.chartBox {
+    margin: 0.5vw;
+    width: 40%;
+}
+
+.chart {
+    border: solid whitesmoke;
+    padding: 1vw;
+}
+
+
+
+

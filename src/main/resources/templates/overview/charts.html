@@ -4,27 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link th:href="@{/css/styleQuizBlack.css}" rel="stylesheet" media="screen"/>
+    <link th:href="@{/css/mainStyleBlack.css}" rel="stylesheet" media="screen"/>
     <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js}"></script>
     <title>overviewOfQuiz</title>
 </head>
 <body>
 <div class="container">
     <div class="row">
-        <div class="col-25">
             <canvas id="pieChart" style="height: 200px;"></canvas>
-        </div>
-        <div class="col-25">
             <canvas id="barChart"></canvas>
-        </div>
     </div>
 
     <div class="row">
-        <div class="col-25">
-            <form action="/overview/simple">
-                <button class="submitButton" type="submit">overview</button>
+            <form action="/overview/list">
+                <button class="submitButton" type="submit">back to list</button>
             </form>
-        </div>
     </div>
 </div>
 

@@ -1,97 +1,190 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<html lang="en">
 <head>
     <title>Little Arithmetics Login</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link th:href="@{/css/styleQuizBlack.css}" rel="stylesheet" media="screen"/>
+    <link th:href="@{/css/mainStyleBlack.css}" rel="stylesheet" media="screen"/>
+    <link th:href="@{/css/checkboxes.css}" rel="stylesheet" media="screen"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 </head>
+<body>
+<div class="dropdown">
+    <button onclick="myFunction()" class="dropbtn">
+        <div class="logoBox">
+            <h1 class="logoTitle">Little Arithmatics</h1>
+            <table class="logoTable">
+                <tr class="logoRow">
+                    <td class="logoCell">+</td>
+                    <td class="logoCell">-</td>
+                </tr>
+                <tr class="logoRow">
+                    <td class="logoCell">*</td>
+                    <td class="logoCell">/</td>
+                </tr>
+            </table>
+        </div>
+    </button>
+    <div id="myDropdown" class="dropdown-content">
+        <p th:text="${firstName} + ${familyName}">FirstName LastName</p>
+        <a th:href="${'/person/update'}">Manage Account</a>
+    </div>
+</div>
+
+
 <div class="container" th:object="${quiz}">
-    <h1 th:text="|Welcome, *{user.person.firstName}|"></h1>
+    <h1 th:text="|Welcome, *{user.person.firstName}|">Welcome, user</h1>
 
     <form th:action="@{/quiz/question}" method="post">
 
-        <fieldset class="checkBoxes">
-            <label class="checkmarkContainer">+
-                <input name="addition" th:field="*{settings.addition}" type="checkbox" value="true">
-                <span class="checkMark"></span>
-            </label>
+        <div class="checkBoxes">
 
-            <label class="checkmarkContainer">-
-                <input name="subtraction" th:field="*{settings.subtraction}" type="checkbox" value="true">
-                <span class="checkMark"></span>
-            </label>
-            <label class="checkmarkContainer">x
-                <input name="multiplication" th:field="*{settings.multiplication}" type="checkbox" checked="checked"
-                       value="true">
-                <span class="checkMark"></span>
-            </label>
-            <label class="checkmarkContainer">/
-                <input name="division" th:field="*{settings.division}" type="checkbox" value="true">
-                <span class="checkMark"></span>
-            </label>
-            <label class="checkmarkContainer">shuffle
-                <input name="shuffle" th:field="*{settings.shuffled}" type="checkbox" value="true">
-                <span class="checkMark"></span>
-            </label>
-        </fieldset>
+            <div class="row">
+                <div class="colLeft">
+                    <label class="checkmarkContainer">
+                        <input name="addition" th:field="*{settings.addition}" type="checkbox" value="true">
+                        <span class="checkMark"></span>
+                    </label>
+                </div>
+                <div class="colRight">
+                    <label class="checkBoxLabel">+</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="colLeft">
+                    <label class="checkmarkContainer">
+                        <input name="subtraction" th:field="*{settings.subtraction}" type="checkbox"
+                               value="true">
+                        <span class="checkMark"></span>
+                    </label>
+                </div>
+                <div class="colRight">
+                    <label class="checkBoxLabel">-</label>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="colLeft">
+                    <label class="checkmarkContainer">
+
+                        <input name="multiplication" th:field="*{settings.multiplication}" type="checkbox"
+                               checked="checked" value="true">
+                        <span class="checkMark"></span>
+                    </label>
+                </div>
+                <div class="colRight">
+                    <label class="checkBoxLabel">*</label>
+                </div>
+
+            </div>
+
+
+            <div class="row">
+                <div class="colLeft">
+                    <label class="checkmarkContainer">
+
+                        <input name="division" th:field="*{settings.division}" type="checkbox" value="true">
+                        <span class="checkMark"></span>
+                    </label>
+                </div>
+                <div class="colRight">
+                    <label class="checkBoxLabel">/</label>
+                </div>
+
+            </div>
+
+
+            <div class="row">
+                <div class="colLeft">
+                    <label class="checkmarkContainer">
+                        <input name="shuffle" th:field="*{settings.shuffled}" type="checkbox" value="true">
+                        <span class="checkMark"></span>
+                    </label>
+                </div>
+                <div class="colRight">
+                    <label class="checkBoxLabel">shuffle</label>
+                </div>
+
+            </div>
+
+        </div>
 
         <div class="row">
-            <div class="col-25">
+            <div class="colLeft">
                 <label>amount of questions</label>
             </div>
-            <div class="col-75">
+            <div class="colRight">
                 <input name="amount" th:field="*{amountQuestions}" type="number" value="2">
             </div>
         </div>
 
         <div class="row">
-            <div class="col-25">
+            <div class="colLeft">
                 <label>first number lower bound</label>
             </div>
-            <div class="col-75">
+            <div class="colRight">
                 <input name="lowerBoundFirstNumber" th:field="*{boundaries.lowerBoundFirstNumber}" type="number"
                        value="2">
             </div>
         </div>
 
         <div class="row">
-            <div class="col-25">
+            <div class="colLeft">
                 <label>first number Upper bound</label>
             </div>
-            <div class="col-75">
+            <div class="colRight">
                 <input name="upperBoundFirstNumber" th:field="*{boundaries.upperBoundFirstNumber}" type="number"
                        value="9">
             </div>
         </div>
 
         <div class="row">
-            <div class="col-25">
+            <div class="colLeft">
                 <label>second number lower bound</label>
             </div>
-            <div class="col-75">
+            <div class="colRight">
                 <input name="lowerBoundSecondNumber" th:field="*{boundaries.lowerBoundSecondNumber}" type="number"
                        value="2">
             </div>
         </div>
 
         <div class="row">
-            <div class="col-25">
+            <div class="colLeft">
                 <label>second number Upper bound</label>
             </div>
-            <div class="col-75">
+            <div class="colRight">
                 <input name="upperBoundSecondNumber" th:field="*{boundaries.upperBoundSecondNumber}" type="number"
                        value="9">
             </div>
         </div>
         <div class="row">
-            <div class="col-25">
-                <button class="submitButton" type="submit">Push here</button>
-            </div>
+            <button class="submitButton" type="submit">start quiz!</button>
         </div>
     </form>
 </div>
 
+
+<script>
+    /* When the user clicks on the button,
+    toggle between hiding and showing the dropdown content */
+    function myFunction() {
+        document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function (event) {
+        if (event.target.matches('.logoBox')) {
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
+</script>
 </body>
 </html>

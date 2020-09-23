@@ -4,34 +4,41 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link th:href="@{/css/styleQuizBlack.css}" rel="stylesheet" media="screen"/>
+    <link th:href="@{/css/mainStyleBlack.css}" rel="stylesheet" media="screen"/>
     <title>Quiz</title>
 </head>
 <body>
-<div class="container">
-            <p th:text="${quiz.user.person.firstName}"></p>
 
+<div class="row">
+    <div class="colLeft">
+        <h3 th:text="'go for it, ' + ${quiz.user.person.firstName}">go for it, User!</h3>
+    </div>
+    <div class="colRight"></div>
+</div>
+
+<div class="row">
     <div class="progressBarBackground">
         <div class="progressBar" th:text="${progress}" th:style="'width:' +  ${progress} + '%'"></div>
     </div>
-
 </div>
 
 <form th:action="@{/quiz/question/{path}(path=${questionNr})} " method="post">
+
     <div class="row">
-        <div class="col-25">
-            <label th:text="${quiz.getQuestions().get(questionNr)}">...</label>
+        <div class="colLeft">
+            <label th:text="${quiz.getQuestions().get(questionNr)}">x * x =</label>
         </div>
-        <div class="col-75">
-            <input th:field="*{answer.answer}"  type="number" autofocus>
+        <div class="colRight">
+            <input class="answer" th:field="*{answer.answer}" type="number" autofocus>
         </div>
     </div>
+
     <div class="row">
-        <div class="col-75">
-            <button class="submitButton" name="submitButton" th:text="${buttonText}" type="submit"></button>
+        <div class="colLeft"></div>
+        <div class="colRight">
+            <button class="submitButton" name="submitButton" th:text="${buttonText}" type="submit">next</button>
         </div>
     </div>
 </form>
-</div>
 </body>
 </html>

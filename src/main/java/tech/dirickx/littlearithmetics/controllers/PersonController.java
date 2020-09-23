@@ -41,6 +41,7 @@ public class PersonController {
     public String updatePerson(Person person, Model model){
         personService.save(person);
         model.addAttribute("firstName", person.getFirstName());
+        model.addAttribute("familyName", person.getFamilyName());
         return "quiz/welcome";
     }
 
