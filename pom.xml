@@ -11,12 +11,12 @@
     <groupId>tech.dirickx</groupId>
     <artifactId>littelarithmetics</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>littelarithmetics</name>
+    <packaging>jar</packaging>
+    <name>littlearithmetics</name>
     <description>Quiz with simple arithmetic questions</description>
 
     <properties>
         <java.version>11</java.version>
-        <start-class>tech.dirickx.littlearithmetics</start-class>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
