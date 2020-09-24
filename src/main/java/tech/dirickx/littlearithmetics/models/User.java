@@ -13,6 +13,7 @@ import java.util.List;
 
 @Entity
 @Component
+@Table(name="`user`")
 public class User {
 
     @Id

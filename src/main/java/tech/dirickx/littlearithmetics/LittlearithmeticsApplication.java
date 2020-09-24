@@ -6,7 +6,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-//@EnableJpaRepositories(basePackageClasses = tech.dirickx.littlearithmetics.repositories.UserRepository.class)
+@EnableJpaRepositories(basePackageClasses = tech.dirickx.littlearithmetics.repositories.UserRepository.class)
 public class LittlearithmeticsApplication {
     public static void main(String[] args){
         ApplicationContext applicationContext = SpringApplication.run(LittlearithmeticsApplication.class, args);
