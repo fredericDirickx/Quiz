@@ -21,8 +21,8 @@ import java.math.BigDecimal;
 import java.security.Principal;
 import java.time.LocalDateTime;
 
-@RequestMapping("/quiz")
 @Controller
+@RequestMapping("/quiz")
 public class QuizController {
 
     QuizService quizService;
@@ -45,7 +45,7 @@ public class QuizController {
         User user = getUserFromPrincipal(principal);
         model.addAttribute("firstName", user.getPerson().getFirstName());
         model.addAttribute("familyName", user.getPerson().getFamilyName());
-        return "/quiz/welcome";
+        return "quiz/welcome";
     }
 
     @RequestMapping("/settings")
@@ -56,7 +56,7 @@ public class QuizController {
         model.addAttribute("firstName", user.getPerson().getFirstName());
         model.addAttribute("familyName", user.getPerson().getFamilyName());
         model.addAttribute("quiz", quiz);
-        return "/quiz/settings";
+        return "quiz/settings";
     }
 
     public User getUserFromPrincipal(Principal principal) {
@@ -81,7 +81,7 @@ public class QuizController {
 
         modelAddAttributes(model,questionNr);
 
-        return "/quiz/quiz";
+        return "quiz/quiz";
     }
 
     @RequestMapping(value = "/question/{questionNr}", method = RequestMethod.POST)
@@ -97,7 +97,7 @@ public class QuizController {
             QuizReportService reportService = new QuizReportService();
             reportService.setQuiz(this.quiz);
             model.addAttribute("report", reportService);
-            return "/overview/report";
+            return "overview/report";
         }
 
         ++questionNr;
@@ -106,7 +106,7 @@ public class QuizController {
         modelAddAttributes(model,questionNr);
 
 
-        return "/quiz/quiz";
+        return "quiz/quiz";
     }
 
     public void modelAddAttributes(Model model, int questionNr){
@@ -154,7 +154,7 @@ public class QuizController {
 
     @RequestMapping("/overview")
     public String overview() {
-        return "/overview/list";
+        return "overview/list";
     }
 
 

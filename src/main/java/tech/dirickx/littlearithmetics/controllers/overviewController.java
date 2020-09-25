@@ -12,8 +12,8 @@ import tech.dirickx.littlearithmetics.services.reposervices.QuizService;
 import java.security.Principal;
 import java.util.List;
 
-@RequestMapping("/overview")
 @Controller
+@RequestMapping("/overview")
 public class overviewController {
 
     private QuizService quizService;
