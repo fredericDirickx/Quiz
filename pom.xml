@@ -86,6 +86,22 @@
         <finalName>ROOT</finalName>
         <plugins>
             <plugin>
+                <groupId>org.codehaus.cargo</groupId>
+                <artifactId>cargo-maven2-plugin</artifactId>
+                <version>1.7.4</version>
+                <configuration>
+                    <container>
+                        <containerId>tomcat9x</containerId>
+                        <type>installed</type>
+                        <home>${env.CATALINA_HOME}</home>
+                    </container>
+                    <configuration>
+                        <type>existing</type>
+                        <home>${env.CATALINA_HOME}</home>
+                    </configuration>
+                </configuration>
+            </plugin>
+            <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
